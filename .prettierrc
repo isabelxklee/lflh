@@ -5,9 +5,9 @@
   "singleQuote": true,
   "bracketSpacing": true,
   "semi": false,
-  "jsxBracketSameLine": true,
   "proseWrap": "preserve",
   "quoteProps": "as-needed",
   "trailingComma": "none",
-  "tabWidth": 2
+  "tabWidth": 2,
+  "embeddedLanguageFormatting": "auto"
 }
