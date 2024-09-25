@@ -24,5 +24,8 @@
   },
   "resolutions": {
     "styled-components": "^5"
-  }
+  },
+  "plugins": [
+    "babel-plugin-styled-components"
+  ]
 }
