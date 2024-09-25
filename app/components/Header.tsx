@@ -5,7 +5,7 @@ import styled from 'styled-components';
 
 const Wrapper = styled.header`
   padding: 20px;
-  background: grey;
+  background: #f2f2f2;
 `;
 
 const UL = styled.ul`
