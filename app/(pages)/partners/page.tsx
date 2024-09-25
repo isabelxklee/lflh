@@ -1,3 +1,3 @@
 export default function Partners() {
-  return <h1>Partners</h1>
+  return <h1>Partners</h1>;
 }
