@@ -16,6 +16,12 @@ export const FONT_WEIGHTS = {
   BLACK: 800
 };
 
+export const FONTS = {
+  AUTH_SANS: 'Authentic Sans',
+  AUTH_KUNST: 'Authentic Kunstverein',
+  FANN: 'Fann Grotesque Pro'
+};
+
 export const BREAKPOINTS = {
   SMALL: '400px',
   MEDIUM: '1000px'
