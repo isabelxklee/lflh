@@ -18,6 +18,7 @@ const UL = styled.ul`
 const StyledLink = styled(Link)`
   text-decoration: none;
   color: black;
+  font-family: 'Authentic Sans';
 `;
 
 const Header = () => {
