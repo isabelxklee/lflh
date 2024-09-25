@@ -7,7 +7,14 @@ export const GlobalStyles = createGlobalStyle`
     font-family: 'Authentic Sans';
     font-style: regular;
     font-weight: 400;
-    src: url('Authentic Sans') format('woff')
+    src: url('Authentic Sans') format('otf')
+  }
+
+  @font-face {
+    font-family: 'Fann Grotesque Pro';
+    font-style: regular;
+    font-weight: 400;
+    src: url('Fann Grotesque Pro') format('ttf')
   }
 
   body {
