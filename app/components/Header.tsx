@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import styled from 'styled-components';
+import { FONTS } from '../globalStyles';
 
 const Wrapper = styled.header`
   padding: 20px;
@@ -18,7 +19,7 @@ const UL = styled.ul`
 const StyledLink = styled(Link)`
   text-decoration: none;
   color: black;
-  font-family: 'Authentic Sans';
+  font-family: ${FONTS.AUTH_SANS};
 `;
 
 const Header = () => {
