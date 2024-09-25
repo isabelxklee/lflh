@@ -1,7 +1,7 @@
 import styled, { createGlobalStyle } from 'styled-components'
 
 export const GlobalStyles = createGlobalStyle`
-body {
+  body {
     margin: 0;
     padding: 0;
     font-family: 'Cecilie Sans', sans-serif;

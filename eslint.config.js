@@ -1,5 +1,6 @@
 import js from '@eslint/js'
 import eslintConfigPrettier from 'eslint-config-prettier'
+import eslintRec from 'eslint-plugin-prettier/recommended'
 
 export default [
   js.configs.recommended,
@@ -9,5 +10,5 @@ export default [
       'no-undef': 'warn'
     }
   },
-  eslintConfigPrettier
+  eslintRec
 ]

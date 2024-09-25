@@ -29,5 +29,6 @@
   },
   "plugins": [
     "babel-plugin-styled-components"
-  ]
+  ],
+  "type": "module"
 }

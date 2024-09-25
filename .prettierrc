@@ -5,7 +5,6 @@
   "singleQuote": true,
   "bracketSpacing": true,
   "semi": false,
-  "jsxBracketSameLine": true,
   "proseWrap": "preserve",
   "quoteProps": "as-needed",
   "trailingComma": "none",
