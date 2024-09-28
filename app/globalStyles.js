@@ -1,6 +1,6 @@
 'use client';
 
-import { createGlobalStyle } from 'styled-components';
+import styled, { createGlobalStyle } from 'styled-components';
 
 export const GRADIENT_COLORS = {
   BLUE: '#1F4DBB',
@@ -37,6 +37,10 @@ export const BREAKPOINTS = {
   SMALL: '400px',
   MEDIUM: '1000px'
 };
+
+export const GlobalWrapper = styled.div`
+  padding: 100px 200px;
+`;
 
 export const GlobalStyles = createGlobalStyle`
   @font-face {

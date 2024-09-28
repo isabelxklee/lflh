@@ -8,6 +8,9 @@ const Wrapper = styled.header`
   padding: 20px;
   background: #f2f2f2;
   z-index: 2;
+  /* position: fixed;
+  top: 0;
+  width: 100dvw; */
 `;
 
 const UL = styled.ul`
