@@ -2,15 +2,13 @@
 
 import Link from 'next/link';
 import styled from 'styled-components';
-import { FONTS, GRADIENT_COLORS } from '../globalStyles';
+import { FONTS, COLORS } from '../globalStyles';
 
 const Wrapper = styled.header`
   padding: 20px;
-  background: #f2f2f2;
-  z-index: 2;
-  /* position: fixed;
-  top: 0;
-  width: 100dvw; */
+  background: ${COLORS.GREY};
+  width: 100dvw;
+  height: fit-content;
 `;
 
 const UL = styled.ul`
@@ -26,52 +24,33 @@ const StyledLink = styled(Link)`
   font-family: ${FONTS.AUTH_SANS};
 `;
 
-const GradientWrapper = styled.div`
-  background: linear-gradient(
-    90deg,
-    ${GRADIENT_COLORS.BLUE},
-    ${GRADIENT_COLORS.DUSK},
-    ${GRADIENT_COLORS.PURPLE},
-    ${GRADIENT_COLORS.BLACK},
-    ${GRADIENT_COLORS.GREEN},
-    ${GRADIENT_COLORS.LIGHT_PURPLE},
-    ${GRADIENT_COLORS.LIGHT_ORANGE},
-    ${GRADIENT_COLORS.ORANGE}
-  );
-  height: 200px;
-  z-index: 1;
-`;
-
 const Header = () => {
   return (
-    <>
-      <GradientWrapper />
-      <Wrapper>
-        <UL>
-          <li>
-            <StyledLink href="/">Home</StyledLink>
-          </li>
-          <li>
-            <StyledLink href="/about">About</StyledLink>
-          </li>
-          <li>
-            <StyledLink href="/oral-histories">Oral Histories</StyledLink>
-          </li>
-          <li>
-            <StyledLink href="/themes">Themes</StyledLink>
-          </li>
-          <li>
-            <StyledLink href="/resources">Resources</StyledLink>
-          </li>
-          <li>
-            <StyledLink href="/partners">Partners</StyledLink>
-          </li>
-          <li>
-            <StyledLink href="/contact">Contact</StyledLink>
-          </li>
-        </UL>
-      </Wrapper>
-    </>
+    <Wrapper>
+      <UL>
+        <li>
+          <StyledLink href="/">Home</StyledLink>
+        </li>
+        <li>
+          <StyledLink href="/about">About</StyledLink>
+        </li>
+        <li>
+          <StyledLink href="/oral-histories">Oral Histories</StyledLink>
+        </li>
+        <li>
+          <StyledLink href="/themes">Themes</StyledLink>
+        </li>
+        <li>
+          <StyledLink href="/resources">Resources</StyledLink>
+        </li>
+        <li>
+          <StyledLink href="/partners">Partners</StyledLink>
+        </li>
+        <li>
+          <StyledLink href="/contact">Contact</StyledLink>
+        </li>
+      </UL>
+    </Wrapper>
   );
 };
 
