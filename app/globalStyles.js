@@ -2,7 +2,16 @@
 
 import { createGlobalStyle } from 'styled-components';
 
-export const GRADIENT_COLORS = {};
+export const GRADIENT_COLORS = {
+  BLUE: '#1F4DBB',
+  DUSK: '#6159DD',
+  PURPLE: '#A364FE',
+  BLACK: '#332E38',
+  GREEN: '#9CA578',
+  LIGHT_PURPLE: '#B1B2DC',
+  LIGHT_ORANGE: '#E9B2A1',
+  ORANGE: '#F07F2E'
+};
 
 export const COLORS = {
   GREY: '#F2F2F2'
