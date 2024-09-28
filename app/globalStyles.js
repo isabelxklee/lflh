@@ -1,6 +1,8 @@
 'use client';
 
-import styled, { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle } from 'styled-components';
+
+export const GRADIENT_COLORS = {};
 
 export const COLORS = {
   GREY: '#F2F2F2'
