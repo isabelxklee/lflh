@@ -31,8 +31,22 @@ export const GlobalStyles = createGlobalStyle`
   @font-face {
     font-family: 'Authentic Sans';
     font-style: regular;
-    font-weight: 400;
-    src: url('Authentic Sans') format('otf')
+    font-weight: 60;
+    src: url('./fonts/authentic-sans-60.woff2') format('woff2')
+  }
+
+  @font-face {
+    font-family: 'Authentic Sans';
+    font-style: regular;
+    font-weight: 90;
+    src: url('./fonts/authentic-sans-90.woff2') format('woff2')
+  }
+
+  @font-face {
+    font-family: 'Authentic Sans';
+    font-style: regular;
+    font-weight: 130;
+    src: url('./fonts/authentic-sans-130.woff2') format('woff2')
   }
 
   @font-face {
