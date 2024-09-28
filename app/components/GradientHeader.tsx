@@ -5,7 +5,7 @@ import { GRADIENT_COLORS } from '../globalStyles';
 import { useCallback } from 'react';
 
 interface GradientHeaderProps {
-  setColor: (args0: any) => void;
+  setTheme: (args0: any) => void;
 }
 
 const GradientWrapper = styled.div`
@@ -32,27 +32,43 @@ const ThemeContainer = styled.div`
   flex-direction: row;
 `;
 
-const Theme = styled.div<{ $num: number }>`
-  width: calc(1000px / 8);
+const ThemeColor = styled.div<{ $num: number }>`
+  width: calc(100% / 3);
   height: 200px;
   z-index: 2;
 `;
 
-const GradientHeader = ({ setColor }: GradientHeaderProps) => {
-  const themes = [1, 2, 3, 4, 5, 6, 7, 8];
+const GradientHeader = ({ setTheme }: GradientHeaderProps) => {
+  const themes = [
+    {
+      title: 'The Body',
+      body: "I started questioning everything in my life. I realized—I got diagnosed with autism while during COVID and I started the unmasking process of just peeling back. 'Okay, I do this to please other people. I say these things to please other people, I say this to fit in' and really discovering who I was.",
+      sort: 1
+    },
+    {
+      title: 'Community-Building',
+      body: "I started questioning everything in my life. I realized—I got diagnosed with autism while during COVID and I started the unmasking process of just peeling back. 'Okay, I do this to please other people. I say these things to please other people, I say this to fit in' and really discovering who I was.",
+      sort: 2
+    },
+    {
+      title: 'Capitalism + Productivity',
+      body: "I started questioning everything in my life. I realized—I got diagnosed with autism while during COVID and I started the unmasking process of just peeling back. 'Okay, I do this to please other people. I say these things to please other people, I say this to fit in' and really discovering who I was.",
+      sort: 3
+    }
+  ];
 
-  const handleHover = useCallback((index: number) => {
-    setColor(index);
+  const handleHover = useCallback((theme: any) => {
+    setTheme(theme);
   }, []);
 
   return (
     <>
       <ThemeContainer>
-        {themes.map((index: number) => (
-          <Theme
-            key={index}
+        {themes.map((theme: any) => (
+          <ThemeColor
+            key={theme.sort}
             $num={themes.length}
-            onClick={() => handleHover(index)}
+            onMouseEnter={() => handleHover(theme)}
           />
         ))}
       </ThemeContainer>

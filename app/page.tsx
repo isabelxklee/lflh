@@ -8,12 +8,18 @@ import Header from './components/Header';
 import { useState } from 'react';
 
 export default function Home() {
-  const [color, setColor] = useState();
+  const [theme, setTheme] = useState({
+    title: '',
+    body: '',
+    sort: 0
+  });
+
+  console.log(theme);
 
   return (
     <>
       {/* <Header /> */}
-      <GradientHeader setColor={setColor} />
+      <GradientHeader setTheme={setTheme} />
       <GlobalWrapper>
         <h1>
           {/* <Image
@@ -46,7 +52,7 @@ export default function Home() {
           have included the transcript with each audio clip, so that you can
           read while you listen and listen while you read.
         </p>
-        <ThemePreview color={color} />
+        <ThemePreview theme={theme} />
       </GlobalWrapper>
     </>
   );
