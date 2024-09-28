@@ -7,6 +7,7 @@ import { FONTS, GRADIENT_COLORS } from '../globalStyles';
 const Wrapper = styled.header`
   padding: 20px;
   background: #f2f2f2;
+  z-index: 2;
 `;
 
 const UL = styled.ul`
@@ -35,6 +36,7 @@ const GradientWrapper = styled.div`
     ${GRADIENT_COLORS.ORANGE}
   );
   height: 200px;
+  z-index: 1;
 `;
 
 const Header = () => {
