@@ -5,7 +5,7 @@ import { GRADIENT_COLORS } from '../globalStyles';
 import { useCallback } from 'react';
 
 interface GradientHeaderProps {
-  setColor: () => void;
+  setColor: (args0: any) => void;
 }
 
 const GradientWrapper = styled.div`
@@ -28,31 +28,35 @@ const GradientWrapper = styled.div`
 `;
 
 const ThemeContainer = styled.div`
-  height: 200px;
   display: flex;
   flex-direction: row;
 `;
 
 const Theme = styled.div<{ $num: number }>`
   width: calc(1000px / 8);
-  height: inherit;
+  height: 200px;
+  z-index: 2;
 `;
 
 const GradientHeader = ({ setColor }: GradientHeaderProps) => {
   const themes = [1, 2, 3, 4, 5, 6, 7, 8];
-  const handleHover = useCallback((event: { target: any }): any => {
-    console.log(event.target);
-    // setColor();
+
+  const handleHover = useCallback((index: number) => {
+    setColor(index);
   }, []);
 
   return (
     <>
       <ThemeContainer>
         {themes.map((index: number) => (
-          <Theme key={index} $num={themes.length} />
+          <Theme
+            key={index}
+            $num={themes.length}
+            onClick={() => handleHover(index)}
+          />
         ))}
       </ThemeContainer>
-      <GradientWrapper onMouseEnter={handleHover} />
+      <GradientWrapper />
     </>
   );
 };

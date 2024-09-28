@@ -46,7 +46,7 @@ export default function Home() {
           have included the transcript with each audio clip, so that you can
           read while you listen and listen while you read.
         </p>
-        <ThemePreview />
+        <ThemePreview color={color} />
       </GlobalWrapper>
     </>
   );

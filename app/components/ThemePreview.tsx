@@ -1,4 +1,10 @@
-const ThemePreview = () => {
+interface ThemePreviewProps {
+  color: any;
+}
+
+const ThemePreview = ({ color }: ThemePreviewProps) => {
+  console.log(color);
+
   return (
     <>
       <h2>The Body: As an Epistemological Site</h2>
