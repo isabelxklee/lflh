@@ -2,6 +2,17 @@
 
 import styled, { createGlobalStyle } from 'styled-components';
 
+export const GRADIENT_COLORS = {
+  BLUE: '#1F4DBB',
+  DUSK: '#6159DD',
+  PURPLE: '#A364FE',
+  BLACK: '#332E38',
+  GREEN: '#9CA578',
+  LIGHT_PURPLE: '#B1B2DC',
+  LIGHT_ORANGE: '#E9B2A1',
+  ORANGE: '#F07F2E'
+};
+
 export const COLORS = {
   GREY: '#F2F2F2'
 };
@@ -26,6 +37,10 @@ export const BREAKPOINTS = {
   SMALL: '400px',
   MEDIUM: '1000px'
 };
+
+export const GlobalWrapper = styled.div`
+  padding: 100px 200px;
+`;
 
 export const GlobalStyles = createGlobalStyle`
   @font-face {

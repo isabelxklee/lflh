@@ -2,11 +2,13 @@
 
 import Link from 'next/link';
 import styled from 'styled-components';
-import { FONTS } from '../globalStyles';
+import { FONTS, COLORS } from '../globalStyles';
 
 const Wrapper = styled.header`
   padding: 20px;
-  background: #f2f2f2;
+  background: ${COLORS.GREY};
+  width: 100dvw;
+  height: fit-content;
 `;
 
 const UL = styled.ul`
