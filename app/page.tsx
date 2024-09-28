@@ -1,14 +1,19 @@
+'use client';
+
 import Image from 'next/image';
 import { GlobalWrapper } from './globalStyles';
 import GradientHeader from './components/GradientHeader';
 import ThemePreview from './components/ThemePreview';
 import Header from './components/Header';
+import { useState } from 'react';
 
 export default function Home() {
+  const [color, setColor] = useState();
+
   return (
     <>
       {/* <Header /> */}
-      <GradientHeader />
+      <GradientHeader setColor={setColor} />
       <GlobalWrapper>
         <h1>
           {/* <Image
