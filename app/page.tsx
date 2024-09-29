@@ -22,12 +22,12 @@ export default function Home() {
       <GradientHeader setTheme={setTheme} setShowDefault={setShowDefault} />
       <GlobalWrapper>
         <h1>
-          {/* <Image
-          src="./assets/LFLH-logo.svg"
-          width={500}
-          height={500}
-          alt="Listening for the Long Haul Logo"
-        /> */}
+          <Image
+            src="https://cdn.sanity.io/images/4569xi28/production/e455c2807b6797d8323fd68bf85284985fa3dbad-461x259.svg"
+            width={500}
+            height={500}
+            alt="Listening for the Long Haul Logo"
+          />
           Listening for the Long Haul
         </h1>
         {showDefault ? (
