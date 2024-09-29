@@ -2,7 +2,7 @@ import { defineConfig } from 'sanity';
 import { structureTool } from 'sanity/structure';
 import { media } from 'sanity-plugin-media';
 import { structure } from './sanity/structure';
-import { postType } from './sanity/schemaTypes/postType';
+import { schema } from './sanity/schemas';
 import { visionTool } from '@sanity/vision';
 
 const config = defineConfig({
@@ -13,7 +13,7 @@ const config = defineConfig({
   basePath: '/admin',
   plugins: [structureTool({ structure: structure }), media(), visionTool()],
   schema: {
-    types: [postType]
+    types: schema.types
   }
 });
 
