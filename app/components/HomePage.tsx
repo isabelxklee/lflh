@@ -6,7 +6,11 @@ import { GlobalWrapper } from '../globalStyles';
 import GradientHeader from './GradientHeader';
 import ThemePreview from './ThemePreview';
 
-export default function Home() {
+interface HomeProps {
+  themes: any;
+}
+
+export default function Home({ themes }: HomeProps) {
   const [theme, setTheme] = useState({
     title: '',
     body: '',
@@ -14,6 +18,8 @@ export default function Home() {
   });
 
   const [showDefault, setShowDefault] = useState(true);
+
+  console.log(themes);
 
   return (
     <>
