@@ -5,9 +5,10 @@ import { useState } from 'react';
 import { GlobalWrapper } from '../globalStyles';
 import GradientHeader from './GradientHeader';
 import ThemePreview from './ThemePreview';
+import { ThemeType } from '../../sanity/sanity.utils';
 
 interface HomeProps {
-  themes: any;
+  themes: ThemeType[];
 }
 
 export default function Home({ themes }: HomeProps) {

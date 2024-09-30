@@ -21,13 +21,13 @@
 // }
 
 import { client } from './lib/client';
-export type Theme = {
+export type ThemeType = {
   _id: string;
   title: string;
   sort: number;
 };
 
-export async function getThemes(): Promise<Theme[]> {
+export async function getThemes(): Promise<ThemeType[]> {
   const themes = await client.fetch(`
     *[_type == "theme"]{
       _id,
