@@ -21,14 +21,6 @@
 // }
 
 import { client } from './lib/client';
-
-// const client = createClient({
-//   projectId: 'spkiomkt',
-//   dataset: 'production',
-//   apiVersion: '',
-//   useCdn: false
-// });
-
 export type Theme = {
   _id: string;
   title: string;
@@ -44,11 +36,4 @@ export async function getThemes(): Promise<Theme[]> {
     }`);
 
   return themes;
-  // return createClient(clientConfig).fetch(
-  //   groq`*[_type == "theme"]{
-  //       _id,
-  //       title,
-  //       sort
-  //     }`
-  // );
 }
