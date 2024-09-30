@@ -1,27 +1,12 @@
-// export async function getsettings(): Promise<Settings[]> {
-//   return createClient(clientConfig).fetch(
-//     `*[_type == "siteSettings"]{
-//         _id,
-//        title,
-//        "herovisual": herovisual[]{
-//           _key,
-//           _type,
-//           "heroImgUrl": asset->url,
-//        },
-//        "herovisualMobile": herovisualMobile[]{
-//         _key,
-//         _type,
-//         "heroImgUrl": asset->url,
-//        },
-//       "logo": site_log.asset->url,
-//       "seoDescription": seo.description,
-//       "seoImageUrl": seo.seo_image.asset->url,
-//     }`
-//   );
-// }
-
 import { client } from './lib/client';
+
 export type ThemeType = {
+  _id: string;
+  title: string;
+  sort: number;
+};
+
+export type SubThemeType = {
   _id: string;
   title: string;
   sort: number;
@@ -36,4 +21,16 @@ export async function getThemes(): Promise<ThemeType[]> {
     }`);
 
   return themes;
+}
+
+export async function getSubThemes(): Promise<SubThemeType[]> {
+  const subThemes = await client.fetch(`
+    *[_type == "subTheme"]{
+      _id,
+      title,
+      sort,
+      "themeName": theme->title
+    }`);
+
+  return subThemes;
 }

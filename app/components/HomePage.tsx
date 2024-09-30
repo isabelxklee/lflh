@@ -5,13 +5,14 @@ import { useState } from 'react';
 import { GlobalWrapper } from '../globalStyles';
 import GradientHeader from './GradientHeader';
 import ThemePreview from './ThemePreview';
-import { ThemeType } from '../../sanity/sanity.utils';
+import { SubThemeType, ThemeType } from '../../sanity/sanity.utils';
 
 interface HomeProps {
   themes: ThemeType[];
+  subThemes: SubThemeType[];
 }
 
-export default function Home({ themes }: HomeProps) {
+export default function Home({ themes, subThemes }: HomeProps) {
   const [theme, setTheme] = useState({
     title: '',
     body: '',
@@ -20,7 +21,7 @@ export default function Home({ themes }: HomeProps) {
 
   const [showDefault, setShowDefault] = useState(true);
 
-  console.log(themes);
+  console.log(themes, subThemes);
 
   return (
     <>
