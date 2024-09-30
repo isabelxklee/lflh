@@ -21,8 +21,6 @@ export default function Home({ themes, subThemes }: HomeProps) {
 
   const [showDefault, setShowDefault] = useState(true);
 
-  console.log(themes, subThemes);
-
   return (
     <>
       {/* <Header /> */}
