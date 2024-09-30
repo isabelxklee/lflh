@@ -15,5 +15,17 @@ export const themeType = defineType({
       name: 'sort',
       type: 'number'
     })
+  ],
+  orderings: [
+    {
+      title: 'Order',
+      name: 'order',
+      by: [
+        {
+          field: 'sort',
+          direction: 'asc'
+        }
+      ]
+    }
   ]
 });

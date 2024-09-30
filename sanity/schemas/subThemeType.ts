@@ -20,5 +20,17 @@ export const subThemeType = defineType({
       type: 'reference',
       to: { type: 'theme' }
     })
+  ],
+  orderings: [
+    {
+      title: 'Order',
+      name: 'order',
+      by: [
+        {
+          field: 'sort',
+          direction: 'asc'
+        }
+      ]
+    }
   ]
 });
