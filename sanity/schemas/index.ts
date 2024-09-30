@@ -5,7 +5,8 @@ import { categoryType } from './categoryType';
 import { postType } from './postType';
 import { authorType } from './authorType';
 import { themeType } from './themeType';
+import { subThemeType } from './subThemeType';
 
 export const schema: { types: SchemaTypeDefinition[] } = {
-  types: [blockContentType, categoryType, postType, authorType, themeType]
+  types: [themeType, subThemeType]
 };
