@@ -17,7 +17,8 @@ export async function getThemes(): Promise<ThemeType[]> {
     *[_type == "theme"]{
       _id,
       title,
-      sort
+      sort,
+      description
     }`);
 
   return themes;

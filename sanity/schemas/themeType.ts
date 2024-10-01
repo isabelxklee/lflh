@@ -12,6 +12,10 @@ export const themeType = defineType({
       type: 'string'
     }),
     defineField({
+      name: 'description',
+      type: 'text'
+    }),
+    defineField({
       name: 'sort',
       type: 'number'
     })
