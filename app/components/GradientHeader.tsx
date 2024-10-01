@@ -2,13 +2,12 @@
 
 import styled from 'styled-components';
 import { GRADIENT_COLORS } from '../globalStyles';
-import { useCallback } from 'react';
 
 interface GradientHeaderProps {
   setTheme: (args0: any) => void;
 }
 
-const GradientWrapper = styled.div`
+const Gradient = styled.div`
   background: linear-gradient(
     90deg,
     ${GRADIENT_COLORS.BLUE},
@@ -22,14 +21,11 @@ const GradientWrapper = styled.div`
   );
   height: 200px;
   width: 100dvw;
-  cursor: pointer;
   position: fixed;
   top: 0;
-`;
-
-const ThemeContainer = styled.div`
   display: flex;
   flex-direction: row;
+  cursor: pointer;
 `;
 
 const ThemeColor = styled.div<{ $num: number }>`
@@ -57,19 +53,20 @@ const GradientHeader = ({ setTheme }: GradientHeaderProps) => {
     }
   ];
 
+  const handleClick = (theme: any) => {
+    setTheme(theme);
+  };
+
   return (
-    <>
-      <ThemeContainer>
-        {themes.map((theme: any) => (
-          <ThemeColor
-            key={theme.sort}
-            $num={themes.length}
-            onMouseEnter={() => setTheme(theme)}
-          />
-        ))}
-      </ThemeContainer>
-      <GradientWrapper />
-    </>
+    <Gradient>
+      {themes.map((theme: any) => (
+        <ThemeColor
+          key={theme.sort}
+          $num={themes.length}
+          onClick={() => handleClick(theme)}
+        />
+      ))}
+    </Gradient>
   );
 };
 

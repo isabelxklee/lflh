@@ -18,13 +18,7 @@ const TextWrapper = styled.div`
 `;
 
 export default function Home({ themes, subThemes }: HomeProps) {
-  const [theme, setTheme] = useState({
-    title: 'The Body',
-    body: "I started questioning everything in my life. I realized—I got diagnosed with autism while during COVID and I started the unmasking process of just peeling back. 'Okay, I do this to please other people. I say these things to please other people, I say this to fit in' and really discovering who I was.",
-    sort: 1
-  });
-
-  console.log(theme);
+  const [theme, setTheme] = useState(null);
 
   return (
     <>
@@ -53,7 +47,7 @@ export default function Home({ themes, subThemes }: HomeProps) {
             read.
           </P>
         </TextWrapper>
-        <ThemePreview theme={theme} />
+        {theme && <ThemePreview theme={theme} />}
       </GlobalWrapper>
     </>
   );
