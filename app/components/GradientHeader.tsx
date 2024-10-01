@@ -6,7 +6,6 @@ import { useCallback } from 'react';
 
 interface GradientHeaderProps {
   setTheme: (args0: any) => void;
-  setShowDefault: (args0: any) => void;
 }
 
 const GradientWrapper = styled.div`
@@ -24,7 +23,7 @@ const GradientWrapper = styled.div`
   height: 200px;
   width: 100dvw;
   cursor: pointer;
-  position: absolute;
+  position: fixed;
   top: 0;
 `;
 
@@ -39,7 +38,7 @@ const ThemeColor = styled.div<{ $num: number }>`
   z-index: 2;
 `;
 
-const GradientHeader = ({ setTheme, setShowDefault }: GradientHeaderProps) => {
+const GradientHeader = ({ setTheme }: GradientHeaderProps) => {
   const themes = [
     {
       title: 'The Body',
@@ -58,19 +57,14 @@ const GradientHeader = ({ setTheme, setShowDefault }: GradientHeaderProps) => {
     }
   ];
 
-  const handleHover = useCallback((theme: any) => {
-    setShowDefault(false);
-    setTheme(theme);
-  }, []);
-
   return (
     <>
-      <ThemeContainer onMouseLeave={() => setShowDefault(true)}>
+      <ThemeContainer>
         {themes.map((theme: any) => (
           <ThemeColor
             key={theme.sort}
             $num={themes.length}
-            onMouseEnter={() => handleHover(theme)}
+            onMouseEnter={() => setTheme(theme)}
           />
         ))}
       </ThemeContainer>

@@ -24,12 +24,12 @@ export default function Home({ themes, subThemes }: HomeProps) {
     sort: 1
   });
 
-  const [showDefault, setShowDefault] = useState(true);
+  console.log(theme);
 
   return (
     <>
       {/* <Header /> */}
-      <GradientHeader setTheme={setTheme} setShowDefault={setShowDefault} />
+      <GradientHeader setTheme={setTheme} />
       <GlobalWrapper>
         <h1>
           <Image
