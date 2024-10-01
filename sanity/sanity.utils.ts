@@ -1,4 +1,5 @@
 import { client } from './lib/client';
+import { SUBTHEMES_QUERY, THEMES_QUERY } from './lib/queries';
 
 export type ThemeType = {
   _id: string;
@@ -12,26 +13,14 @@ export type SubThemeType = {
   sort: number;
 };
 
-export async function getThemes(): Promise<ThemeType[]> {
-  const themes = await client.fetch(`
-    *[_type == "theme"]{
-      _id,
-      title,
-      sort,
-      description
-    }`);
+export async function getThemes() {
+  const themes = await client.fetch(THEMES_QUERY);
 
-  return themes;
+  return { themes };
 }
 
-export async function getSubThemes(): Promise<SubThemeType[]> {
-  const subThemes = await client.fetch(`
-    *[_type == "subTheme"]{
-      _id,
-      title,
-      sort,
-      "themeName": theme->title
-    }`);
+export async function getSubThemes() {
+  const subThemes = await client.fetch(SUBTHEMES_QUERY);
 
-  return subThemes;
+  return { subThemes };
 }
