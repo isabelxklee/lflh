@@ -42,6 +42,11 @@ export const GlobalWrapper = styled.div`
   padding: 100px 200px;
 `;
 
+export const P = styled.p`
+  font-size: 16px;
+  margin: 0;
+`;
+
 export const GlobalStyles = createGlobalStyle`
   @font-face {
     font-family: 'Authentic Sans';
