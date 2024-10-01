@@ -6,6 +6,7 @@ import { GlobalWrapper } from '../globalStyles';
 import { SubThemeType, ThemeType } from '../../sanity/sanity.utils';
 import GradientHeader from '../components/GradientHeader';
 import styled from 'styled-components';
+import ThemePreview from '../components/ThemePreview';
 
 interface HomeProps {
   themes: ThemeType[];
@@ -14,9 +15,9 @@ interface HomeProps {
 
 export default function Home({ themes, subThemes }: HomeProps) {
   const [theme, setTheme] = useState({
-    title: '',
-    body: '',
-    sort: 0
+    title: 'The Body',
+    body: "I started questioning everything in my life. I realized—I got diagnosed with autism while during COVID and I started the unmasking process of just peeling back. 'Okay, I do this to please other people. I say these things to please other people, I say this to fit in' and really discovering who I was.",
+    sort: 1
   });
 
   const [showDefault, setShowDefault] = useState(true);
@@ -45,6 +46,7 @@ export default function Home({ themes, subThemes }: HomeProps) {
           have included the transcript with each audio clip, so that you can
           read while you listen and listen while you read.
         </p>
+        <ThemePreview theme={theme} />
       </GlobalWrapper>
     </>
   );
