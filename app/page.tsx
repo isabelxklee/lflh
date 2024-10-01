@@ -1,7 +1,7 @@
 'use server';
 
 import { getSubThemes, getThemes } from '../sanity/sanity.utils';
-import HomePage from './components/HomePage';
+import Home from './(pages)';
 
 export default async function Index() {
   const themes = await getThemes();
@@ -9,7 +9,7 @@ export default async function Index() {
 
   return (
     <>
-      <HomePage themes={themes} subThemes={subThemes} />
+      <Home themes={themes} subThemes={subThemes} />
     </>
   );
 }
