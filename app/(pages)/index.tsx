@@ -30,8 +30,8 @@ export default function Home({ themes, subThemes }: HomeProps) {
         <h1>
           <Image
             src="https://cdn.sanity.io/images/4569xi28/production/e455c2807b6797d8323fd68bf85284985fa3dbad-461x259.svg"
-            height={600}
-            width={600}
+            height={700}
+            width={700}
             alt="Listening for the Long Haul Logo"
           />
         </h1>
