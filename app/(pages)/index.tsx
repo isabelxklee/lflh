@@ -8,6 +8,7 @@ import GradientHeader from '../components/GradientHeader';
 import styled from 'styled-components';
 import ThemePreview from '../components/ThemePreview';
 import logo from '../assets/LFLH-Logo-1.png';
+import Header from '../components/Header';
 
 interface HomeProps {
   themes: ThemeType[];
@@ -67,7 +68,8 @@ export default function Home({ themes, subThemes }: HomeProps) {
       <GradientHeader setTheme={setTheme} themes={themeData} />
       <GlobalWrapper>
         <StyledH1>
-          <StyledImage src={logo} alt="Listening for the Long Haul Logo" />
+          Listening for the Long Haul
+          {/* <StyledImage src={logo} alt="Listening for the Long Haul Logo" /> */}
         </StyledH1>
         <TextWrapper>
           <P>
