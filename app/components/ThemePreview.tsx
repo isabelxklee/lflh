@@ -10,6 +10,7 @@ const Wrapper = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 40px;
+  margin-bottom: 200px;
 `;
 
 const LinkWrapper = styled.div`
