@@ -16,15 +16,25 @@ interface HomeProps {
   subThemes: SubThemeType[];
 }
 
+const Wrapper = styled.div`
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+`;
+
 const TextWrapper = styled.div`
   margin-bottom: 200px;
 `;
 
 const StyledH1 = styled.h1`
-  margin: 40% 0;
+  /* margin: 40% 0;
   height: 100%;
   justify-content: center;
-  display: flex;
+  display: flex; */
 `;
 
 const StyledImage = styled(Image)`
@@ -66,30 +76,71 @@ export default function Home({ themes, subThemes }: HomeProps) {
   return (
     <>
       {/* <Header /> */}
-      <GradientHeader setTheme={setTheme} themes={themeData} />
-      <GlobalWrapper>
-        <ParallaxLayer>
-          <StyledH1>
-            Listening for the Long Haul
-            {/* <StyledImage src={logo} alt="Listening for the Long Haul Logo" /> */}
-          </StyledH1>
-        </ParallaxLayer>
-        <TextWrapper>
-          <P>
-            Hearing voices is one of the most powerful ways to experience oral
-            history project of people living with Long COVID and associated
-            conditions (pwLCAC). In this section of the exhibition we encourage
-            you find a quiet space where you can listen to, and process, the
-            audio clips from the interviews. Here you will hear original
-            interviews, and also in the way the exhibition is organized, with
-            one clip following the other and organized by theme. To keep this
-            section accessible, we have included the transcript with each audio
-            clip, so that you can read while you listen and listen while you
-            read.
-          </P>
-        </TextWrapper>
-        {theme && <ThemePreview theme={theme} />}
-      </GlobalWrapper>
+      {/* <GlobalWrapper> */}
+      <Wrapper>
+        <Parallax pages={3}>
+          <ParallaxLayer
+            offset={0}
+            speed={0.5}
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center'
+            }}
+          >
+            <StyledH1>
+              Listening for the Long Haul
+              {/* <StyledImage src={logo} alt="Listening for the Long Haul Logo" /> */}
+            </StyledH1>
+          </ParallaxLayer>
+          <ParallaxLayer
+            sticky={{ start: 0, end: 2 }}
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'flex-start'
+            }}
+          >
+            <GradientHeader setTheme={setTheme} themes={themeData} />
+          </ParallaxLayer>
+          <ParallaxLayer
+            offset={1}
+            speed={0.5}
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'flex-end'
+            }}
+          >
+            <TextWrapper>
+              <P>
+                Hearing voices is one of the most powerful ways to experience
+                oral history project of people living with Long COVID and
+                associated conditions (pwLCAC). In this section of the
+                exhibition we encourage you find a quiet space where you can
+                listen to, and process, the audio clips from the interviews.
+                Here you will hear original interviews, and also in the way the
+                exhibition is organized, with one clip following the other and
+                organized by theme. To keep this section accessible, we have
+                included the transcript with each audio clip, so that you can
+                read while you listen and listen while you read.
+              </P>
+            </TextWrapper>
+          </ParallaxLayer>
+          <ParallaxLayer
+            offset={2}
+            speed={0.5}
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'flex-end'
+            }}
+          >
+            <ThemePreview theme={theme} />
+          </ParallaxLayer>
+        </Parallax>
+      </Wrapper>
+      {/* </GlobalWrapper> */}
     </>
   );
 }
