@@ -1,4 +1,4 @@
-import { H3, P } from '../globalStyles';
+import { H3, P, TextLink } from '../globalStyles';
 
 interface ThemePreviewProps {
   theme: any;
@@ -9,8 +9,8 @@ const ThemePreview = ({ theme }: ThemePreviewProps) => {
     <>
       <H3>{theme.title}</H3>
       <P>{theme.body}</P>
-      <button>Play Interview</button>
-      <button>Explore Theme</button>
+      <TextLink href="/">Play Interview</TextLink>
+      <TextLink href="/">Explore Theme</TextLink>
     </>
   );
 };

@@ -14,7 +14,8 @@ export const GRADIENT_COLORS = {
 };
 
 export const COLORS = {
-  GREY: '#F2F2F2'
+  GREY: '#F2F2F2',
+  BLACK: '#000'
 };
 
 export const FONT_WEIGHTS = {
@@ -53,6 +54,17 @@ export const H3 = styled.h3`
   font-family: ${FONTS.AUTH_SANS};
   font-weight: ${FONT_WEIGHTS.BOLD};
   font-size: 22px;
+  margin: 0;
+`;
+
+export const TextLink = styled.a`
+  font-family: ${FONTS.AUTH_SANS};
+  font-weight: ${FONT_WEIGHTS.BOLD};
+  font-size: 14px;
+  text-transform: uppercase;
+  color: ${COLORS.BLACK};
+  text-decoration: none;
+  letter-spacing: 1px;
   margin: 0;
 `;
 
@@ -104,5 +116,6 @@ export const GlobalStyles = createGlobalStyle`
     padding: 0;
     font-family: "Fann Grotesque Pro", sans-serif;
     font-weight: normal;
+    color: ${COLORS.BLACK};
   }
 `;
