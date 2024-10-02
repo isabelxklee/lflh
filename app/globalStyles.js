@@ -73,7 +73,21 @@ export const GlobalStyles = createGlobalStyle`
     font-family: 'Fann Grotesque Pro';
     font-style: regular;
     font-weight: 400;
-    src: url('Fann Grotesque Pro') format('ttf')
+    src: url('./fonts/FannGrotesquePro-Regular.ttf') format('ttf')
+  }
+
+  @font-face {
+    font-family: 'Fann Grotesque Pro';
+    font-style: regular;
+    font-weight: 500;
+    src: url('./fonts/fann-grotesque-medium-pro.ttf') format('ttf')
+  }
+
+  @font-face {
+    font-family: 'Fann Grotesque Pro';
+    font-style: regular;
+    font-weight: 600;
+    src: url('./fonts/FannGrotesquePro-Bold.ttf') format('ttf')
   }
 
   body {
