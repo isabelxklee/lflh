@@ -1,6 +1,7 @@
 'use client';
 
 import styled, { createGlobalStyle } from 'styled-components';
+import Link from 'next/link';
 
 export const GRADIENT_COLORS = {
   BLUE: '#1F4DBB',
@@ -57,7 +58,7 @@ export const H3 = styled.h3`
   margin: 0;
 `;
 
-export const TextLink = styled.a`
+export const StyledLink = styled(Link)`
   font-family: ${FONTS.AUTH_SANS};
   font-weight: ${FONT_WEIGHTS.BOLD};
   font-size: 14px;

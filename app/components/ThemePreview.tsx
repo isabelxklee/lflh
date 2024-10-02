@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { H3, P, TextLink } from '../globalStyles';
+import { H3, P, StyledLink } from '../globalStyles';
 
 interface ThemePreviewProps {
   theme: any;
@@ -23,8 +23,8 @@ const ThemePreview = ({ theme }: ThemePreviewProps) => {
       <H3>{theme.title}</H3>
       <P>{theme.body}</P>
       <LinkWrapper>
-        <TextLink href="/">Play Interview</TextLink>
-        <TextLink href="/">Explore Theme</TextLink>
+        <StyledLink href="/">Play Interview</StyledLink>
+        <StyledLink href="/">Explore Theme</StyledLink>
       </LinkWrapper>
     </Wrapper>
   );
