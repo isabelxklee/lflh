@@ -43,7 +43,9 @@ export const GlobalWrapper = styled.div`
 `;
 
 export const P = styled.p`
-  font-size: 16px;
+  font-family: ${FONTS.FANN};
+  font-weight: ${FONT_WEIGHTS.REGULAR};
+  font-size: 22px;
   margin: 0;
 `;
 
