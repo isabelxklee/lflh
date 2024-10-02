@@ -74,7 +74,7 @@ export default function Home({ themes, subThemes }: HomeProps) {
 
   return (
     <Wrapper>
-      <Parallax pages={3}>
+      <Parallax pages={4}>
         <ParallaxLayer
           offset={0}
           speed={0.25}
@@ -88,9 +88,10 @@ export default function Home({ themes, subThemes }: HomeProps) {
             <StyledImage src={logo} alt="Listening for the Long Haul Logo" />
           </StyledH1>
         </ParallaxLayer>
+
         <ParallaxLayer
-          sticky={{ start: 1 }}
-          speed={0.5}
+          sticky={{ start: 1, end: 4 }}
+          speed={2}
           style={{
             display: 'flex',
             zIndex: 10
@@ -98,8 +99,9 @@ export default function Home({ themes, subThemes }: HomeProps) {
         >
           <Header />
         </ParallaxLayer>
+
         <ParallaxLayer
-          sticky={{ start: 0, end: 2 }}
+          sticky={{ start: 0, end: 4 }}
           style={{
             display: 'flex',
             alignItems: 'center',
@@ -108,8 +110,9 @@ export default function Home({ themes, subThemes }: HomeProps) {
         >
           <GradientHeader setTheme={setTheme} themes={themeData} />
         </ParallaxLayer>
+
         <ParallaxLayer
-          offset={1}
+          offset={2}
           speed={0.25}
           style={{
             display: 'flex',
@@ -132,8 +135,9 @@ export default function Home({ themes, subThemes }: HomeProps) {
             </P>
           </TextWrapper>
         </ParallaxLayer>
+
         <ParallaxLayer
-          offset={2}
+          offset={3}
           speed={0.25}
           style={{
             display: 'flex',
