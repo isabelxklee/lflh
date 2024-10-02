@@ -1,3 +1,5 @@
+import { H3, P } from '../globalStyles';
+
 interface ThemePreviewProps {
   theme: any;
 }
@@ -5,8 +7,8 @@ interface ThemePreviewProps {
 const ThemePreview = ({ theme }: ThemePreviewProps) => {
   return (
     <>
-      <h2>{theme.title}</h2>
-      <p>{theme.body}</p>
+      <H3>{theme.title}</H3>
+      <P>{theme.body}</P>
       <button>Play Interview</button>
       <button>Explore Theme</button>
     </>

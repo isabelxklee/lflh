@@ -49,25 +49,32 @@ export const P = styled.p`
   margin: 0;
 `;
 
+export const H3 = styled.h3`
+  font-family: ${FONTS.AUTH_SANS};
+  font-weight: ${FONT_WEIGHTS.BOLD};
+  font-size: 22px;
+  margin: 0;
+`;
+
 export const GlobalStyles = createGlobalStyle`
   @font-face {
     font-family: 'Authentic Sans';
     font-style: regular;
-    font-weight: 60;
+    font-weight: 400;
     src: url('./fonts/authentic-sans-60.woff2') format('woff2')
   }
 
   @font-face {
     font-family: 'Authentic Sans';
     font-style: regular;
-    font-weight: 90;
+    font-weight: 500;
     src: url('./fonts/authentic-sans-90.woff2') format('woff2')
   }
 
   @font-face {
     font-family: 'Authentic Sans';
     font-style: regular;
-    font-weight: 130;
+    font-weight: 600;
     src: url('./fonts/authentic-sans-130.woff2') format('woff2')
   }
 
