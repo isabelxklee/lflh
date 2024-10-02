@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image';
+import { Parallax, ParallaxLayer } from '@react-spring/parallax';
 import { useState } from 'react';
 import { GlobalWrapper, P } from '../globalStyles';
 import { SubThemeType, ThemeType } from '../../sanity/sanity.utils';
@@ -67,10 +68,12 @@ export default function Home({ themes, subThemes }: HomeProps) {
       {/* <Header /> */}
       <GradientHeader setTheme={setTheme} themes={themeData} />
       <GlobalWrapper>
-        <StyledH1>
-          Listening for the Long Haul
-          {/* <StyledImage src={logo} alt="Listening for the Long Haul Logo" /> */}
-        </StyledH1>
+        <ParallaxLayer>
+          <StyledH1>
+            Listening for the Long Haul
+            {/* <StyledImage src={logo} alt="Listening for the Long Haul Logo" /> */}
+          </StyledH1>
+        </ParallaxLayer>
         <TextWrapper>
           <P>
             Hearing voices is one of the most powerful ways to experience oral
