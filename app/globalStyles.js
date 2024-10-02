@@ -39,7 +39,7 @@ export const BREAKPOINTS = {
 };
 
 export const GlobalWrapper = styled.div`
-  padding: 100px 200px;
+  padding: 100px 25%;
 `;
 
 export const P = styled.p`

@@ -7,6 +7,7 @@ import { SubThemeType, ThemeType } from '../../sanity/sanity.utils';
 import GradientHeader from '../components/GradientHeader';
 import styled from 'styled-components';
 import ThemePreview from '../components/ThemePreview';
+import logo from '../assets/LFLH-Logo-1.png';
 
 interface HomeProps {
   themes: ThemeType[];
@@ -16,6 +17,8 @@ interface HomeProps {
 const TextWrapper = styled.div`
   margin-bottom: 200px;
 `;
+
+const StyledImage = styled(Image)``;
 
 export default function Home({ themes, subThemes }: HomeProps) {
   const [theme, setTheme] = useState({
@@ -53,12 +56,7 @@ export default function Home({ themes, subThemes }: HomeProps) {
       <GradientHeader setTheme={setTheme} themes={themeData} />
       <GlobalWrapper>
         <h1>
-          <Image
-            src="https://cdn.sanity.io/images/4569xi28/production/e455c2807b6797d8323fd68bf85284985fa3dbad-461x259.svg"
-            height={700}
-            width={700}
-            alt="Listening for the Long Haul Logo"
-          />
+          <StyledImage src={logo} alt="Listening for the Long Haul Logo" />
         </h1>
         <TextWrapper>
           <P>
