@@ -7,6 +7,7 @@ import { SubThemeType, ThemeType } from '../../sanity/sanity.utils';
 import GradientHeader from '../components/GradientHeader';
 import styled from 'styled-components';
 import ThemePreview from '../components/ThemePreview';
+import logo from '../assets/LFLH-Logo-1.png';
 
 interface HomeProps {
   themes: ThemeType[];
@@ -15,6 +16,19 @@ interface HomeProps {
 
 const TextWrapper = styled.div`
   margin-bottom: 200px;
+`;
+
+const StyledH1 = styled.h1`
+  margin: 40% 0;
+  height: 100%;
+  justify-content: center;
+  display: flex;
+`;
+
+const StyledImage = styled(Image)`
+  object-fit: cover;
+  width: 900px;
+  height: 100%;
 `;
 
 export default function Home({ themes, subThemes }: HomeProps) {
@@ -52,14 +66,9 @@ export default function Home({ themes, subThemes }: HomeProps) {
       {/* <Header /> */}
       <GradientHeader setTheme={setTheme} themes={themeData} />
       <GlobalWrapper>
-        <h1>
-          <Image
-            src="https://cdn.sanity.io/images/4569xi28/production/e455c2807b6797d8323fd68bf85284985fa3dbad-461x259.svg"
-            height={700}
-            width={700}
-            alt="Listening for the Long Haul Logo"
-          />
-        </h1>
+        <StyledH1>
+          <StyledImage src={logo} alt="Listening for the Long Haul Logo" />
+        </StyledH1>
         <TextWrapper>
           <P>
             Hearing voices is one of the most powerful ways to experience oral

@@ -1,6 +1,7 @@
 'use client';
 
 import styled, { createGlobalStyle } from 'styled-components';
+import Link from 'next/link';
 
 export const GRADIENT_COLORS = {
   BLUE: '#1F4DBB',
@@ -14,7 +15,8 @@ export const GRADIENT_COLORS = {
 };
 
 export const COLORS = {
-  GREY: '#F2F2F2'
+  GREY: '#F2F2F2',
+  BLACK: '#000'
 };
 
 export const FONT_WEIGHTS = {
@@ -39,11 +41,31 @@ export const BREAKPOINTS = {
 };
 
 export const GlobalWrapper = styled.div`
-  padding: 100px 200px;
+  padding: 100px 25%;
 `;
 
 export const P = styled.p`
-  font-size: 16px;
+  font-family: ${FONTS.FANN};
+  font-weight: ${FONT_WEIGHTS.REGULAR};
+  font-size: 22px;
+  margin: 0;
+`;
+
+export const H3 = styled.h3`
+  font-family: ${FONTS.AUTH_SANS};
+  font-weight: ${FONT_WEIGHTS.BOLD};
+  font-size: 22px;
+  margin: 0;
+`;
+
+export const StyledLink = styled(Link)`
+  font-family: ${FONTS.AUTH_SANS};
+  font-weight: ${FONT_WEIGHTS.BOLD};
+  font-size: 14px;
+  text-transform: uppercase;
+  color: ${COLORS.BLACK};
+  text-decoration: none;
+  letter-spacing: 1px;
   margin: 0;
 `;
 
@@ -51,21 +73,21 @@ export const GlobalStyles = createGlobalStyle`
   @font-face {
     font-family: 'Authentic Sans';
     font-style: regular;
-    font-weight: 60;
+    font-weight: 400;
     src: url('./fonts/authentic-sans-60.woff2') format('woff2')
   }
 
   @font-face {
     font-family: 'Authentic Sans';
     font-style: regular;
-    font-weight: 90;
+    font-weight: 500;
     src: url('./fonts/authentic-sans-90.woff2') format('woff2')
   }
 
   @font-face {
     font-family: 'Authentic Sans';
     font-style: regular;
-    font-weight: 130;
+    font-weight: 600;
     src: url('./fonts/authentic-sans-130.woff2') format('woff2')
   }
 
@@ -73,7 +95,21 @@ export const GlobalStyles = createGlobalStyle`
     font-family: 'Fann Grotesque Pro';
     font-style: regular;
     font-weight: 400;
-    src: url('Fann Grotesque Pro') format('ttf')
+    src: url('./fonts/FannGrotesquePro-Regular.ttf') format('ttf')
+  }
+
+  @font-face {
+    font-family: 'Fann Grotesque Pro';
+    font-style: regular;
+    font-weight: 500;
+    src: url('./fonts/fann-grotesque-medium-pro.ttf') format('ttf')
+  }
+
+  @font-face {
+    font-family: 'Fann Grotesque Pro';
+    font-style: regular;
+    font-weight: 600;
+    src: url('./fonts/FannGrotesquePro-Bold.ttf') format('ttf')
   }
 
   body {
@@ -81,5 +117,6 @@ export const GlobalStyles = createGlobalStyle`
     padding: 0;
     font-family: "Fann Grotesque Pro", sans-serif;
     font-weight: normal;
+    color: ${COLORS.BLACK};
   }
 `;
