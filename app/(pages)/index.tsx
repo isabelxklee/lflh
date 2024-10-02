@@ -75,7 +75,6 @@ export default function Home({ themes, subThemes }: HomeProps) {
 
   return (
     <>
-      {/* <Header /> */}
       {/* <GlobalWrapper> */}
       <Wrapper>
         <Parallax pages={3}>
@@ -89,9 +88,19 @@ export default function Home({ themes, subThemes }: HomeProps) {
             }}
           >
             <StyledH1>
-              Listening for the Long Haul
-              {/* <StyledImage src={logo} alt="Listening for the Long Haul Logo" /> */}
+              {/* Listening for the Long Haul */}
+              <StyledImage src={logo} alt="Listening for the Long Haul Logo" />
             </StyledH1>
+          </ParallaxLayer>
+          <ParallaxLayer
+            sticky={{ start: 1 }}
+            speed={0.25}
+            style={{
+              display: 'flex',
+              zIndex: 10
+            }}
+          >
+            <Header />
           </ParallaxLayer>
           <ParallaxLayer
             sticky={{ start: 0, end: 2 }}
