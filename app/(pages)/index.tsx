@@ -1,8 +1,8 @@
 'use client';
 
 import Image from 'next/image';
-import { useEffect, useRef, useState } from 'react';
-import { GlobalWrapper, P } from '../globalStyles';
+import { useEffect, useState } from 'react';
+import { P } from '../globalStyles';
 import { SubThemeType, ThemeType } from '../../sanity/sanity.utils';
 import GradientHeader from '../components/GradientHeader';
 import styled from 'styled-components';

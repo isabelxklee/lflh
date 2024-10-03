@@ -6,7 +6,7 @@ import { FONTS, COLORS } from '../globalStyles';
 
 const Wrapper = styled.header<{ $show: boolean }>`
   top: ${({ $show }) => ($show ? '0px' : '-200px')};
-  transition: 0.3s ease;
+  transition: 0.4s ease;
   padding: 20px;
   background: ${COLORS.GREY};
   width: 100dvw;
