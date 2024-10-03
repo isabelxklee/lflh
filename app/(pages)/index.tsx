@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import { Parallax, ParallaxLayer } from '@react-spring/parallax';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { GlobalWrapper, P } from '../globalStyles';
 import { SubThemeType, ThemeType } from '../../sanity/sanity.utils';
 import GradientHeader from '../components/GradientHeader';
@@ -72,8 +72,17 @@ export default function Home({ themes, subThemes }: HomeProps) {
     }
   ];
 
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    console.log(ref.current);
+  }, []);
+
   return (
     <Wrapper>
+      <div ref={ref}>
+        <Header />
+      </div>
       <Parallax pages={4}>
         <ParallaxLayer
           offset={0}
@@ -87,17 +96,6 @@ export default function Home({ themes, subThemes }: HomeProps) {
           <StyledH1>
             <StyledImage src={logo} alt="Listening for the Long Haul Logo" />
           </StyledH1>
-        </ParallaxLayer>
-
-        <ParallaxLayer
-          sticky={{ start: 1, end: 4 }}
-          speed={2}
-          style={{
-            display: 'flex',
-            zIndex: 10
-          }}
-        >
-          <Header />
         </ParallaxLayer>
 
         <ParallaxLayer
