@@ -79,14 +79,16 @@ export default function Home({ themes, subThemes }: HomeProps) {
     }
   ];
 
-  const [scrollY, setScrollY] = useState(0);
+  const [show, setShow] = useState(false);
   const ref = useRef(null);
 
   useEffect(() => {
-    console.log(ref?.current?.container?.current);
-
     const handleScroll = () => {
-      setScrollY(window.scrollY);
+      if (window.scrollY > 0) {
+        setShow(true);
+      } else {
+        setShow(false);
+      }
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -98,7 +100,7 @@ export default function Home({ themes, subThemes }: HomeProps) {
 
   return (
     <Wrapper>
-      <HeaderWrapper $scroll={scrollY > 0}>
+      <HeaderWrapper $scroll={show}>
         <Header />
       </HeaderWrapper>
       <Parallax pages={4} ref={ref}>
