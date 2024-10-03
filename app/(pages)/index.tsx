@@ -42,6 +42,13 @@ const StyledImage = styled(Image)`
   height: 100%;
 `;
 
+const HeaderWrapper = styled.div<{ $scroll: boolean }>`
+  position: fixed;
+  z-index: 10;
+  transition: 0.3s linear;
+  top: ${({ $scroll }) => ($scroll ? '-200px' : '0')};
+`;
+
 export default function Home({ themes, subThemes }: HomeProps) {
   const [theme, setTheme] = useState({
     title: 'The Body',
@@ -72,18 +79,29 @@ export default function Home({ themes, subThemes }: HomeProps) {
     }
   ];
 
-  const ref = useRef<HTMLDivElement>(null);
+  const [scrollY, setScrollY] = useState(0);
+  const ref = useRef(null);
 
   useEffect(() => {
-    console.log(ref.current);
+    console.log(ref?.current?.container?.current);
+
+    const handleScroll = () => {
+      setScrollY(window.scrollY);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
   }, []);
 
   return (
     <Wrapper>
-      <div ref={ref}>
+      <HeaderWrapper $scroll={scrollY > 0}>
         <Header />
-      </div>
-      <Parallax pages={4}>
+      </HeaderWrapper>
+      <Parallax pages={4} ref={ref}>
         <ParallaxLayer
           offset={0}
           speed={0.25}
