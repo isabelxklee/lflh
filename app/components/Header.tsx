@@ -28,9 +28,7 @@ const StyledLink = styled(Link)`
   font-family: ${FONTS.AUTH_SANS};
 `;
 
-const Header = (show: any) => {
-  console.log(show.show);
-
+const Header = (show: { show: boolean }) => {
   return (
     <Wrapper $show={show.show}>
       <UL>

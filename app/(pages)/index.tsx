@@ -32,7 +32,7 @@ const TextWrapper = styled.div`
 
 const StyledH1 = styled.h1`
   width: fit-content;
-  margin-top: 25%;
+  margin: 25% auto 15% auto;
 `;
 
 const StyledImage = styled(Image)`
