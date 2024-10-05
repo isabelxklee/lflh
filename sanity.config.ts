@@ -11,7 +11,7 @@ const config = defineConfig({
   title: 'Listening for the Long Haul',
   apiVersion: '2024-09-29',
   basePath: '/admin',
-  plugins: [structureTool({ structure: structure }), media(), visionTool()],
+  plugins: [structureTool(), media(), visionTool()],
   schema: {
     types: schema.types
   }
