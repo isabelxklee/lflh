@@ -8,6 +8,14 @@ export const siteSettings = defineType({
   icon: DocumentIcon,
   fields: [
     defineField({
+      name: 'siteTitle',
+      type: 'string'
+    }),
+    defineField({
+      name: 'siteLogo',
+      type: 'file'
+    }),
+    defineField({
       name: 'aboutPageText',
       type: 'text'
     })
