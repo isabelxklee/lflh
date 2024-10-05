@@ -1,9 +1,8 @@
 'use client';
 
 import Image from 'next/image';
-import { Parallax, ParallaxLayer } from '@react-spring/parallax';
-import { useState } from 'react';
-import { GlobalWrapper, P } from '../globalStyles';
+import { useEffect, useState } from 'react';
+import { P } from '../globalStyles';
 import { SubThemeType, ThemeType } from '../../sanity/sanity.utils';
 import GradientHeader from '../components/GradientHeader';
 import styled from 'styled-components';
@@ -33,7 +32,7 @@ const TextWrapper = styled.div`
 
 const StyledH1 = styled.h1`
   width: fit-content;
-  margin-top: 25%;
+  margin: 25% auto 15% auto;
 `;
 
 const StyledImage = styled(Image)`
@@ -72,85 +71,43 @@ export default function Home({ themes, subThemes }: HomeProps) {
     }
   ];
 
+  const [show, setShow] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setShow(window.scrollY > 1);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
   return (
     <Wrapper>
-      <Parallax pages={4}>
-        <ParallaxLayer
-          offset={0}
-          speed={0.25}
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center'
-          }}
-        >
-          <StyledH1>
-            <StyledImage src={logo} alt="Listening for the Long Haul Logo" />
-          </StyledH1>
-        </ParallaxLayer>
-
-        <ParallaxLayer
-          sticky={{ start: 1, end: 4 }}
-          speed={2}
-          style={{
-            display: 'flex',
-            zIndex: 10
-          }}
-        >
-          <Header />
-        </ParallaxLayer>
-
-        <ParallaxLayer
-          sticky={{ start: 0, end: 4 }}
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'flex-start'
-          }}
-        >
-          <GradientHeader setTheme={setTheme} themes={themeData} />
-        </ParallaxLayer>
-
-        <ParallaxLayer
-          offset={2}
-          speed={0.25}
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'flex-end'
-          }}
-        >
-          <TextWrapper>
-            <P>
-              Hearing voices is one of the most powerful ways to experience oral
-              history project of people living with Long COVID and associated
-              conditions (pwLCAC). In this section of the exhibition we
-              encourage you find a quiet space where you can listen to, and
-              process, the audio clips from the interviews. Here you will hear
-              original interviews, and also in the way the exhibition is
-              organized, with one clip following the other and organized by
-              theme. To keep this section accessible, we have included the
-              transcript with each audio clip, so that you can read while you
-              listen and listen while you read.
-            </P>
-          </TextWrapper>
-        </ParallaxLayer>
-
-        <ParallaxLayer
-          offset={3}
-          speed={0.25}
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'flex-end'
-          }}
-        >
-          {/* update this with proper wrapper component */}
-          <TextWrapper>
-            <ThemePreview theme={theme} />
-          </TextWrapper>
-        </ParallaxLayer>
-      </Parallax>
+      <Header show={show} />
+      <StyledH1>
+        <StyledImage src={logo} alt="Listening for the Long Haul Logo" />
+      </StyledH1>
+      <GradientHeader setTheme={setTheme} themes={themeData} />
+      <TextWrapper>
+        <P>
+          Hearing voices is one of the most powerful ways to experience oral
+          history project of people living with Long COVID and associated
+          conditions (pwLCAC). In this section of the exhibition we encourage
+          you find a quiet space where you can listen to, and process, the audio
+          clips from the interviews. Here you will hear original interviews, and
+          also in the way the exhibition is organized, with one clip following
+          the other and organized by theme. To keep this section accessible, we
+          have included the transcript with each audio clip, so that you can
+          read while you listen and listen while you read.
+        </P>
+      </TextWrapper>
+      <TextWrapper>
+        <ThemePreview theme={theme} />
+      </TextWrapper>
     </Wrapper>
   );
 }
