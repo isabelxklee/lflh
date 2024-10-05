@@ -95,21 +95,21 @@ export const GlobalStyles = createGlobalStyle`
     font-family: 'Fann Grotesque Pro';
     font-style: regular;
     font-weight: 400;
-    src: url('./fonts/FannGrotesquePro-Regular.ttf') format('ttf')
+    src: url('./fonts/fann-grotesque-regular.woff2') format('ttf')
   }
 
   @font-face {
     font-family: 'Fann Grotesque Pro';
     font-style: regular;
     font-weight: 500;
-    src: url('./fonts/fann-grotesque-medium-pro.ttf') format('ttf')
+    src: url('./fonts/fann-grotesque-medium.woff2') format('ttf')
   }
 
   @font-face {
     font-family: 'Fann Grotesque Pro';
     font-style: regular;
     font-weight: 600;
-    src: url('./fonts/FannGrotesquePro-Bold.ttf') format('ttf')
+    src: url('./fonts/fann-grotesque-bold.woff2') format('woff2')
   }
 
   body {
