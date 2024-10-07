@@ -72,44 +72,44 @@ export const StyledLink = styled(Link)`
 export const GlobalStyles = createGlobalStyle`
   @font-face {
     font-family: 'Authentic Sans';
-    font-style: regular;
+    font-style: normal;
     font-weight: 400;
-    src: url('./fonts/authentic-sans-60.woff2') format('woff2')
+    src: url('/fonts/authentic-sans-60.woff2') format('woff2')
   }
 
   @font-face {
     font-family: 'Authentic Sans';
-    font-style: regular;
+    font-style: normal;
     font-weight: 500;
-    src: url('./fonts/authentic-sans-90.woff2') format('woff2')
+    src: url('/fonts/authentic-sans-90.woff2') format('woff2')
   }
 
   @font-face {
     font-family: 'Authentic Sans';
-    font-style: regular;
+    font-style: normal;
     font-weight: 600;
-    src: url('./fonts/authentic-sans-130.woff2') format('woff2')
+    src: url('/fonts/authentic-sans-130.woff2') format('woff2')
   }
 
   @font-face {
     font-family: 'Fann Grotesque Pro';
-    font-style: regular;
+    font-style: normal;
     font-weight: 400;
-    src: url('./fonts/fann-grotesque-regular.woff2') format('ttf')
+    src: url('/fonts/fann-grotesque-regular.woff2') format('ttf')
   }
 
   @font-face {
     font-family: 'Fann Grotesque Pro';
-    font-style: regular;
+    font-style: normal;
     font-weight: 500;
-    src: url('./fonts/fann-grotesque-medium.woff2') format('ttf')
+    src: url('/fonts/fann-grotesque-medium.woff2') format('ttf')
   }
 
   @font-face {
     font-family: 'Fann Grotesque Pro';
-    font-style: regular;
+    font-style: normal;
     font-weight: 600;
-    src: url('./fonts/fann-grotesque-bold.woff2') format('woff2')
+    src: url('/fonts/fann-grotesque-bold.woff2') format('woff2')
   }
 
   body {

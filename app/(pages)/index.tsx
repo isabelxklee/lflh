@@ -7,7 +7,7 @@ import { SubThemeType, ThemeType } from '../../sanity/sanity.utils';
 import GradientHeader from '../components/GradientHeader';
 import styled from 'styled-components';
 import ThemePreview from '../components/ThemePreview';
-import logo from '../assets/LFLH-Logo-1.png';
+import logo from '/assets/LFLH-Logo-1.png';
 import Header from '../components/Header';
 
 interface HomeProps {
