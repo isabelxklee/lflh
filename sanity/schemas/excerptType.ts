@@ -8,8 +8,15 @@ export const excerptType = defineType({
   icon: DocumentIcon,
   fields: [
     defineField({
+      name: 'title',
+      type: 'string'
+    }),
+    defineField({
       name: 'startTime',
-      type: 'datetime'
+      type: 'datetime',
+      options: {
+        timeFormat: 'HH:mm'
+      }
     }),
     defineField({
       name: 'endTime',
