@@ -20,13 +20,9 @@ export const COLORS = {
 };
 
 export const FONT_WEIGHTS = {
-  LIGHT: 200,
-  BOOK: 300,
   REGULAR: 400,
   MEDIUM: 500,
-  SEMIBOLD: 600,
-  BOLD: 700,
-  BLACK: 800
+  BOLD: 600
 };
 
 export const FONTS = {
@@ -46,21 +42,21 @@ export const GlobalWrapper = styled.div`
 `;
 
 export const P = styled.p`
-  font-family: ${FONTS.FANN};
+  font-family: ${FONTS.FANN}, sans-serif;
   font-weight: ${FONT_WEIGHTS.REGULAR};
   font-size: 22px;
   margin: 0;
 `;
 
 export const H3 = styled.h3`
-  font-family: ${FONTS.AUTH_SANS};
+  font-family: ${FONTS.AUTH_SANS}, sans-serif;
   font-weight: ${FONT_WEIGHTS.BOLD};
   font-size: 22px;
   margin: 0;
 `;
 
 export const StyledLink = styled(Link)`
-  font-family: ${FONTS.AUTH_SANS};
+  font-family: ${FONTS.AUTH_SANS}, sans-serif;
   font-weight: ${FONT_WEIGHTS.BOLD};
   font-size: 14px;
   text-transform: uppercase;
@@ -117,7 +113,7 @@ export const GlobalStyles = createGlobalStyle`
     margin: 0;
     padding: 0;
     font-family: ${FONTS.FANN}, sans-serif;
-    font-weight: normal;
+    font-weight: ${FONT_WEIGHTS.REGULAR};
     color: ${COLORS.BLACK};
   }
 `;
