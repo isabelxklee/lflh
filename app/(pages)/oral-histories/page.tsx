@@ -31,22 +31,20 @@ export default function OralHistories() {
   }, []);
 
   return (
-    <PageTemplate>
-      <Wrapper>
-        <h1>Oral Histories</h1>
-        {interviews.map((interview: any, index: number) => (
-          <div key={index}>
-            <StyledLink href={`/oral-histories/${index}`}>
-              {interview.title}
-            </StyledLink>
-            {interview.excerpts.map((excerpt: any, index: number) => (
-              <ExcerptWrapper key={index} $length={excerpt.startTime}>
-                <P>{excerpt.subTheme}</P>
-              </ExcerptWrapper>
-            ))}
-          </div>
-        ))}
-      </Wrapper>
-    </PageTemplate>
+    <Wrapper>
+      <h1>Oral Histories</h1>
+      {interviews.map((interview: any, index: number) => (
+        <div key={index}>
+          <StyledLink href={`/oral-histories/${index}`}>
+            {interview.title}
+          </StyledLink>
+          {interview.excerpts.map((excerpt: any, index: number) => (
+            <ExcerptWrapper key={index} $length={excerpt.startTime}>
+              <P>{excerpt.subTheme}</P>
+            </ExcerptWrapper>
+          ))}
+        </div>
+      ))}
+    </Wrapper>
   );
 }
