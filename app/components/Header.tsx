@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import styled from 'styled-components';
-import { FONTS, COLORS } from '../globalStyles';
+import { FONTS, COLORS, FONT_WEIGHTS } from '../globalStyles';
 
 interface HeaderProps {
   show: boolean;
@@ -29,7 +29,8 @@ const UL = styled.ul`
 const StyledLink = styled(Link)`
   text-decoration: none;
   color: black;
-  font-family: ${FONTS.AUTH_SANS};
+  font-family: ${FONTS.AUTH_SANS}, sans-serif;
+  font-weight: ${FONT_WEIGHTS.MEDIUM};
 `;
 
 const Header = ({ show }: HeaderProps) => {

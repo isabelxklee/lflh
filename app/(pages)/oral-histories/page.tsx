@@ -6,7 +6,7 @@ import { useCallback } from 'react';
 import Header from '../../components/Header';
 import { MiniGradientHeader } from '../../components/GradientHeader';
 import Link from 'next/link.js';
-import { COLORS, FONT_WEIGHTS, FONTS } from '../../globalStyles.js';
+import { COLORS, FONT_WEIGHTS, FONTS, P } from '../../globalStyles.js';
 
 const ExcerptWrapper = styled.div<{ $length: number }>``;
 
@@ -42,7 +42,7 @@ export default function OralHistories() {
             <StyledLink href={`/${index}`}>{interview.title}</StyledLink>
             {interview.excerpts.map((excerpt: any, index: number) => (
               <ExcerptWrapper key={index} $length={excerpt.startTime}>
-                <p>{excerpt.subTheme}</p>
+                <P>{excerpt.subTheme}</P>
               </ExcerptWrapper>
             ))}
           </div>
