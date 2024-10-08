@@ -29,11 +29,11 @@ const UL = styled.ul`
 `;
 
 const StyledLink = styled(Link)<{ $active: boolean }>`
-  text-decoration: ${({ $active }) => ($active ? 'underline' : 'none')};
+  text-decoration: none;
   color: black;
   font-family: ${FONTS.AUTH_SANS}, sans-serif;
   font-weight: ${({ $active }) =>
-    $active ? FONT_WEIGHTS.BOLD : FONT_WEIGHTS.MEDIUM};
+    $active ? FONT_WEIGHTS.BOLD : FONT_WEIGHTS.REGULAR};
 `;
 
 const Header = ({ show }: HeaderProps) => {
