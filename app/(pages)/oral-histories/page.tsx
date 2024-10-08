@@ -39,7 +39,9 @@ export default function OralHistories() {
         <h1>Oral Histories</h1>
         {interviews.map((interview: any, index: number) => (
           <div key={index}>
-            <StyledLink href={`/${index}`}>{interview.title}</StyledLink>
+            <StyledLink href={`/oral-histories/${index}`}>
+              {interview.title}
+            </StyledLink>
             {interview.excerpts.map((excerpt: any, index: number) => (
               <ExcerptWrapper key={index} $length={excerpt.startTime}>
                 <P>{excerpt.subTheme}</P>
