@@ -2,10 +2,11 @@
 
 import styled from 'styled-components';
 import { GRADIENT_COLORS } from '../globalStyles';
+import { themeData } from '../data.js';
 
 interface GradientHeaderProps {
-  themes: any;
-  setTheme: (args0: any) => void;
+  themes?: any;
+  setTheme?: (args0: any) => void;
 }
 
 const Gradient = styled.div`
@@ -35,17 +36,17 @@ const ThemeColor = styled.div<{ $num: number }>`
   z-index: 2;
 `;
 
-const GradientHeader = ({ themes, setTheme }: GradientHeaderProps) => {
+const GradientHeader = ({ setTheme }: GradientHeaderProps) => {
   const handleClick = (theme: any) => {
     setTheme(theme);
   };
 
   return (
     <Gradient>
-      {themes.map((theme: any) => (
+      {themeData.map((theme: any) => (
         <ThemeColor
           key={theme.sort}
-          $num={themes.length}
+          $num={themeData.length}
           onClick={() => handleClick(theme)}
         />
       ))}
