@@ -15,7 +15,7 @@ const Wrapper = styled.header<{ $show: boolean }>`
   transition: 0.4s ease;
   padding: 20px;
   background: ${COLORS.GREY};
-  width: 100dvw;
+  width: 100%;
   height: fit-content;
   z-index: 10;
   position: fixed;
@@ -28,12 +28,14 @@ const UL = styled.ul`
   justify-content: center;
 `;
 
-const StyledLink = styled(Link)<{ $active: boolean }>`
+const StyledLink = styled(
+  Link
+) // <{ $active: boolean }>
+`
   text-decoration: none;
   color: black;
   font-family: ${FONTS.AUTH_SANS}, sans-serif;
-  font-weight: ${({ $active }) =>
-    $active ? FONT_WEIGHTS.BOLD : FONT_WEIGHTS.REGULAR};
+  font-weight: ${FONT_WEIGHTS.REGULAR};
 `;
 
 const Header = ({ show }: HeaderProps) => {
@@ -51,42 +53,25 @@ const Header = ({ show }: HeaderProps) => {
     <Wrapper $show={show}>
       <UL>
         <li>
-          <StyledLink href="/" $active={activePage('')}>
-            Home
-          </StyledLink>
+          <StyledLink href="/">Home</StyledLink>
         </li>
         <li>
-          <StyledLink href="/about" $active={activePage('About')}>
-            About
-          </StyledLink>
+          <StyledLink href="/about">About</StyledLink>
         </li>
         <li>
-          <StyledLink
-            href="/oral-histories"
-            $active={activePage('Oral Histories')}
-          >
-            Oral Histories
-          </StyledLink>
+          <StyledLink href="/oral-histories">Oral Histories</StyledLink>
         </li>
         <li>
-          <StyledLink href="/themes" $active={activePage('Themes')}>
-            Themes
-          </StyledLink>
+          <StyledLink href="/themes">Themes</StyledLink>
         </li>
         <li>
-          <StyledLink href="/resources" $active={activePage('Resources')}>
-            Resources
-          </StyledLink>
+          <StyledLink href="/resources">Resources</StyledLink>
         </li>
         <li>
-          <StyledLink href="/partners" $active={activePage('Partners')}>
-            Partners
-          </StyledLink>
+          <StyledLink href="/partners">Partners</StyledLink>
         </li>
         <li>
-          <StyledLink href="/contact" $active={activePage('Contact')}>
-            Contact
-          </StyledLink>
+          <StyledLink href="/contact">Contact</StyledLink>
         </li>
       </UL>
     </Wrapper>
