@@ -15,18 +15,21 @@ export default function OralHistories() {
   }, []);
 
   return (
-    <GlobalWrapper>
-      <h1>Oral Histories</h1>
-      {interviews.map((interview: any, index: number) => (
-        <div key={index}>
-          <p>{interview.title}</p>
-          {interview.excerpts.map((excerpt: any, index: number) => (
-            <ExcerptWrapper key={index} $length={excerpt.startTime}>
-              <p>{excerpt.subTheme}</p>
-            </ExcerptWrapper>
-          ))}
-        </div>
-      ))}
-    </GlobalWrapper>
+    <>
+      <Header />
+      <GlobalWrapper>
+        <h1>Oral Histories</h1>
+        {interviews.map((interview: any, index: number) => (
+          <div key={index}>
+            <p>{interview.title}</p>
+            {interview.excerpts.map((excerpt: any, index: number) => (
+              <ExcerptWrapper key={index} $length={excerpt.startTime}>
+                <p>{excerpt.subTheme}</p>
+              </ExcerptWrapper>
+            ))}
+          </div>
+        ))}
+      </GlobalWrapper>
+    </>
   );
 }

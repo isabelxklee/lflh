@@ -4,7 +4,11 @@ import Link from 'next/link';
 import styled from 'styled-components';
 import { FONTS, COLORS } from '../globalStyles';
 
-const Wrapper = styled.header<{ $show: boolean }>`
+interface HeaderProps {
+  show?: boolean;
+}
+
+const Wrapper = styled.header<{ $show?: boolean }>`
   top: ${({ $show }) => ($show ? '0px' : '-200px')};
   transition: 0.4s ease;
   padding: 20px;
@@ -28,9 +32,9 @@ const StyledLink = styled(Link)`
   font-family: ${FONTS.AUTH_SANS};
 `;
 
-const Header = (show: { show: boolean }) => {
+const Header = ({ show }: HeaderProps) => {
   return (
-    <Wrapper $show={show.show}>
+    <Wrapper $show={show}>
       <UL>
         <li>
           <StyledLink href="/">Home</StyledLink>
