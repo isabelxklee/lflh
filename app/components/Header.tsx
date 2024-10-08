@@ -5,10 +5,10 @@ import styled from 'styled-components';
 import { FONTS, COLORS } from '../globalStyles';
 
 interface HeaderProps {
-  show?: boolean;
+  show: boolean;
 }
 
-const Wrapper = styled.header<{ $show?: boolean }>`
+const Wrapper = styled.header<{ $show: boolean }>`
   top: ${({ $show }) => ($show ? '0px' : '-200px')};
   transition: 0.4s ease;
   padding: 20px;
