@@ -1,8 +1,10 @@
 'use client';
 
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import styled from 'styled-components';
 import { FONTS, COLORS, FONT_WEIGHTS } from '../globalStyles';
+import { useCallback } from 'react';
 
 interface HeaderProps {
   show: boolean;
@@ -34,6 +36,14 @@ const StyledLink = styled(Link)`
 `;
 
 const Header = ({ show }: HeaderProps) => {
+  const pathname = usePathname();
+
+  const slugify = useCallback((page: string) => {
+    return page.toLowerCase().replace(/\s+/g, '-');
+  }, []);
+
+  console.log(slugify('Oral Histories'));
+
   return (
     <Wrapper $show={show}>
       <UL>
