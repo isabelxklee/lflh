@@ -1,3 +1,9 @@
+import { GlobalWrapper } from '../../globalStyles';
+
 export default function OralHistories() {
-  return <h1>Oral Histories</h1>;
+  return (
+    <GlobalWrapper>
+      <h1>Oral Histories</h1>
+    </GlobalWrapper>
+  );
 }
