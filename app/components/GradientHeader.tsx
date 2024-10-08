@@ -2,13 +2,14 @@
 
 import styled from 'styled-components';
 import { GRADIENT_COLORS } from '../globalStyles';
+import { themeData } from '../data.js';
 
 interface GradientHeaderProps {
-  themes: any;
+  themes?: any;
   setTheme: (args0: any) => void;
 }
 
-const Gradient = styled.div`
+const Gradient = styled.div<{ $clickable: boolean; $height?: string }>`
   background: linear-gradient(
     90deg,
     ${GRADIENT_COLORS.BLUE},
@@ -20,13 +21,13 @@ const Gradient = styled.div`
     ${GRADIENT_COLORS.LIGHT_ORANGE},
     ${GRADIENT_COLORS.ORANGE}
   );
-  height: 200px;
+  height: ${({ $height }) => ($height === 'short' ? '125px' : '200px')};
   width: 100dvw;
   position: fixed;
   top: 0;
   display: flex;
   flex-direction: row;
-  cursor: pointer;
+  cursor: ${({ $clickable }) => ($clickable ? 'pointer' : 'default')};
 `;
 
 const ThemeColor = styled.div<{ $num: number }>`
@@ -35,17 +36,17 @@ const ThemeColor = styled.div<{ $num: number }>`
   z-index: 2;
 `;
 
-const GradientHeader = ({ themes, setTheme }: GradientHeaderProps) => {
+export const GradientHeader = ({ setTheme }: GradientHeaderProps) => {
   const handleClick = (theme: any) => {
     setTheme(theme);
   };
 
   return (
-    <Gradient>
-      {themes.map((theme: any) => (
+    <Gradient $clickable={true}>
+      {themeData.map((theme: any) => (
         <ThemeColor
           key={theme.sort}
-          $num={themes.length}
+          $num={themeData.length}
           onClick={() => handleClick(theme)}
         />
       ))}
@@ -53,4 +54,12 @@ const GradientHeader = ({ themes, setTheme }: GradientHeaderProps) => {
   );
 };
 
-export default GradientHeader;
+export const MiniGradientHeader = () => {
+  return (
+    <Gradient $clickable={false} $height="short">
+      {themeData.map((theme: any) => (
+        <ThemeColor key={theme.sort} $num={themeData.length} />
+      ))}
+    </Gradient>
+  );
+};
