@@ -3,13 +3,15 @@
 import { GlobalWrapper } from '../../globalStyles';
 import { interviews } from '../../data.js';
 import styled from 'styled-components';
-import { useMemo } from 'react';
+import { useCallback } from 'react';
 
 const ExcerptWrapper = styled.div<{ $length: number }>``;
 
 export default function OralHistories() {
-  const timeLength = useMemo(() => {
-    return 0;
+  const timeLength = useCallback((startTime: string) => {
+    const length = parseInt(startTime);
+
+    return length;
   }, []);
 
   return (
