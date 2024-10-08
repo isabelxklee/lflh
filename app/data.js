@@ -20,3 +20,28 @@ export const themeData = [
     sort: 4
   }
 ];
+
+export const interviews = [
+  {
+    title: 'Lygia - Interviewed by Jacquie and Sarah',
+    excerpts: [
+      {
+        startTime: '06:25',
+        endTime: '10:09',
+        subTheme: 'Crip Time',
+        theme: 'Time'
+      }
+    ]
+  },
+  {
+    title: 'Athena - Interviewed by Akua and Jenna',
+    excerpts: [
+      {
+        startTime: '23:39',
+        endTime: '34:52',
+        subTheme: 'Historical Situatedness',
+        theme: 'Time'
+      }
+    ]
+  }
+];
