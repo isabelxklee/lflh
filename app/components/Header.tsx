@@ -28,11 +28,12 @@ const UL = styled.ul`
   justify-content: center;
 `;
 
-const StyledLink = styled(Link)`
-  text-decoration: none;
+const StyledLink = styled(Link)<{ $active: boolean }>`
+  text-decoration: ${({ $active }) => ($active ? 'underline' : 'none')};
   color: black;
   font-family: ${FONTS.AUTH_SANS}, sans-serif;
-  font-weight: ${FONT_WEIGHTS.MEDIUM};
+  font-weight: ${({ $active }) =>
+    $active ? FONT_WEIGHTS.BOLD : FONT_WEIGHTS.MEDIUM};
 `;
 
 const Header = ({ show }: HeaderProps) => {
@@ -42,31 +43,50 @@ const Header = ({ show }: HeaderProps) => {
     return page.toLowerCase().replace(/\s+/g, '-');
   }, []);
 
-  console.log(slugify('Oral Histories'));
+  const activePage = useCallback((page: string) => {
+    return `/${slugify(page)}` === pathname;
+  }, []);
 
   return (
     <Wrapper $show={show}>
       <UL>
         <li>
-          <StyledLink href="/">Home</StyledLink>
+          <StyledLink href="/" $active={activePage('')}>
+            Home
+          </StyledLink>
         </li>
         <li>
-          <StyledLink href="/about">About</StyledLink>
+          <StyledLink href="/about" $active={activePage('About')}>
+            About
+          </StyledLink>
         </li>
         <li>
-          <StyledLink href="/oral-histories">Oral Histories</StyledLink>
+          <StyledLink
+            href="/oral-histories"
+            $active={activePage('Oral Histories')}
+          >
+            Oral Histories
+          </StyledLink>
         </li>
         <li>
-          <StyledLink href="/themes">Themes</StyledLink>
+          <StyledLink href="/themes" $active={activePage('Themes')}>
+            Themes
+          </StyledLink>
         </li>
         <li>
-          <StyledLink href="/resources">Resources</StyledLink>
+          <StyledLink href="/resources" $active={activePage('Resources')}>
+            Resources
+          </StyledLink>
         </li>
         <li>
-          <StyledLink href="/partners">Partners</StyledLink>
+          <StyledLink href="/partners" $active={activePage('Partners')}>
+            Partners
+          </StyledLink>
         </li>
         <li>
-          <StyledLink href="/contact">Contact</StyledLink>
+          <StyledLink href="/contact" $active={activePage('Contact')}>
+            Contact
+          </StyledLink>
         </li>
       </UL>
     </Wrapper>
