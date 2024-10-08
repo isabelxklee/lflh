@@ -6,7 +6,7 @@ import { themeData } from '../data.js';
 
 interface GradientHeaderProps {
   themes?: any;
-  setTheme?: (args0: any) => void;
+  setTheme: (args0: any) => void;
 }
 
 const Gradient = styled.div`
@@ -36,7 +36,7 @@ const ThemeColor = styled.div<{ $num: number }>`
   z-index: 2;
 `;
 
-const GradientHeader = ({ setTheme }: GradientHeaderProps) => {
+export const GradientHeader = ({ setTheme }: GradientHeaderProps) => {
   const handleClick = (theme: any) => {
     setTheme(theme);
   };
@@ -54,4 +54,12 @@ const GradientHeader = ({ setTheme }: GradientHeaderProps) => {
   );
 };
 
-export default GradientHeader;
+export const MiniGradientHeader = () => {
+  return (
+    <Gradient>
+      {themeData.map((theme: any) => (
+        <ThemeColor key={theme.sort} $num={themeData.length} />
+      ))}
+    </Gradient>
+  );
+};

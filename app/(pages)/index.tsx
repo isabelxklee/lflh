@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import { P } from '../globalStyles';
 import { SubThemeType, ThemeType } from '../../sanity/sanity.utils';
 import { themeData } from '../data.js';
-import GradientHeader from '../components/GradientHeader';
+import { GradientHeader } from '../components/GradientHeader';
 import styled from 'styled-components';
 import ThemePreview from '../components/ThemePreview';
 import logo from '../assets/LFLH-Logo-1.png';

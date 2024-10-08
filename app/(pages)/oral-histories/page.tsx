@@ -5,7 +5,7 @@ import { interviews } from '../../data.js';
 import styled from 'styled-components';
 import { useCallback } from 'react';
 import Header from '../../components/Header';
-import GradientHeader from '../../components/GradientHeader';
+import { MiniGradientHeader } from '../../components/GradientHeader';
 
 const ExcerptWrapper = styled.div<{ $length: number }>``;
 
@@ -19,7 +19,7 @@ export default function OralHistories() {
   return (
     <>
       <Header show={true} />
-      <GradientHeader />
+      <MiniGradientHeader />
       <GlobalWrapper>
         <h1>Oral Histories</h1>
         {interviews.map((interview: any, index: number) => (
