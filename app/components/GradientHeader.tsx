@@ -9,7 +9,7 @@ interface GradientHeaderProps {
   setTheme: (args0: any) => void;
 }
 
-const Gradient = styled.div`
+const Gradient = styled.div<{ $clickable: boolean }>`
   background: linear-gradient(
     90deg,
     ${GRADIENT_COLORS.BLUE},
@@ -27,7 +27,7 @@ const Gradient = styled.div`
   top: 0;
   display: flex;
   flex-direction: row;
-  cursor: pointer;
+  cursor: ${({ $clickable }) => ($clickable ? 'pointer' : 'default')};
 `;
 
 const ThemeColor = styled.div<{ $num: number }>`
@@ -42,7 +42,7 @@ export const GradientHeader = ({ setTheme }: GradientHeaderProps) => {
   };
 
   return (
-    <Gradient>
+    <Gradient $clickable={true}>
       {themeData.map((theme: any) => (
         <ThemeColor
           key={theme.sort}
@@ -56,7 +56,7 @@ export const GradientHeader = ({ setTheme }: GradientHeaderProps) => {
 
 export const MiniGradientHeader = () => {
   return (
-    <Gradient>
+    <Gradient $clickable={false}>
       {themeData.map((theme: any) => (
         <ThemeColor key={theme.sort} $num={themeData.length} />
       ))}
