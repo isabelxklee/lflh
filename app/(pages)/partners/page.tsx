@@ -1,3 +1,9 @@
+import PageTemplate from '../../template';
+
 export default function Partners() {
-  return <h1>Partners</h1>;
+  return (
+    <PageTemplate>
+      <h1>Partners</h1>
+    </PageTemplate>
+  );
 }
