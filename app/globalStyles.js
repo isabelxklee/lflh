@@ -116,7 +116,7 @@ export const GlobalStyles = createGlobalStyle`
   body {
     margin: 0;
     padding: 0;
-    font-family: "Fann Grotesque Pro", sans-serif;
+    font-family: ${FONTS.FANN}, sans-serif;
     font-weight: normal;
     color: ${COLORS.BLACK};
   }
