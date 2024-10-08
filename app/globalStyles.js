@@ -42,6 +42,7 @@ export const BREAKPOINTS = {
 
 export const GlobalWrapper = styled.div`
   padding: 100px 25%;
+  margin-bottom: 200px;
 `;
 
 export const P = styled.p`
