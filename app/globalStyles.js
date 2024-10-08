@@ -92,14 +92,14 @@ export const GlobalStyles = createGlobalStyle`
     font-family: 'Fann Grotesque Pro';
     font-style: normal;
     font-weight: 400;
-    src: url('/fonts/fann-grotesque-regular.woff2') format('ttf')
+    src: url('/fonts/fann-grotesque-regular.woff2') format('woff2')
   }
 
   @font-face {
     font-family: 'Fann Grotesque Pro';
     font-style: normal;
     font-weight: 500;
-    src: url('/fonts/fann-grotesque-medium.woff2') format('ttf')
+    src: url('/fonts/fann-grotesque-medium.woff2') format('woff2')
   }
 
   @font-face {
