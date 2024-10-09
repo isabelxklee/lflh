@@ -45,14 +45,7 @@ const StyledImage = styled(Image)`
 `;
 
 export default function Home({ themes, subThemes, siteSettings }: HomeProps) {
-  console.log(themes, subThemes, siteSettings);
-
-  const [theme, setTheme] = useState({
-    title: 'The Body',
-    body: "I started questioning everything in my life. I realized—I got diagnosed with autism while during COVID and I started the unmasking process of just peeling back. 'Okay, I do this to please other people. I say these things to please other people, I say this to fit in' and really discovering who I was.",
-    sort: 1
-  });
-
+  const [theme, setTheme] = useState(themes[0]);
   const [show, setShow] = useState(false);
 
   useEffect(() => {
