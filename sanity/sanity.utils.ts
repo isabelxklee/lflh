@@ -4,20 +4,7 @@ import {
   SUB_THEMES_QUERY,
   THEMES_QUERY
 } from './lib/queries';
-
-export type ThemeType = {
-  _id: string;
-  title: string;
-  sort: number;
-  description: any;
-};
-
-export type SubThemeType = {
-  _id: string;
-  title: string;
-  sort: number;
-  themeName: any;
-};
+import { ThemeType, SubThemeType } from './types/types';
 
 export async function getThemes(): Promise<ThemeType[]> {
   const themes = await client.fetch(THEMES_QUERY);

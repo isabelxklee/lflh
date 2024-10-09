@@ -2,9 +2,13 @@
 
 import styled from 'styled-components';
 import { GRADIENT_COLORS } from '../globalStyles';
+import { ThemeType } from '../../sanity/types/types';
 
-interface GradientHeaderProps {
-  themes?: any;
+interface MiniGradientHeaderProps {
+  themes: ThemeType[];
+}
+
+interface GradientHeaderProps extends MiniGradientHeaderProps {
   setTheme: (args0: any) => void;
 }
 
@@ -53,7 +57,7 @@ export const GradientHeader = ({ themes, setTheme }: GradientHeaderProps) => {
   );
 };
 
-export const MiniGradientHeader = ({ themes }) => {
+export const MiniGradientHeader = ({ themes }: MiniGradientHeaderProps) => {
   return (
     <Gradient $clickable={false} $height="short">
       {themes.map((theme: any) => (

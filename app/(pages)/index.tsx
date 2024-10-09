@@ -9,10 +9,11 @@ import ThemePreview from '../components/ThemePreview';
 import logo from '../assets/LFLH-Logo-1.png';
 
 import Header from '../components/Header';
+import { SubThemeType, ThemeType } from '../../sanity/types/types';
 
 interface HomeProps {
-  themes: any;
-  subThemes: any;
+  themes: ThemeType[];
+  subThemes: SubThemeType[];
   siteSettings: any;
 }
 
