@@ -3,10 +3,9 @@
 import { interviews } from '../../data.js';
 import styled from 'styled-components';
 import { useCallback } from 'react';
-import Header from '../../components/Header';
-import { MiniGradientHeader } from '../../components/GradientHeader';
 import Link from 'next/link.js';
 import { COLORS, FONT_WEIGHTS, FONTS, P } from '../../globalStyles.js';
+import PageTemplate from '../../template';
 
 const ExcerptWrapper = styled.div<{ $length: number }>``;
 
@@ -32,22 +31,20 @@ export default function OralHistories() {
   }, []);
 
   return (
-    <>
-      <Header show={true} />
-      <MiniGradientHeader />
-      <Wrapper>
-        <h1>Oral Histories</h1>
-        {interviews.map((interview: any, index: number) => (
-          <div key={index}>
-            <StyledLink href={`/${index}`}>{interview.title}</StyledLink>
-            {interview.excerpts.map((excerpt: any, index: number) => (
-              <ExcerptWrapper key={index} $length={excerpt.startTime}>
-                <P>{excerpt.subTheme}</P>
-              </ExcerptWrapper>
-            ))}
-          </div>
-        ))}
-      </Wrapper>
-    </>
+    <Wrapper>
+      <h1>Oral Histories</h1>
+      {interviews.map((interview: any, index: number) => (
+        <div key={index}>
+          <StyledLink href={`/oral-histories/${index}`}>
+            {interview.title}
+          </StyledLink>
+          {interview.excerpts.map((excerpt: any, index: number) => (
+            <ExcerptWrapper key={index} $length={excerpt.startTime}>
+              <P>{excerpt.subTheme}</P>
+            </ExcerptWrapper>
+          ))}
+        </div>
+      ))}
+    </Wrapper>
   );
 }
