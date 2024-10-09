@@ -13,3 +13,26 @@ export const SUB_THEMES_QUERY = defineQuery(`*[_type == "subTheme"]{
       sort,
       "themeName": theme->title
     }`);
+
+export const SITE_SETTINGS_QUERY = defineQuery(`*[_type == "siteSettings"]{
+      _id,
+      siteTitle,
+      siteLogo,
+      aboutPageText
+    }`);
+
+export const INTERVIEWS_QUERY = defineQuery(`*[_type == "interview"]{
+      _id,
+      title,
+      audioFile,
+      transcript
+    }`);
+
+export const EXCERPTS_QUERY = defineQuery(`*[_type == "excerpt"]{
+      _id,
+      title,
+      startTime,
+      endTime,
+      subTheme,
+      interview
+    }`);

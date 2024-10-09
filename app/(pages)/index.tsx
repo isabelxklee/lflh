@@ -15,6 +15,7 @@ import Header from '../components/Header';
 interface HomeProps {
   themes: any;
   subThemes: any;
+  siteSettings: any;
 }
 
 const Wrapper = styled.div`
@@ -43,8 +44,8 @@ const StyledImage = styled(Image)`
   height: 100%;
 `;
 
-export default function Home({ themes, subThemes }: HomeProps) {
-  console.log(themes, subThemes);
+export default function Home({ themes, subThemes, siteSettings }: HomeProps) {
+  console.log(themes, subThemes, siteSettings);
 
   const [theme, setTheme] = useState({
     title: 'The Body',
