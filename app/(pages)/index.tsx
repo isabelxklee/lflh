@@ -3,8 +3,6 @@
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import { P } from '../globalStyles';
-import { SubThemeType, ThemeType } from '../../sanity/sanity.utils';
-import { themeData } from '../data.js';
 import { GradientHeader } from '../components/GradientHeader';
 import styled from 'styled-components';
 import ThemePreview from '../components/ThemePreview';
@@ -70,7 +68,7 @@ export default function Home({ themes, subThemes, siteSettings }: HomeProps) {
           alt="Listening for the Long Haul Logo"
         />
       </StyledH1>
-      <GradientHeader setTheme={setTheme} themes={themeData} />
+      <GradientHeader setTheme={setTheme} themes={themes} />
       <TextWrapper>
         <P>
           Hearing voices is one of the most powerful ways to experience oral
