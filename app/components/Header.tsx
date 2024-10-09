@@ -1,8 +1,10 @@
 'use client';
 
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import styled from 'styled-components';
 import { FONTS, COLORS, FONT_WEIGHTS } from '../globalStyles';
+import { useCallback } from 'react';
 
 interface HeaderProps {
   show: boolean;
@@ -10,10 +12,10 @@ interface HeaderProps {
 
 const Wrapper = styled.header<{ $show: boolean }>`
   top: ${({ $show }) => ($show ? '0px' : '-200px')};
-  transition: 0.4s ease;
+  transition: 0.3s ease;
   padding: 20px;
   background: ${COLORS.GREY};
-  width: 100dvw;
+  width: 100%;
   height: fit-content;
   z-index: 10;
   position: fixed;
@@ -26,14 +28,27 @@ const UL = styled.ul`
   justify-content: center;
 `;
 
-const StyledLink = styled(Link)`
+const StyledLink = styled(
+  Link
+) // <{ $active: boolean }>
+`
   text-decoration: none;
   color: black;
   font-family: ${FONTS.AUTH_SANS}, sans-serif;
-  font-weight: ${FONT_WEIGHTS.MEDIUM};
+  font-weight: ${FONT_WEIGHTS.REGULAR};
 `;
 
 const Header = ({ show }: HeaderProps) => {
+  const pathname = usePathname();
+
+  const slugify = useCallback((page: string) => {
+    return page.toLowerCase().replace(/\s+/g, '-');
+  }, []);
+
+  const activePage = useCallback((page: string) => {
+    return `/${slugify(page)}` === pathname;
+  }, []);
+
   return (
     <Wrapper $show={show}>
       <UL>

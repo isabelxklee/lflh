@@ -1,3 +1,7 @@
 export default function Resources() {
-  return <h1>Resources</h1>;
+  return (
+    <>
+      <h1>Resources</h1>
+    </>
+  );
 }
