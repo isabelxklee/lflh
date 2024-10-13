@@ -2,10 +2,10 @@
 
 import { interviews } from '../../data.js';
 import styled from 'styled-components';
-import { useCallback } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import Link from 'next/link.js';
 import { COLORS, FONT_WEIGHTS, FONTS, P } from '../../globalStyles.js';
-import PageTemplate from '../../template';
+import { getThemes } from '../../actions';
 
 const ExcerptWrapper = styled.div<{ $length: number }>``;
 
@@ -24,10 +24,21 @@ const StyledLink = styled(Link)`
 `;
 
 export default function OralHistories() {
+  const [themes, setThemes] = useState();
+
   const timeLength = useCallback((startTime: string) => {
     const length = parseInt(startTime);
 
     return length;
+  }, []);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const themes = await getThemes();
+      setThemes(themes);
+    };
+
+    fetchData();
   }, []);
 
   return (

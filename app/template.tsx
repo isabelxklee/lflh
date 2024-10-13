@@ -17,7 +17,7 @@ export default function PageTemplate({ children }: { children: ReactNode }) {
   ) : (
     <>
       <Header show={true} />
-      <MiniGradientHeader />
+      {/* <MiniGradientHeader /> */}
       {children}
     </>
   );
