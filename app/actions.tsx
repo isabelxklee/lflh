@@ -3,6 +3,7 @@
 import 'server-only';
 import { client } from '../sanity/lib/client';
 import {
+  INTERVIEWS_QUERY,
   SITE_SETTINGS_QUERY,
   SUB_THEMES_QUERY,
   THEMES_QUERY
@@ -24,4 +25,10 @@ export async function getSiteSettings() {
   const siteSettings = await client.fetch(SITE_SETTINGS_QUERY);
 
   return siteSettings;
+}
+
+export async function getInterviews() {
+  const interviews = await client.fetch(INTERVIEWS_QUERY);
+
+  return interviews;
 }

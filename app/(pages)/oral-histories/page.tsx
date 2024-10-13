@@ -1,11 +1,10 @@
 'use client';
 
-import { interviews } from '../../data.js';
 import styled from 'styled-components';
 import { useCallback, useEffect, useState } from 'react';
 import Link from 'next/link.js';
 import { COLORS, FONT_WEIGHTS, FONTS, P } from '../../globalStyles.js';
-import { getThemes } from '../../actions';
+import { getThemes, getInterviews } from '../../actions';
 
 const ExcerptWrapper = styled.div<{ $length: number }>``;
 
@@ -25,6 +24,7 @@ const StyledLink = styled(Link)`
 
 export default function OralHistories() {
   const [themes, setThemes] = useState();
+  const [interviews, setInterviews] = useState();
 
   const timeLength = useCallback((startTime: string) => {
     const length = parseInt(startTime);
@@ -35,7 +35,9 @@ export default function OralHistories() {
   useEffect(() => {
     const fetchData = async () => {
       const themes = await getThemes();
+      const interviews = await getInterviews();
       setThemes(themes);
+      setInterviews(interviews);
     };
 
     fetchData();
@@ -44,18 +46,19 @@ export default function OralHistories() {
   return (
     <Wrapper>
       <h1>Oral Histories</h1>
-      {interviews.map((interview: any, index: number) => (
-        <div key={index}>
-          <StyledLink href={`/oral-histories/${index}`}>
-            {interview.title}
-          </StyledLink>
-          {interview.excerpts.map((excerpt: any, index: number) => (
-            <ExcerptWrapper key={index} $length={excerpt.startTime}>
-              <P>{excerpt.subTheme}</P>
-            </ExcerptWrapper>
-          ))}
-        </div>
-      ))}
+      {interviews &&
+        interviews.map((interview: any, index: number) => (
+          <div key={index}>
+            <StyledLink href={`/oral-histories/${index}`}>
+              {interview.title}
+            </StyledLink>
+            {/* {interview.excerpts.map((excerpt: any, index: number) => (
+              <ExcerptWrapper key={index} $length={excerpt.startTime}>
+                <P>{excerpt.subTheme}</P>
+              </ExcerptWrapper>
+            ))} */}
+          </div>
+        ))}
     </Wrapper>
   );
 }
