@@ -23,8 +23,8 @@ const StyledLink = styled(Link)`
 `;
 
 export default function OralHistories() {
-  const [themes, setThemes] = useState();
-  const [interviews, setInterviews] = useState();
+  const [themes, setThemes] = useState<any[]>([]);
+  const [interviews, setInterviews] = useState<any[]>([]);
 
   const timeLength = useCallback((startTime: string) => {
     const length = parseInt(startTime);
