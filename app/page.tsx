@@ -8,6 +8,7 @@ import {
 import Home from './(pages)';
 
 export default async function Index() {
+  // sanity utils functions should be used for server components
   const themes = await getThemes();
   const subThemes = await getSubThemes();
   const siteSettings = await getSiteSettings();

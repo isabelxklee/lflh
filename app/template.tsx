@@ -11,6 +11,7 @@ export default function PageTemplate({ children }: { children: ReactNode }) {
   const pathname = usePathname();
 
   useEffect(() => {
+    // server actions should be used for client components
     const fetchData = async () => {
       const themes = await getThemes();
       setThemes(themes);
