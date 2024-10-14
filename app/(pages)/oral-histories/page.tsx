@@ -42,7 +42,6 @@ export default function OralHistories() {
 
     fetchData();
   }, []);
-  console.log(interviews);
 
   return (
     <Wrapper>
