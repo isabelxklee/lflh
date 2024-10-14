@@ -5,7 +5,7 @@ import { useCallback, useEffect, useState } from 'react';
 import Link from 'next/link.js';
 import { COLORS, FONT_WEIGHTS, FONTS, P } from '../../globalStyles.js';
 import { getThemes, getInterviews } from '../../actions';
-import WaveSurfer from 'wavesurfer.js';
+import WaveForm from '../../components/WaveForm';
 
 const ExcerptWrapper = styled.div<{ $length: number }>``;
 
@@ -44,8 +44,6 @@ export default function OralHistories() {
     fetchData();
   }, []);
 
-  console.log(interviews);
-
   return (
     <Wrapper>
       <h1>Oral Histories</h1>
@@ -55,7 +53,7 @@ export default function OralHistories() {
             <StyledLink href={`/oral-histories/${interview.slug.current}`}>
               {interview.title}
             </StyledLink>
-            <WaveSurfer />
+            <WaveForm audio={interview.audio} />
             {/* {interview.excerpts.map((excerpt: any, index: number) => (
               <ExcerptWrapper key={index} $length={excerpt.startTime}>
                 <P>{excerpt.subTheme}</P>

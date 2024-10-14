@@ -16,10 +16,10 @@ const Wrapper = styled.div`
   }
 `;
 
-const Waveform = ({ audio: string }) => {
-  const containerRef = useRef<HTMLDivElement>();
+export default function WaveForm({ audio }: any) {
+  const containerRef = useRef<any>();
 
-  console.log(containerRef);
+  console.log(audio);
 
   useEffect(() => {
     const waveSurfer = WaveSurfer.create({
@@ -36,10 +36,7 @@ const Waveform = ({ audio: string }) => {
 
   return (
     <Wrapper>
-      <button>Hello world</button>
       <div ref={containerRef}></div>
     </Wrapper>
   );
-};
-
-export default Waveform;
+}
