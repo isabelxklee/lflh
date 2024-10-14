@@ -4,7 +4,6 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import styled from 'styled-components';
 import { FONTS, COLORS, FONT_WEIGHTS } from '../globalStyles';
-import { useCallback } from 'react';
 
 interface HeaderProps {
   show: boolean;
@@ -28,50 +27,57 @@ const UL = styled.ul`
   justify-content: center;
 `;
 
-const StyledLink = styled(
-  Link
-) // <{ $active: boolean }>
-`
+const StyledLink = styled(Link)<{ $isActive: boolean }>`
   text-decoration: none;
   color: black;
   font-family: ${FONTS.AUTH_SANS}, sans-serif;
-  font-weight: ${FONT_WEIGHTS.REGULAR};
+  font-weight: ${({ $isActive }) =>
+    $isActive ? FONT_WEIGHTS.BOLD : FONT_WEIGHTS.REGULAR};
 `;
 
 const Header = ({ show }: HeaderProps) => {
-  const pathname = usePathname();
-
-  const slugify = useCallback((page: string) => {
-    return page.toLowerCase().replace(/\s+/g, '-');
-  }, []);
-
-  const activePage = useCallback((page: string) => {
-    return `/${slugify(page)}` === pathname;
-  }, []);
+  const pathname = usePathname().replace(/\//g, '');
 
   return (
     <Wrapper $show={show}>
       <UL>
         <li>
-          <StyledLink href="/">Home</StyledLink>
+          <StyledLink href="/" $isActive={pathname == ''}>
+            Home
+          </StyledLink>
         </li>
         <li>
-          <StyledLink href="/about">About</StyledLink>
+          <StyledLink href="/about" $isActive={pathname == 'about'}>
+            About
+          </StyledLink>
         </li>
         <li>
-          <StyledLink href="/oral-histories">Oral Histories</StyledLink>
+          <StyledLink
+            href="/oral-histories"
+            $isActive={pathname.includes('oral-histories')}
+          >
+            Oral Histories
+          </StyledLink>
         </li>
         <li>
-          <StyledLink href="/themes">Themes</StyledLink>
+          <StyledLink href="/themes" $isActive={pathname == 'themes'}>
+            Themes
+          </StyledLink>
         </li>
         <li>
-          <StyledLink href="/resources">Resources</StyledLink>
+          <StyledLink href="/resources" $isActive={pathname == 'resources'}>
+            Resources
+          </StyledLink>
         </li>
         <li>
-          <StyledLink href="/partners">Partners</StyledLink>
+          <StyledLink href="/partners" $isActive={pathname == 'partners'}>
+            Partners
+          </StyledLink>
         </li>
         <li>
-          <StyledLink href="/contact">Contact</StyledLink>
+          <StyledLink href="/contact" $isActive={pathname == 'contact'}>
+            Contact
+          </StyledLink>
         </li>
       </UL>
     </Wrapper>
