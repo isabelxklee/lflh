@@ -1,13 +1,14 @@
 import { defineQuery } from 'next-sanity';
 
-export const THEMES_QUERY = defineQuery(`*[_type == "theme"]{
+export const THEMES_QUERY = defineQuery(`*[_type == "theme"] | order(sort asc) {
       _id,
       title,
       sort,
       description
     }`);
 
-export const SUB_THEMES_QUERY = defineQuery(`*[_type == "subTheme"]{
+export const SUB_THEMES_QUERY =
+  defineQuery(`*[_type == "subTheme"] | order(sort asc) {
       _id,
       title,
       sort,
