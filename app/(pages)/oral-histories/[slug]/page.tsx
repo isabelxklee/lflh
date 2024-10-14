@@ -1,7 +1,7 @@
 'use client';
 
 import styled from 'styled-components';
-import { usePathname } from 'next/navigation';
+import { useParams } from 'next/navigation';
 
 const Wrapper = styled.div`
   padding: 200px 25%;
@@ -9,7 +9,7 @@ const Wrapper = styled.div`
 `;
 
 export default function InterviewPage() {
-  const pathname = usePathname();
-  console.log(pathname);
+  const params = useParams();
+  console.log(params.slug);
   return <Wrapper>{/* <p>{title}</p> */}</Wrapper>;
 }
