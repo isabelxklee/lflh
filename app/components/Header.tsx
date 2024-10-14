@@ -1,10 +1,9 @@
 'use client';
 
 import Link from 'next/link';
-import { usePathname, useSelectedLayoutSegments } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 import styled from 'styled-components';
 import { FONTS, COLORS, FONT_WEIGHTS } from '../globalStyles';
-import { useState, useEffect } from 'react';
 
 interface HeaderProps {
   show: boolean;
@@ -37,12 +36,7 @@ const StyledLink = styled(Link)<{ $isActive: boolean }>`
 `;
 
 const Header = ({ show }: HeaderProps) => {
-  const [activeLink, setActiveLink] = useState<string>('');
   const pathname = usePathname().replace(/\//g, '');
-
-  useEffect(() => {
-    setActiveLink(pathname);
-  }, [pathname]);
 
   return (
     <Wrapper $show={show}>
@@ -53,35 +47,35 @@ const Header = ({ show }: HeaderProps) => {
           </StyledLink>
         </li>
         <li>
-          <StyledLink href="/about" $isActive={activeLink == 'about'}>
+          <StyledLink href="/about" $isActive={pathname == 'about'}>
             About
           </StyledLink>
         </li>
         <li>
           <StyledLink
             href="/oral-histories"
-            $isActive={activeLink == 'oral-histories'}
+            $isActive={pathname == 'oral-histories'}
           >
             Oral Histories
           </StyledLink>
         </li>
         <li>
-          <StyledLink href="/themes" $isActive={activeLink == 'themes'}>
+          <StyledLink href="/themes" $isActive={pathname == 'themes'}>
             Themes
           </StyledLink>
         </li>
         <li>
-          <StyledLink href="/resources" $isActive={activeLink == 'resources'}>
+          <StyledLink href="/resources" $isActive={pathname == 'resources'}>
             Resources
           </StyledLink>
         </li>
         <li>
-          <StyledLink href="/partners" $isActive={activeLink == 'partners'}>
+          <StyledLink href="/partners" $isActive={pathname == 'partners'}>
             Partners
           </StyledLink>
         </li>
         <li>
-          <StyledLink href="/contact" $isActive={activeLink == 'contact'}>
+          <StyledLink href="/contact" $isActive={pathname == 'contact'}>
             Contact
           </StyledLink>
         </li>
