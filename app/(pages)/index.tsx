@@ -43,7 +43,7 @@ const StyledImage = styled(Image)`
   height: 100%;
 `;
 
-export default function Home({ themes, subThemes, siteSettings }: HomeProps) {
+export default function Home({ themes }: HomeProps) {
   const [theme, setTheme] = useState(themes[0]);
   const [show, setShow] = useState(false);
 
@@ -69,7 +69,7 @@ export default function Home({ themes, subThemes, siteSettings }: HomeProps) {
           alt="Listening for the Long Haul Logo"
         />
       </StyledH1>
-      <GradientHeader setTheme={setTheme} themes={themes} />
+      {/* <GradientHeader setTheme={setTheme} themes={themes} /> */}
       <TextWrapper>
         <P>
           Hearing voices is one of the most powerful ways to experience oral
@@ -83,9 +83,9 @@ export default function Home({ themes, subThemes, siteSettings }: HomeProps) {
           read while you listen and listen while you read.
         </P>
       </TextWrapper>
-      <TextWrapper>
+      {/* <TextWrapper>
         <ThemePreview theme={theme} />
-      </TextWrapper>
+      </TextWrapper> */}
     </Wrapper>
   );
 }
