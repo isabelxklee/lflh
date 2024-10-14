@@ -1,14 +1,10 @@
 'use client';
 
 import Link from 'next/link';
-import {
-  usePathname,
-  useSelectedLayoutSegment,
-  useSelectedLayoutSegments
-} from 'next/navigation';
+import { usePathname, useSelectedLayoutSegments } from 'next/navigation';
 import styled from 'styled-components';
 import { FONTS, COLORS, FONT_WEIGHTS } from '../globalStyles';
-import { useMemo } from 'react';
+import { useState, useEffect } from 'react';
 
 interface HeaderProps {
   show: boolean;
@@ -32,48 +28,62 @@ const UL = styled.ul`
   justify-content: center;
 `;
 
-const StyledLink = styled(
-  Link
-) // <{ $active: boolean }>
-`
+const StyledLink = styled(Link)<{ $isActive: boolean }>`
   text-decoration: none;
   color: black;
   font-family: ${FONTS.AUTH_SANS}, sans-serif;
-  font-weight: ${FONT_WEIGHTS.REGULAR};
+  font-weight: ${({ $isActive }) =>
+    $isActive ? FONT_WEIGHTS.BOLD : FONT_WEIGHTS.REGULAR};
 `;
 
 const Header = ({ show }: HeaderProps) => {
+  const [activeLink, setActiveLink] = useState<string>('');
   const pathname = usePathname().replace(/\//g, '');
-  const segments = useSelectedLayoutSegments();
-  const filteredSegments = useMemo(() => {
-    return segments.filter(segment => segment !== '(pages)');
-  }, []);
 
-  const isActive = pathname === filteredSegments[0];
+  useEffect(() => {
+    setActiveLink(pathname);
+  }, [pathname]);
 
   return (
     <Wrapper $show={show}>
       <UL>
         <li>
-          <StyledLink href="/">Home</StyledLink>
+          <StyledLink href="/" $isActive={pathname == ''}>
+            Home
+          </StyledLink>
         </li>
         <li>
-          <StyledLink href="/about">About</StyledLink>
+          <StyledLink href="/about" $isActive={activeLink == 'about'}>
+            About
+          </StyledLink>
         </li>
         <li>
-          <StyledLink href="/oral-histories">Oral Histories</StyledLink>
+          <StyledLink
+            href="/oral-histories"
+            $isActive={activeLink == 'oral-histories'}
+          >
+            Oral Histories
+          </StyledLink>
         </li>
         <li>
-          <StyledLink href="/themes">Themes</StyledLink>
+          <StyledLink href="/themes" $isActive={activeLink == 'themes'}>
+            Themes
+          </StyledLink>
         </li>
         <li>
-          <StyledLink href="/resources">Resources</StyledLink>
+          <StyledLink href="/resources" $isActive={activeLink == 'resources'}>
+            Resources
+          </StyledLink>
         </li>
         <li>
-          <StyledLink href="/partners">Partners</StyledLink>
+          <StyledLink href="/partners" $isActive={activeLink == 'partners'}>
+            Partners
+          </StyledLink>
         </li>
         <li>
-          <StyledLink href="/contact">Contact</StyledLink>
+          <StyledLink href="/contact" $isActive={activeLink == 'contact'}>
+            Contact
+          </StyledLink>
         </li>
       </UL>
     </Wrapper>
