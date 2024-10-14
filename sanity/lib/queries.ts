@@ -27,7 +27,8 @@ export const INTERVIEWS_QUERY = defineQuery(`*[_type == "interview"]{
       title,
       audioFile,
       transcript,
-      slug
+      slug,
+      "excerpts": *[_type == "excerpt" && references(^._id)]
     }`);
 
 export const EXCERPTS_QUERY = defineQuery(`*[_type == "excerpt"]{
