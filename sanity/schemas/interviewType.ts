@@ -12,6 +12,19 @@ export const interviewType = defineType({
       type: 'string'
     }),
     defineField({
+      name: 'slug',
+      type: 'slug',
+      options: {
+        source: 'title',
+        slugify: input =>
+          input
+            .toLowerCase()
+            .replace(/\-/g, '')
+            .replace(/\s+/g, '-')
+            .slice(0, 200)
+      }
+    }),
+    defineField({
       name: 'audioFile',
       type: 'file'
     }),
