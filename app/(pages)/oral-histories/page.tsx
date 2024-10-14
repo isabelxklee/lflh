@@ -46,7 +46,7 @@ export default function OralHistories() {
   return (
     <Wrapper>
       <h1>Oral Histories</h1>
-      {interviews &&
+      {interviews.length > 0 ? (
         interviews.map((interview: any, index: number) => (
           <div key={index}>
             <StyledLink href={`/oral-histories/${interview.slug.current}`}>
@@ -58,7 +58,10 @@ export default function OralHistories() {
               </ExcerptWrapper>
             ))} */}
           </div>
-        ))}
+        ))
+      ) : (
+        <p>Loading interviews...</p>
+      )}
     </Wrapper>
   );
 }
