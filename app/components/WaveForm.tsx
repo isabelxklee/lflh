@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import WaveSurfer from 'wavesurfer.js';
 import styled from 'styled-components';
 
@@ -18,6 +18,10 @@ const Wrapper = styled.div`
 
 export default function WaveForm({ audio }: any) {
   const containerRef = useRef<any>();
+  const waveSurferRef = useRef<any>({
+    isPlaying: () => false
+  });
+  const [isPlaying, toggleIsPlaying] = useState(false);
 
   console.log(audio);
 
@@ -29,13 +33,27 @@ export default function WaveForm({ audio }: any) {
       cursorWidth: 0
     });
 
+    waveSurfer.load(audio);
+    waveSurfer.on('ready', () => {
+      waveSurferRef.current = waveSurfer;
+    });
+
     return () => {
       waveSurfer.destroy();
     };
-  }, []);
+  }, [audio]);
 
   return (
     <Wrapper>
+      <button
+        onClick={() => {
+          waveSurferRef.current.playPause();
+          toggleIsPlaying(waveSurferRef.current.isPlaying());
+        }}
+        type="button"
+      >
+        {isPlaying ? 'Playing' : 'Not playing'}
+      </button>
       <div ref={containerRef}></div>
     </Wrapper>
   );
