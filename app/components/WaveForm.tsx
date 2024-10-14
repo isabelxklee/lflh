@@ -28,8 +28,7 @@ export default function WaveForm({ audio }: any) {
   useEffect(() => {
     const waveSurfer = WaveSurfer.create({
       container: containerRef.current,
-      barWidth: 2,
-      barHeight: 10,
+      barWidth: 3,
       cursorWidth: 0
     });
 
