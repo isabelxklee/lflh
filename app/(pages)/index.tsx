@@ -69,7 +69,7 @@ export default function Home({ themes }: HomeProps) {
           alt="Listening for the Long Haul Logo"
         />
       </StyledH1>
-      {/* <GradientHeader setTheme={setTheme} themes={themes} /> */}
+      <GradientHeader setTheme={setTheme} themes={themes} />
       <TextWrapper>
         <P>
           Hearing voices is one of the most powerful ways to experience oral
