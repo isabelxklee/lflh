@@ -26,6 +26,7 @@ export const INTERVIEWS_QUERY = defineQuery(`*[_type == "interview"]{
       _id,
       title,
       audioFile,
+      "audio": audioFile.asset->url,
       transcript,
       slug,
       "excerpts": *[_type == "excerpt" && references(^._id)]
