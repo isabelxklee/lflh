@@ -83,9 +83,11 @@ export default function Home({ themes }: HomeProps) {
           read while you listen and listen while you read.
         </P>
       </TextWrapper>
-      <TextWrapper>
-        <ThemePreview theme={theme} />
-      </TextWrapper>
+      {theme && (
+        <TextWrapper>
+          <ThemePreview theme={theme} />
+        </TextWrapper>
+      )}
     </Wrapper>
   );
 }
