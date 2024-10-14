@@ -3,18 +3,18 @@
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import { P } from '../globalStyles';
-import { SubThemeType, ThemeType } from '../../sanity/sanity.utils';
-import { themeData } from '../data.js';
 import { GradientHeader } from '../components/GradientHeader';
 import styled from 'styled-components';
 import ThemePreview from '../components/ThemePreview';
 import logo from '../assets/LFLH-Logo-1.png';
 
 import Header from '../components/Header';
+import { SubThemeType, ThemeType } from '../../sanity/types/types';
 
 interface HomeProps {
   themes: ThemeType[];
   subThemes: SubThemeType[];
+  siteSettings: any;
 }
 
 const Wrapper = styled.div`
@@ -43,13 +43,8 @@ const StyledImage = styled(Image)`
   height: 100%;
 `;
 
-export default function Home({ themes, subThemes }: HomeProps) {
-  const [theme, setTheme] = useState({
-    title: 'The Body',
-    body: "I started questioning everything in my life. I realized—I got diagnosed with autism while during COVID and I started the unmasking process of just peeling back. 'Okay, I do this to please other people. I say these things to please other people, I say this to fit in' and really discovering who I was.",
-    sort: 1
-  });
-
+export default function Home({ themes }: HomeProps) {
+  const [theme, setTheme] = useState(themes[0]);
   const [show, setShow] = useState(false);
 
   useEffect(() => {
@@ -74,7 +69,7 @@ export default function Home({ themes, subThemes }: HomeProps) {
           alt="Listening for the Long Haul Logo"
         />
       </StyledH1>
-      <GradientHeader setTheme={setTheme} themes={themeData} />
+      <GradientHeader setTheme={setTheme} themes={themes} />
       <TextWrapper>
         <P>
           Hearing voices is one of the most powerful ways to experience oral
@@ -88,9 +83,11 @@ export default function Home({ themes, subThemes }: HomeProps) {
           read while you listen and listen while you read.
         </P>
       </TextWrapper>
-      <TextWrapper>
-        <ThemePreview theme={theme} />
-      </TextWrapper>
+      {theme && (
+        <TextWrapper>
+          <ThemePreview theme={theme} />
+        </TextWrapper>
+      )}
     </Wrapper>
   );
 }

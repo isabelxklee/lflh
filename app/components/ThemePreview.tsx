@@ -22,7 +22,7 @@ const ThemePreview = ({ theme }: ThemePreviewProps) => {
   return (
     <Wrapper>
       <H3>{theme.title}</H3>
-      <P>{theme.body}</P>
+      <P>{theme.description}</P>
       <LinkWrapper>
         <StyledLink href="/">Play Interview</StyledLink>
         <StyledLink href="/">Explore Theme</StyledLink>
