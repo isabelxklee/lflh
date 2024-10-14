@@ -54,7 +54,7 @@ const Header = ({ show }: HeaderProps) => {
         <li>
           <StyledLink
             href="/oral-histories"
-            $isActive={pathname == 'oral-histories'}
+            $isActive={pathname.includes('oral-histories')}
           >
             Oral Histories
           </StyledLink>
