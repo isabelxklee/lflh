@@ -1,10 +1,14 @@
 'use client';
 
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import {
+  usePathname,
+  useSelectedLayoutSegment,
+  useSelectedLayoutSegments
+} from 'next/navigation';
 import styled from 'styled-components';
 import { FONTS, COLORS, FONT_WEIGHTS } from '../globalStyles';
-import { useCallback } from 'react';
+import { useMemo } from 'react';
 
 interface HeaderProps {
   show: boolean;
@@ -39,15 +43,13 @@ const StyledLink = styled(
 `;
 
 const Header = ({ show }: HeaderProps) => {
-  const pathname = usePathname();
-
-  const slugify = useCallback((page: string) => {
-    return page.toLowerCase().replace(/\s+/g, '-');
+  const pathname = usePathname().replace(/\//g, '');
+  const segments = useSelectedLayoutSegments();
+  const filteredSegments = useMemo(() => {
+    return segments.filter(segment => segment !== '(pages)');
   }, []);
 
-  const activePage = useCallback((page: string) => {
-    return `/${slugify(page)}` === pathname;
-  }, []);
+  const isActive = pathname === filteredSegments[0];
 
   return (
     <Wrapper $show={show}>
