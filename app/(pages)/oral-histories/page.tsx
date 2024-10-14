@@ -49,7 +49,7 @@ export default function OralHistories() {
       {interviews &&
         interviews.map((interview: any, index: number) => (
           <div key={index}>
-            <StyledLink href={`/oral-histories/${index}`}>
+            <StyledLink href={`/oral-histories/${interview.slug.current}`}>
               {interview.title}
             </StyledLink>
             {/* {interview.excerpts.map((excerpt: any, index: number) => (
