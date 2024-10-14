@@ -1,6 +1,5 @@
 'use server';
 
-import 'server-only';
 import { client } from '../sanity/lib/client';
 import {
   INTERVIEWS_QUERY,
