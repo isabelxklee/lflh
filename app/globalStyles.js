@@ -50,6 +50,7 @@ export const P = styled.p`
 
 export const SmallP = styled(P)`
   font-size: 16px;
+  font-weight: ${FONT_WEIGHTS.REGULAR};
 `;
 
 export const H3 = styled.h3`

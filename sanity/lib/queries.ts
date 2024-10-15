@@ -25,7 +25,8 @@ export const SITE_SETTINGS_QUERY = defineQuery(`*[_type == "siteSettings"]{
 export const INTERVIEWS_QUERY = defineQuery(`*[_type == "interview"]{
       _id,
       title,
-      "audio": audioFile.asset->url,
+      audioFile,
+      "audioFileURL": audioFile.asset->url,
       transcript,
       slug,
       "excerpts": *[_type == "excerpt" && references(^._id)]

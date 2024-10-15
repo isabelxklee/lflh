@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { useParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { getInterviews } from '../../../actions';
-import { COLORS, H3, SmallP } from '../../../globalStyles';
+import { COLORS, FONT_WEIGHTS, H3, SmallP } from '../../../globalStyles';
 import WaveForm from '../../../components/WaveForm';
 
 const Wrapper = styled.div`
@@ -41,6 +41,8 @@ export default function InterviewPage() {
 
     findInterview();
   }, []);
+
+  console.log(interview);
 
   return (
     <Wrapper>
