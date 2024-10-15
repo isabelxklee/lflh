@@ -23,8 +23,6 @@ export default function WaveForm({ audio }: any) {
   });
   const [isPlaying, toggleIsPlaying] = useState(false);
 
-  console.log(audio);
-
   useEffect(() => {
     const waveSurfer = WaveSurfer.create({
       container: containerRef.current,

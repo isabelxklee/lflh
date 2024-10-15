@@ -5,6 +5,7 @@ import { useParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { getInterviews } from '../../../actions';
 import { H3 } from '../../../globalStyles';
+import WaveForm from '../../../components/WaveForm';
 
 const Wrapper = styled.div`
   padding: 200px 25%;
@@ -27,5 +28,14 @@ export default function InterviewPage() {
     findInterview();
   }, []);
 
-  return <Wrapper>{interview && <H3>{interview.title}</H3>}</Wrapper>;
+  return (
+    <Wrapper>
+      {interview && (
+        <>
+          <H3>{interview.title}</H3>
+          <WaveForm audio={interview.audio} />
+        </>
+      )}
+    </Wrapper>
+  );
 }
