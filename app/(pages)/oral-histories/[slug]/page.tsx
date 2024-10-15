@@ -42,7 +42,7 @@ export default function InterviewPage() {
     findInterview();
   }, []);
 
-  console.log(interview);
+  console.log(interview && interview.audioFile.asset);
 
   return (
     <Wrapper>
@@ -52,7 +52,7 @@ export default function InterviewPage() {
           <AudioPlayerWrapper>
             <SmallP>{interview.title}</SmallP>
             <WaveFormWrapper>
-              <WaveForm audio={interview.audio} />
+              <WaveForm audio={interview.audioFileURL} />
             </WaveFormWrapper>
           </AudioPlayerWrapper>
         </>
