@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import WaveSurfer from 'wavesurfer.js';
 import styled from 'styled-components';
+import { FaPlayCircle, FaPauseCircle } from 'react-icons/fa';
 
 const Wrapper = styled.div`
   display: grid;
@@ -49,7 +50,7 @@ export default function WaveForm({ audio }: any) {
         }}
         type="button"
       >
-        {isPlaying ? 'Playing' : 'Not playing'}
+        {isPlaying ? <FaPauseCircle size="3em" /> : <FaPlayCircle size="3em" />}
       </button>
       <div ref={containerRef}></div>
     </Wrapper>
