@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { useParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { getInterviews } from '../../../actions';
-import { COLORS, H3 } from '../../../globalStyles';
+import { COLORS, H3, SmallP } from '../../../globalStyles';
 import WaveForm from '../../../components/WaveForm';
 
 const Wrapper = styled.div`
@@ -48,6 +48,7 @@ export default function InterviewPage() {
         <>
           <H3>{interview.title}</H3>
           <AudioPlayerWrapper>
+            <SmallP>{interview.title}</SmallP>
             <WaveFormWrapper>
               <WaveForm audio={interview.audio} />
             </WaveFormWrapper>

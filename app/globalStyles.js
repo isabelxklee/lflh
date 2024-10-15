@@ -48,6 +48,10 @@ export const P = styled.p`
   margin: 0;
 `;
 
+export const SmallP = styled(P)`
+  font-size: 16px;
+`;
+
 export const H3 = styled.h3`
   font-family: ${FONTS.AUTH_SANS}, sans-serif;
   font-weight: ${FONT_WEIGHTS.BOLD};
