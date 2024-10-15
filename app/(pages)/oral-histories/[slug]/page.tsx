@@ -4,12 +4,26 @@ import styled from 'styled-components';
 import { useParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { getInterviews } from '../../../actions';
-import { H3 } from '../../../globalStyles';
+import { COLORS, H3 } from '../../../globalStyles';
 import WaveForm from '../../../components/WaveForm';
 
 const Wrapper = styled.div`
   padding: 200px 25%;
   margin-bottom: 200px;
+`;
+
+const AudioPlayerWrapper = styled.div`
+  position: fixed;
+  bottom: 0;
+  background: ${COLORS.GREY};
+  width: 100%;
+  right: 0;
+`;
+
+const WaveFormWrapper = styled.div`
+  width: 80%;
+  position: relative;
+  margin: 0 auto;
 `;
 
 export default function InterviewPage() {
@@ -33,7 +47,11 @@ export default function InterviewPage() {
       {interview && (
         <>
           <H3>{interview.title}</H3>
-          <WaveForm audio={interview.audio} />
+          <AudioPlayerWrapper>
+            <WaveFormWrapper>
+              <WaveForm audio={interview.audio} />
+            </WaveFormWrapper>
+          </AudioPlayerWrapper>
         </>
       )}
     </Wrapper>
