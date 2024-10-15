@@ -2,19 +2,28 @@ import React, { useEffect, useRef, useState } from 'react';
 import WaveSurfer from 'wavesurfer.js';
 import styled from 'styled-components';
 import { FaPlayCircle, FaPauseCircle } from 'react-icons/fa';
+import { COLORS } from '../globalStyles';
 
 const Wrapper = styled.div`
   display: grid;
-  grid-template-columns: 40px 1fr;
+  grid-template-columns: 30px 1fr;
   align-items: center;
 
   button {
-    width: 40px;
-    height: 40px;
+    width: 30px;
+    height: 30px;
     border: none;
     padding: 0;
-    background-color: white;
+    background-color: ${COLORS.GREY};
   }
+`;
+
+const StyledPauseIcon = styled(FaPauseCircle)`
+  background-color: ${COLORS.GREY};
+`;
+
+const StyledPlayIcon = styled(FaPlayCircle)`
+  background-color: ${COLORS.GREY};
 `;
 
 export default function WaveForm({ audio }: any) {
@@ -50,7 +59,11 @@ export default function WaveForm({ audio }: any) {
         }}
         type="button"
       >
-        {isPlaying ? <FaPauseCircle size="3em" /> : <FaPlayCircle size="3em" />}
+        {isPlaying ? (
+          <StyledPauseIcon size="30px" />
+        ) : (
+          <StyledPlayIcon size="30px" />
+        )}
       </button>
       <div ref={containerRef}></div>
     </Wrapper>
