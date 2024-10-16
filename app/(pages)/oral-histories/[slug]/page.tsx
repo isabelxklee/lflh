@@ -42,8 +42,6 @@ export default function InterviewPage() {
     findInterview();
   }, []);
 
-  console.log(interview && interview.audioFile.asset);
-
   return (
     <Wrapper>
       {interview && (

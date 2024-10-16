@@ -32,6 +32,7 @@ export default function WaveForm({ audio }: any) {
     isPlaying: () => false
   });
   const [isPlaying, toggleIsPlaying] = useState(false);
+  const [duration, setDuration] = useState<number>(0);
 
   useEffect(() => {
     const waveSurfer = WaveSurfer.create({
@@ -43,12 +44,15 @@ export default function WaveForm({ audio }: any) {
     waveSurfer.load(audio);
     waveSurfer.on('ready', () => {
       waveSurferRef.current = waveSurfer;
+      setDuration(waveSurfer.getDuration());
     });
 
     return () => {
       waveSurfer.destroy();
     };
   }, [audio]);
+
+  console.log(duration);
 
   return (
     <Wrapper>
