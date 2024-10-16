@@ -42,6 +42,8 @@ export default function InterviewPage() {
     findInterview();
   }, []);
 
+  console.log(interview);
+
   return (
     <Wrapper>
       {interview && (
@@ -49,9 +51,11 @@ export default function InterviewPage() {
           <H3>{interview.title}</H3>
           <AudioPlayerWrapper>
             <SmallP>{interview.title}</SmallP>
-            <WaveFormWrapper>
-              <WaveForm audio={interview.audioFileURL} />
-            </WaveFormWrapper>
+            {interview.audioFileURL && (
+              <WaveFormWrapper>
+                <WaveForm audio={interview.audioFileURL} />
+              </WaveFormWrapper>
+            )}
           </AudioPlayerWrapper>
         </>
       )}
