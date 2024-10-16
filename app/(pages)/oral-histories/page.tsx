@@ -5,6 +5,7 @@ import { useCallback, useEffect, useState } from 'react';
 import Link from 'next/link.js';
 import { COLORS, FONT_WEIGHTS, FONTS, P } from '../../globalStyles.js';
 import { getThemes, getInterviews } from '../../actions';
+import AudioPlayer from '../../components/AudioPlayer';
 
 const ExcerptWrapper = styled.div<{ $length: number }>``;
 
@@ -52,6 +53,7 @@ export default function OralHistories() {
             <StyledLink href={`/oral-histories/${interview.slug.current}`}>
               {interview.title}
             </StyledLink>
+            <AudioPlayer />
             {/* {interview.excerpts.map((excerpt: any, index: number) => (
               <ExcerptWrapper key={index} $length={excerpt.startTime}>
                 <P>{excerpt.subTheme}</P>

@@ -15,8 +15,6 @@ export default function InterviewPage() {
   const [interview, setInterview] = useState<any>();
   const params = useParams();
 
-  console.log(interview);
-
   useEffect(() => {
     const findInterview = async () => {
       const interviews = await getInterviews();
