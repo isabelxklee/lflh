@@ -10,55 +10,86 @@ const Wrapper = styled.div`
 
 const Controls = styled.div``;
 
-function useAudioPlayer() {
-  const [duration, setDuration] = useState<number | undefined>();
-  const [curTime, setCurTime] = useState<number>(0);
-  const [playing, setPlaying] = useState(false);
-  const [clickedTime, setClickedTime] = useState<number | null>();
+// function useAudioPlayer() {
+//   const [duration, setDuration] = useState<number | undefined>();
+//   const [curTime, setCurTime] = useState<number>(0);
+//   const [playing, setPlaying] = useState(false);
+//   const [clickedTime, setClickedTime] = useState<number | null>();
 
-  useEffect(() => {
-    const audio = document.getElementsByTagName(
-      'audio'
-    ) as HTMLCollectionOf<HTMLAudioElement>;
+//   useEffect(() => {
+//     const audio = document.getElementsByTagName(
+//       'audio'
+//     ) as HTMLCollectionOf<HTMLAudioElement>;
 
-    const setAudioData = () => {
-      if (audio) {
-        setDuration(audio.duration);
-        setCurTime(audio.currentTime);
-      }
-    };
+//     const setAudioData = () => {
+//       if (audio) {
+//         setDuration(audio.duration);
+//         setCurTime(audio.currentTime);
+//       }
+//     };
 
-    const setAudioTime = () => {
-      setCurTime(audio.currentTime);
-      console.log('audio.currentTime', audio.currentTime);
-    };
+//     const setAudioTime = () => {
+//       setCurTime(audio.currentTime);
+//       console.log('audio.currentTime', audio.currentTime);
+//     };
 
-    audio.addEventListener('loadeddata', setAudioData);
+//     audio.addEventListener('loadeddata', setAudioData);
 
-    audio.addEventListener('timeupdate', setAudioTime);
+//     audio.addEventListener('timeupdate', setAudioTime);
 
-    playing ? audio.play() : audio.pause();
+//     playing ? audio.play() : audio.pause();
 
-    if (clickedTime && clickedTime !== curTime) {
-      audio.currentTime = clickedTime;
-      setClickedTime(null);
+//     if (clickedTime && clickedTime !== curTime) {
+//       audio.currentTime = clickedTime;
+//       setClickedTime(null);
+//     }
+
+//     return () => {
+//       audio.removeEventListener('loadeddata', setAudioData);
+//       audio.removeEventListener('timeupdate', setAudioTime);
+//     };
+//   }, [clickedTime, playing, curTime]);
+
+//   return {
+//     clickedTime,
+//     curTime,
+//     duration,
+//     playing,
+//     setPlaying,
+//     setClickedTime
+//   };
+// }
+
+const BarWrapper = styled.div`
+  user-select: none;
+  width: 100%;
+  display: flex;
+  align-items: center;
+
+  .bar__time {
+    color: white;
+    font-size: 16px;
+  }
+
+  .bar__progress {
+    flex: 1;
+    border-radius: 5px;
+    margin: 0 20px;
+    height: 10px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+
+    .bar__progress__knob {
+      position: relative;
+      height: 16px;
+      width: 16px;
+      border: 1.5px solid white;
+      border-radius: 50%;
+      background-color: orange;
     }
-
-    return () => {
-      audio.removeEventListener('loadeddata', setAudioData);
-      audio.removeEventListener('timeupdate', setAudioTime);
-    };
-  }, [clickedTime, playing, curTime]);
-
-  return {
-    clickedTime,
-    curTime,
-    duration,
-    playing,
-    setPlaying,
-    setClickedTime
-  };
-}
+  }
+`;
 
 interface BarProps {
   duration: number;
@@ -82,8 +113,8 @@ const Bar = ({ duration, curTime, onTimeUpdate }: BarProps) => {
   const handleTimeDrag = (event: any) => {
     onTimeUpdate(calcClickedTime(event));
 
-    const updateTimeOnMove = eMove => {
-      onTimeUpdate(calcClickedTime(eMove));
+    const updateTimeOnMove = (event: any) => {
+      onTimeUpdate(calcClickedTime(event));
     };
 
     document.addEventListener('mousemove', updateTimeOnMove);
@@ -94,7 +125,7 @@ const Bar = ({ duration, curTime, onTimeUpdate }: BarProps) => {
   };
 
   return (
-    <div className="bar">
+    <BarWrapper>
       <span className="bar__time">
         {
           //   formatDuration(curTime)
@@ -119,7 +150,7 @@ const Bar = ({ duration, curTime, onTimeUpdate }: BarProps) => {
           duration
         }
       </span>
-    </div>
+    </BarWrapper>
   );
 };
 
@@ -149,7 +180,6 @@ function AudioPlayer() {
           duration={duration}
           onTimeUpdate={(time: number) => {
             setClickedTime(time);
-            console.log(time);
           }}
         />
       </Controls>
