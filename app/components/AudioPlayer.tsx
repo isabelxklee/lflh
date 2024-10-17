@@ -60,12 +60,76 @@ function useAudioPlayer() {
   };
 }
 
+interface BarProps {
+  duration: number;
+  curTime: number;
+  onTimeUpdate: (arg0: any) => void;
+}
+
+const Bar = ({ duration, curTime, onTimeUpdate }: BarProps) => {
+  const curPercentage = (curTime / duration) * 100;
+
+  const calcClickedTime = (event: any) => {
+    const clickPositionInPage = event.pageX;
+    const bar = document.querySelector('.bar__progress');
+    const barStart = bar.getBoundingClientRect().left + window.scrollX;
+    const barWidth = bar.offsetWidth;
+    const clickPositionInBar = clickPositionInPage - barStart;
+    const timePerPixel = duration / barWidth;
+    return timePerPixel * clickPositionInBar;
+  };
+
+  const handleTimeDrag = (event: any) => {
+    onTimeUpdate(calcClickedTime(event));
+
+    const updateTimeOnMove = eMove => {
+      onTimeUpdate(calcClickedTime(eMove));
+    };
+
+    document.addEventListener('mousemove', updateTimeOnMove);
+
+    document.addEventListener('mouseup', () => {
+      document.removeEventListener('mousemove', updateTimeOnMove);
+    });
+  };
+
+  return (
+    <div className="bar">
+      <span className="bar__time">
+        {
+          //   formatDuration(curTime)
+          curTime
+        }
+      </span>
+      <div
+        className="bar__progress"
+        style={{
+          background: `linear-gradient(to right, orange ${curPercentage}%, white 0)`
+        }}
+        onMouseDown={e => handleTimeDrag(e)}
+      >
+        <span
+          className="bar__progress__knob"
+          style={{ left: `${curPercentage - 2}%` }}
+        />
+      </div>
+      <span className="bar__time">
+        {
+          //   formatDuration(duration)
+          duration
+        }
+      </span>
+    </div>
+  );
+};
+
 function AudioPlayer() {
   // const { curTime, duration, playing, setPlaying, setClickedTime } =
   //   useAudioPlayer();
+  const [duration, setDuration] = useState<number>(100);
+  const [curTime, setCurTime] = useState<number>(0);
+  const [clickedTime, setClickedTime] = useState<number | null>();
   const [playing, setPlaying] = useState<boolean>(false);
-
-  // console.log(curTime, duration);
 
   return (
     <Wrapper>
