@@ -17,7 +17,9 @@ function useAudioPlayer() {
   const [clickedTime, setClickedTime] = useState<number | null>();
 
   useEffect(() => {
-    const audio = document.getElementById('audio') as HTMLAudioElement;
+    const audio = document.getElementsByTagName(
+      'audio'
+    ) as HTMLCollectionOf<HTMLAudioElement>;
 
     const setAudioData = () => {
       if (audio) {
@@ -58,10 +60,12 @@ function useAudioPlayer() {
   };
 }
 
-const AudioPlayer = () => {
+function AudioPlayer() {
+  // const { curTime, duration, playing, setPlaying, setClickedTime } =
+  //   useAudioPlayer();
   const [playing, setPlaying] = useState<boolean>(false);
-  const audioData = useAudioPlayer();
-  console.log(audioData);
+
+  // console.log(curTime, duration);
 
   return (
     <Wrapper>
@@ -69,10 +73,12 @@ const AudioPlayer = () => {
         <source src="https://cdn.sanity.io/files/4569xi28/production/961494bdc0d6456a3a6ce8bb58feee65a9a5d055.mp3" />
       </audio>
       <Controls>
-        {/* {playing ? (
-          <Pause handleClick={() => setPlaying(false)} />
+        {playing ? (
+          <button onClick={() => setPlaying(false)}>Pause</button>
         ) : (
-          <Play handleClick={() => setPlaying(true)} />
+          // <Pause handleClick={() => setPlaying(false)} />
+          <button onClick={() => setPlaying(true)}>Play</button>
+          // <Play handleClick={() => setPlaying(true)} />
         )}
         <Bar
           curTime={curTime}
@@ -81,10 +87,10 @@ const AudioPlayer = () => {
             setClickedTime(time);
             console.log(time);
           }}
-        /> */}
+        />
       </Controls>
     </Wrapper>
   );
-};
+}
 
 export default AudioPlayer;
