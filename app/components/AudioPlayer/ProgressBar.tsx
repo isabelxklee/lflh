@@ -47,7 +47,7 @@ export default function ProgressBar({
   clickedTime,
   handleClick
 }: BarProps) {
-  const barRef = useRef();
+  const barRef = useRef<any>();
   const curPercentage = useMemo(() => {
     return (curTime / duration) * 100;
   }, [curTime, duration]);
