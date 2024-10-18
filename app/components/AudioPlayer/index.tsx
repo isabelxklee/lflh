@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import styled from 'styled-components';
+import ProgressBar from './ProgressBar';
 
 const Wrapper = styled.div`
   /* display: flex;
@@ -60,8 +61,7 @@ const Controls = styled.div``;
 //   };
 // }
 
-
-function AudioPlayer() {
+export default function AudioPlayer() {
   // const { curTime, duration, playing, setPlaying, setClickedTime } =
   //   useAudioPlayer();
   const [duration, setDuration] = useState<number>(100);
@@ -82,7 +82,7 @@ function AudioPlayer() {
           <button onClick={() => setPlaying(true)}>Play</button>
           // <Play handleClick={() => setPlaying(true)} />
         )}
-        <Bar
+        <ProgressBar
           curTime={curTime}
           duration={duration}
           onTimeUpdate={(time: number) => {
@@ -93,5 +93,3 @@ function AudioPlayer() {
     </Wrapper>
   );
 }
-
-export default AudioPlayer;
