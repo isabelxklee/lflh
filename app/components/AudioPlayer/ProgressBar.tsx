@@ -62,24 +62,27 @@ export default function ProgressBar({
     return timePerPixel * clickPositionInBar;
   }, []);
 
-  // const handleTimeDrag = (event: any) => {
-  //   setClickedTime(calcClickedTime(event));
+  const handleTimeDrag = useCallback((event: any) => {
+    handleClick(calcClickedTime(event));
 
-  //   const updateTimeOnMove = (event: any) => {
-  //     setClickedTime(calcClickedTime(event));
-  //   };
+    const updateTimeOnMove = (event: any) => {
+      handleClick(calcClickedTime(event));
+    };
 
-  //   document.addEventListener('mousemove', updateTimeOnMove);
+    document.addEventListener('mousemove', updateTimeOnMove);
 
-  //   document.addEventListener('mouseup', () => {
-  //     document.removeEventListener('mousemove', updateTimeOnMove);
-  //   });
-  // };
+    document.addEventListener('mouseup', () => {
+      document.removeEventListener('mousemove', updateTimeOnMove);
+    });
+  }, []);
 
   return (
     <BarWrapper>
       <BarTime>{curTime}</BarTime>
-      <BarProgress ref={barRef} onMouseDown={event => handleTimeDrag(event)}>
+      <BarProgress
+        ref={barRef}
+        onMouseDown={(event: any) => handleTimeDrag(event)}
+      >
         <BarProgressKnob
           className="bar__progress__knob"
           style={{ left: `${curPercentage - 2}%` }}
