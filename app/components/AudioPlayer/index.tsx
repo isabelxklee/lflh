@@ -20,37 +20,39 @@ export default function AudioPlayer() {
 
   useEffect(() => {
     const setAudioData = () => {
-      if (audioRef) {
-        setDuration(audioRef.duration);
-        setCurTime(audioRef.currentTime);
+      if (audioRef.current) {
+        setDuration(audioRef.current.duration);
+        setCurTime(audioRef.current.currentTime);
       }
     };
 
     const setAudioTime = () => {
-      setCurTime(audio.currentTime);
-      console.log('audio.currentTime', audio.currentTime);
+      setCurTime(audioRef.current.currentTime);
+      console.log('audioRef.current.currentTime', audioRef.current.currentTime);
     };
 
-    audio.addEventListener('loadeddata', setAudioData);
+    audioRef.current.addEventListener('loadeddata', setAudioData);
 
-    audio.addEventListener('timeupdate', setAudioTime);
+    audioRef.current.addEventListener('timeupdate', setAudioTime);
 
-    playing ? audio.play() : audio.pause();
+    playing ? audioRef.current.play() : audioRef.current.pause();
 
     if (clickedTime && clickedTime !== curTime) {
-      audio.currentTime = clickedTime;
+      audioRef.current.currentTime = clickedTime;
       setClickedTime(null);
     }
 
     return () => {
-      audio.removeEventListener('loadeddata', setAudioData);
-      audio.removeEventListener('timeupdate', setAudioTime);
+      audioRef.current.removeEventListener('loadeddata', setAudioData);
+      audioRef.current.removeEventListener('timeupdate', setAudioTime);
     };
   }, [clickedTime, playing, curTime]);
 
   const handleClick = (time: number) => {
     setClickedTime(time);
   };
+
+  console.log(audioRef.current);
 
   return (
     <Wrapper>
