@@ -12,7 +12,7 @@ const Wrapper = styled.div`
 const Controls = styled.div``;
 
 export default function AudioPlayer() {
-  const [duration, setDuration] = useState<string | undefined>();
+  const [trackProgress, setTrackProgress] = useState<number>(0);
   const [currentTime, setCurrentTime] = useState<number>(0);
   const [clickedTime, setClickedTime] = useState<number | null>(0);
   const [playing, setPlaying] = useState<boolean>(false);
@@ -24,7 +24,27 @@ export default function AudioPlayer() {
   );
   const intervalRef = useRef();
   const isReady = useRef<boolean>(false);
-  const { audioDuration } = audioPlayerRef.current;
+  const { duration } = audioPlayerRef.current;
+
+  const currentPercentage = duration
+    ? `${(trackProgress / duration) * 100}%`
+    : '0%';
+
+  const trackStyling = useMemo(() => {
+    return `-webkit-gradient(linear, 0% 0%, 100% 0%, color-stop(${currentPercentage}, #fff), color-stop(${currentPercentage}, #777))`;
+  }, []);
+
+  const onScrub = useCallback((value: any) => {
+    clearInterval(intervalRef.current);
+    audioPlayerRef.current.currentTime = value;
+    setTrackProgress(audioPlayerRef.current.currentTime);
+  }, []);
+
+  const onScrubEnd = useCallback(() => {
+    if (!playing) {
+      setPlaying(true);
+    }
+  }, []);
 
   useEffect(() => {
     if (playing) {
@@ -54,6 +74,18 @@ export default function AudioPlayer() {
           <button onClick={() => setPlaying(true)}>Play</button>
           // <Play handleClick={() => setPlaying(true)} />
         )}
+        <input
+          type="range"
+          value={trackProgress}
+          step="1"
+          min="0"
+          max={duration ? duration : `${duration}`}
+          className="progress"
+          onChange={(event: any) => onScrub(event.target.value)}
+          onMouseUp={onScrubEnd}
+          onKeyUp={onScrubEnd}
+          style={{ background: trackStyling }}
+        />
         {/* <ProgressBar
           currentTime={currentTime}
           duration={duration}
