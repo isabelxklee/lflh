@@ -16,7 +16,7 @@ export default function AudioPlayer() {
   const [currentTime, setCurrentTime] = useState<number>(0);
   const [clickedTime, setClickedTime] = useState<number | null>(0);
   const [playing, setPlaying] = useState<boolean>(false);
-  const audioRef = useRef<HTMLAudioElement | null>(null);
+  const audioRef = useRef<HTMLAudioElement>();
 
   const initPlayer = useCallback(() => {
     return document.getElementById('audio');
@@ -40,13 +40,17 @@ export default function AudioPlayer() {
     }
   }, []);
 
+  const handleTimeUpdate = useCallback(() => {
+    setCurrentTime(Math.floor(audioRef.current.currentTime));
+  }, []);
+
   const handleClick = (time: number) => {
     setClickedTime(time);
   };
 
   return (
     <Wrapper>
-      <audio ref={audioRef} id="audio">
+      <audio ref={audioRef} id="audio" onTimeUpdate={handleTimeUpdate}>
         <source src="https://cdn.sanity.io/files/4569xi28/production/961494bdc0d6456a3a6ce8bb58feee65a9a5d055.mp3" />
       </audio>
       <Controls>
