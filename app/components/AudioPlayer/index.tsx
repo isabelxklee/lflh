@@ -69,6 +69,10 @@ export default function AudioPlayer() {
   const [clickedTime, setClickedTime] = useState<number | null>();
   const [playing, setPlaying] = useState<boolean>(false);
 
+  const handleClick = (time: number) => {
+    setClickedTime(time);
+  };
+
   return (
     <Wrapper>
       <audio>
@@ -85,9 +89,8 @@ export default function AudioPlayer() {
         <ProgressBar
           curTime={curTime}
           duration={duration}
-          onTimeUpdate={(time: number) => {
-            setClickedTime(time);
-          }}
+          clickedTime={clickedTime}
+          handleClick={handleClick}
         />
       </Controls>
     </Wrapper>

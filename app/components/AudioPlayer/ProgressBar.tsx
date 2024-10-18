@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useCallback, useMemo } from 'react';
 import styled from 'styled-components';
 
 const BarWrapper = styled.div`
@@ -37,30 +37,30 @@ const BarProgressKnob = styled.div`
 interface BarProps {
   duration: number;
   curTime: number;
-  onTimeUpdate: (arg0: any) => void;
+  clickedTime: number;
+  setClickedTime: (arg0: number) => void;
 }
 
 export default function ProgressBar({
   duration,
   curTime,
-  onTimeUpdate
+  clickedTime,
+  setClickedTime
 }: BarProps) {
   const curPercentage = (curTime / duration) * 100;
   const bar = useMemo(() => {
     return document.querySelector('.bar__progress');
   }, []);
 
-  const calcClickedTime = (event: any) => {
+  const calcClickedTime = useCallback((event: any) => {
     const clickPositionInPage = event.pageX;
-
-    if (bar) {
-      const barStart = bar.getBoundingClientRect().left + window.scrollX;
-      const barWidth = bar.offsetWidth;
-      const clickPositionInBar = clickPositionInPage - barStart;
-      const timePerPixel = duration / barWidth;
-      return timePerPixel * clickPositionInBar;
-    }
-  };
+    const bar = document.querySelector('.bar__progress');
+    const barStart = bar.getBoundingClientRect().left + window.scrollX;
+    const barWidth = bar.offsetWidth;
+    const clickPositionInBar = clickPositionInPage - barStart;
+    const timePerPixel = duration / barWidth;
+    return timePerPixel * clickPositionInBar;
+  }, []);
 
   const handleTimeDrag = (event: any) => {
     onTimeUpdate(calcClickedTime(event));
@@ -78,12 +78,7 @@ export default function ProgressBar({
 
   return (
     <BarWrapper>
-      <BarTime>
-        {
-          //   formatDuration(curTime)
-          curTime
-        }
-      </BarTime>
+      <BarTime>{curTime}</BarTime>
       <BarProgress
         className="bar__progress"
         onMouseDown={event => handleTimeDrag(event)}
@@ -93,12 +88,7 @@ export default function ProgressBar({
           style={{ left: `${curPercentage - 2}%` }}
         />
       </BarProgress>
-      <BarTime className="bar__time">
-        {
-          //   formatDuration(duration)
-          duration
-        }
-      </BarTime>
+      <BarTime className="bar__time">{duration}</BarTime>
     </BarWrapper>
   );
 }
