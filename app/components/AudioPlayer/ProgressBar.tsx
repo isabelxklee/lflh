@@ -36,31 +36,35 @@ const BarProgressKnob = styled.div<{ $currPercent: number }>`
 `;
 
 interface BarProps {
-  duration: number;
-  curTime: number;
+  duration: number | undefined;
+  currentTime: number | undefined;
   clickedTime: number;
   handleClick: (arg0: number) => void;
 }
 
 export default function ProgressBar({
   duration,
-  curTime,
+  currentTime,
   clickedTime,
   handleClick
 }: BarProps) {
   const barRef = useRef<any>();
   const currPercent = useMemo(() => {
-    return (curTime / duration) * 100;
-  }, [curTime, duration]);
+    if (currentTime && duration) {
+      return (currentTime / duration) * 100;
+    }
+  }, [currentTime, duration]);
 
   const calcClickedTime = useCallback((event: any) => {
-    const clickPositionInPage = event.pageX;
-    const barStart =
-      barRef.current.getBoundingClientRect().left + window.scrollX;
-    const barWidth = barRef.current.offsetWidth;
-    const clickPositionInBar = clickPositionInPage - barStart;
-    const timePerPixel = duration / barWidth;
-    return timePerPixel * clickPositionInBar;
+    if (duration) {
+      const clickPositionInPage = event.pageX;
+      const barStart =
+        barRef.current.getBoundingClientRect().left + window.scrollX;
+      const barWidth = barRef.current.offsetWidth;
+      const clickPositionInBar = clickPositionInPage - barStart;
+      const timePerPixel = duration / barWidth;
+      return timePerPixel * clickPositionInBar;
+    }
   }, []);
 
   const handleTimeDrag = useCallback((event: any) => {
@@ -79,7 +83,7 @@ export default function ProgressBar({
 
   return (
     <BarWrapper>
-      <BarTime>{curTime}</BarTime>
+      <BarTime>{currentTime}</BarTime>
       <BarProgress
         ref={barRef}
         onMouseDown={(event: any) => handleTimeDrag(event)}

@@ -13,27 +13,28 @@ const Controls = styled.div``;
 
 export default function AudioPlayer() {
   const [duration, setDuration] = useState<number | undefined>();
-  const [curTime, setCurTime] = useState<number>(0);
+  const [currentTime, setCurrentTime] = useState<number>(0);
   const [clickedTime, setClickedTime] = useState<number | null>(0);
   const [playing, setPlaying] = useState<boolean>(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
   const setAudioData = useCallback((audio: HTMLAudioElement) => {
     setDuration(audio.duration);
-    setCurTime(audio.currentTime);
+    setCurrentTime(audio.currentTime);
   }, []);
 
   useEffect(() => {
     if (audioRef.current !== null) {
       setDuration(audioRef.current.duration);
+      setCurrentTime(audioRef.current.currentTime);
 
       // const setAudioData = () => {
       //   setDuration(audioRef.current.duration);
-      //   setCurTime(audioRef.current.currentTime);
+      //   setCurrentTime(audioRef.current.currentTime);
       // };
 
       const setAudioTime = () => {
-        setCurTime(audioRef.current.currentTime);
+        setCurrentTime(audioRef.current.currentTime);
         console.log(
           'audioRef.current.currentTime',
           audioRef.current.currentTime
@@ -46,7 +47,7 @@ export default function AudioPlayer() {
 
       playing ? audioRef.current.play() : audioRef.current.pause();
 
-      if (clickedTime && clickedTime !== curTime) {
+      if (clickedTime && clickedTime !== currentTime) {
         audioRef.current.currentTime = clickedTime;
         setClickedTime(null);
       }
@@ -56,13 +57,13 @@ export default function AudioPlayer() {
         audioRef.current.removeEventListener('timeupdate', setAudioTime);
       };
     }
-  }, [clickedTime, playing, curTime]);
+  }, [clickedTime, playing, currentTime]);
 
   const handleClick = (time: number) => {
     setClickedTime(time);
   };
 
-  console.log(duration);
+  console.log(duration, currentTime);
 
   return (
     <Wrapper>
@@ -78,7 +79,7 @@ export default function AudioPlayer() {
           // <Play handleClick={() => setPlaying(true)} />
         )}
         <ProgressBar
-          curTime={curTime}
+          currentTime={currentTime}
           duration={duration}
           clickedTime={clickedTime}
           handleClick={handleClick}
