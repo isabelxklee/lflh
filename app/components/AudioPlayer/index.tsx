@@ -18,27 +18,15 @@ export default function AudioPlayer() {
   const [playing, setPlaying] = useState<boolean>(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
-  const setAudioData = useCallback((audio: HTMLAudioElement) => {
-    setDuration(audio.duration);
-    setCurrentTime(audio.currentTime);
-  }, []);
-
   useEffect(() => {
     if (audioRef.current !== null) {
-      setDuration(audioRef.current.duration);
-      setCurrentTime(audioRef.current.currentTime);
-
-      // const setAudioData = () => {
-      //   setDuration(audioRef.current.duration);
-      //   setCurrentTime(audioRef.current.currentTime);
-      // };
+      const setAudioData = () => {
+        setDuration(audioRef.current.duration);
+        setCurrentTime(audioRef.current.currentTime);
+      };
 
       const setAudioTime = () => {
         setCurrentTime(audioRef.current.currentTime);
-        console.log(
-          'audioRef.current.currentTime',
-          audioRef.current.currentTime
-        );
       };
 
       audioRef.current.addEventListener('loadeddata', setAudioData);
