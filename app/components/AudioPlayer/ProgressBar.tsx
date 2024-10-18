@@ -25,13 +25,14 @@ const BarProgress = styled.span`
   background: orange;
 `;
 
-const BarProgressKnob = styled.div`
+const BarProgressKnob = styled.div<{ $currPercent: number }>`
   position: relative;
   height: 16px;
   width: 16px;
   border: 1.5px black;
   border-radius: 50%;
   background-color: orange;
+  left: ${({ $currPercent }) => `${$currPercent - 2}%`};
 `;
 
 interface BarProps {
@@ -48,7 +49,7 @@ export default function ProgressBar({
   handleClick
 }: BarProps) {
   const barRef = useRef<any>();
-  const curPercentage = useMemo(() => {
+  const currPercent = useMemo(() => {
     return (curTime / duration) * 100;
   }, [curTime, duration]);
 
@@ -83,10 +84,7 @@ export default function ProgressBar({
         ref={barRef}
         onMouseDown={(event: any) => handleTimeDrag(event)}
       >
-        <BarProgressKnob
-          className="bar__progress__knob"
-          style={{ left: `${curPercentage - 2}%` }}
-        />
+        <BarProgressKnob $currPercent={currPercent - 2} />
       </BarProgress>
       <BarTime className="bar__time">{duration}</BarTime>
     </BarWrapper>
