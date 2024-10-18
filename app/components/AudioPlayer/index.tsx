@@ -16,13 +16,13 @@ export default function AudioPlayer() {
   const [curTime, setCurTime] = useState<number>(0);
   const [clickedTime, setClickedTime] = useState<number>(0);
   const [playing, setPlaying] = useState<boolean>(false);
-  const audioRef = useRef<any>();
+  const audioRef = useRef<HTMLAudioElement | null>(null);
 
   useEffect(() => {
     const setAudioData = () => {
-      if (audio) {
-        setDuration(audio.duration);
-        setCurTime(audio.currentTime);
+      if (audioRef) {
+        setDuration(audioRef.duration);
+        setCurTime(audioRef.currentTime);
       }
     };
 
