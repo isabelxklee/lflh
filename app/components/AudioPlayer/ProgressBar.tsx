@@ -1,4 +1,4 @@
-import { useCallback, useMemo } from 'react';
+import { useCallback, useMemo, useRef } from 'react';
 import styled from 'styled-components';
 
 const BarWrapper = styled.div`
@@ -47,16 +47,16 @@ export default function ProgressBar({
   clickedTime,
   handleClick
 }: BarProps) {
-  const curPercentage = (curTime / duration) * 100;
-  const bar = useMemo(() => {
-    return document.querySelector('.bar__progress');
-  }, []);
+  const barRef = useRef();
+  const curPercentage = useMemo(() => {
+    return (curTime / duration) * 100;
+  }, [curTime, duration]);
 
   const calcClickedTime = useCallback((event: any) => {
     const clickPositionInPage = event.pageX;
-    const bar = document.querySelector('.bar__progress');
-    const barStart = bar.getBoundingClientRect().left + window.scrollX;
-    const barWidth = bar.offsetWidth;
+    const barStart =
+      barRef.current.getBoundingClientRect().left + window.scrollX;
+    const barWidth = barRef.current.offsetWidth;
     const clickPositionInBar = clickPositionInPage - barStart;
     const timePerPixel = duration / barWidth;
     return timePerPixel * clickPositionInBar;
@@ -79,10 +79,7 @@ export default function ProgressBar({
   return (
     <BarWrapper>
       <BarTime>{curTime}</BarTime>
-      <BarProgress
-        className="bar__progress"
-        onMouseDown={event => handleTimeDrag(event)}
-      >
+      <BarProgress ref={barRef} onMouseDown={event => handleTimeDrag(event)}>
         <BarProgressKnob
           className="bar__progress__knob"
           style={{ left: `${curPercentage - 2}%` }}
