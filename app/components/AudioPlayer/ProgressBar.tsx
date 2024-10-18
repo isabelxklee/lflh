@@ -38,14 +38,14 @@ interface BarProps {
   duration: number;
   curTime: number;
   clickedTime: number;
-  setClickedTime: (arg0: number) => void;
+  handleClick: (arg0: number) => void;
 }
 
 export default function ProgressBar({
   duration,
   curTime,
   clickedTime,
-  setClickedTime
+  handleClick
 }: BarProps) {
   const curPercentage = (curTime / duration) * 100;
   const bar = useMemo(() => {
@@ -62,19 +62,19 @@ export default function ProgressBar({
     return timePerPixel * clickPositionInBar;
   }, []);
 
-  const handleTimeDrag = (event: any) => {
-    onTimeUpdate(calcClickedTime(event));
+  // const handleTimeDrag = (event: any) => {
+  //   setClickedTime(calcClickedTime(event));
 
-    const updateTimeOnMove = (event: any) => {
-      onTimeUpdate(calcClickedTime(event));
-    };
+  //   const updateTimeOnMove = (event: any) => {
+  //     setClickedTime(calcClickedTime(event));
+  //   };
 
-    document.addEventListener('mousemove', updateTimeOnMove);
+  //   document.addEventListener('mousemove', updateTimeOnMove);
 
-    document.addEventListener('mouseup', () => {
-      document.removeEventListener('mousemove', updateTimeOnMove);
-    });
-  };
+  //   document.addEventListener('mouseup', () => {
+  //     document.removeEventListener('mousemove', updateTimeOnMove);
+  //   });
+  // };
 
   return (
     <BarWrapper>

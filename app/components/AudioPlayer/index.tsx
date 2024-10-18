@@ -66,7 +66,7 @@ export default function AudioPlayer() {
   //   useAudioPlayer();
   const [duration, setDuration] = useState<number>(100);
   const [curTime, setCurTime] = useState<number>(0);
-  const [clickedTime, setClickedTime] = useState<number | null>();
+  const [clickedTime, setClickedTime] = useState<number>(0);
   const [playing, setPlaying] = useState<boolean>(false);
 
   const handleClick = (time: number) => {
