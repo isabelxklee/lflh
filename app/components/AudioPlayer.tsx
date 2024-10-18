@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import styled from 'styled-components';
 
 const Wrapper = styled.div`
@@ -65,30 +65,32 @@ const BarWrapper = styled.div`
   width: 100%;
   display: flex;
   align-items: center;
+`;
 
-  .bar__time {
-    color: white;
-    font-size: 16px;
-  }
+const BarTime = styled.div`
+  color: black;
+  font-size: 16px;
+`;
 
-  .bar__progress {
-    flex: 1;
-    border-radius: 5px;
-    margin: 0 20px;
-    height: 10px;
-    display: flex;
-    align-items: center;
-    cursor: pointer;
+const BarProgress = styled.div`
+  flex: 1;
+  border-radius: 5px;
+  margin: 0 20px;
+  height: 10px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  /* background: linear-gradient(to right, orange 50%, white 0); */
+  background: orange;
+`;
 
-    .bar__progress__knob {
-      position: relative;
-      height: 16px;
-      width: 16px;
-      border: 1.5px solid white;
-      border-radius: 50%;
-      background-color: orange;
-    }
-  }
+const BarProgressKnob = styled.div`
+  position: relative;
+  height: 16px;
+  width: 16px;
+  border: 1.5px black;
+  border-radius: 50%;
+  background-color: orange;
 `;
 
 interface BarProps {
@@ -99,10 +101,12 @@ interface BarProps {
 
 const Bar = ({ duration, curTime, onTimeUpdate }: BarProps) => {
   const curPercentage = (curTime / duration) * 100;
+  const bar = useMemo(() => {
+    return document.querySelector('.bar__progress');
+  }, []);
 
   const calcClickedTime = (event: any) => {
     const clickPositionInPage = event.pageX;
-    const bar = document.querySelector('.bar__progress');
     const barStart = bar.getBoundingClientRect().left + window.scrollX;
     const barWidth = bar.offsetWidth;
     const clickPositionInBar = clickPositionInPage - barStart;
@@ -126,30 +130,27 @@ const Bar = ({ duration, curTime, onTimeUpdate }: BarProps) => {
 
   return (
     <BarWrapper>
-      <span className="bar__time">
+      <BarTime>
         {
           //   formatDuration(curTime)
           curTime
         }
-      </span>
-      <div
+      </BarTime>
+      <BarProgress
         className="bar__progress"
-        style={{
-          background: `linear-gradient(to right, orange ${curPercentage}%, white 0)`
-        }}
-        onMouseDown={e => handleTimeDrag(e)}
+        onMouseDown={event => handleTimeDrag(event)}
       >
-        <span
+        <BarProgressKnob
           className="bar__progress__knob"
           style={{ left: `${curPercentage - 2}%` }}
         />
-      </div>
-      <span className="bar__time">
+      </BarProgress>
+      <BarTime className="bar__time">
         {
           //   formatDuration(duration)
           duration
         }
-      </span>
+      </BarTime>
     </BarWrapper>
   );
 };
