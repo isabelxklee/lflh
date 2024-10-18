@@ -16,43 +16,36 @@ export default function AudioPlayer() {
   const [currentTime, setCurrentTime] = useState<number>(0);
   const [clickedTime, setClickedTime] = useState<number | null>(0);
   const [playing, setPlaying] = useState<boolean>(false);
-  const audioRef = useRef<HTMLAudioElement>();
-
-  const initPlayer = useCallback(() => {
-    return document.getElementById('audio');
-  }, []);
-
-  const getFormattedTime = useCallback((time: number) => {
-    if (time === 0) {
-      return '0 : 00';
-    } else {
-      const minutes = Math.floor(time / 60);
-      const seconds = time - minutes * 60;
-      return `${minutes} : 0${seconds}`;
-    }
-  }, []);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+  const audioPlayerRef = useRef(
+    new Audio(
+      'https://cdn.sanity.io/files/4569xi28/production/961494bdc0d6456a3a6ce8bb58feee65a9a5d055.mp3'
+    )
+  );
+  const intervalRef = useRef();
+  const isReady = useRef<boolean>(false);
+  const { audioDuration } = audioPlayerRef.current;
 
   useEffect(() => {
-    initPlayer();
-    if (audioRef.current) {
-      const duration = Math.floor(audioRef.current.duration);
-      setDuration(getFormattedTime(duration));
+    if (playing) {
+      audioPlayerRef.current.play();
+    } else {
+      audioPlayerRef.current.pause();
     }
-  }, []);
+  }, [playing]);
 
-  const handleTimeUpdate = useCallback(() => {
-    setCurrentTime(Math.floor(audioRef.current.currentTime));
+  useEffect(() => {
+    return () => {
+      audioPlayerRef.current.pause();
+      clearInterval(intervalRef.current);
+    };
   }, []);
-
-  const handleClick = (time: number) => {
-    setClickedTime(time);
-  };
 
   return (
     <Wrapper>
-      <audio ref={audioRef} id="audio" onTimeUpdate={handleTimeUpdate}>
+      {/* <audio ref={audioRef}>
         <source src="https://cdn.sanity.io/files/4569xi28/production/961494bdc0d6456a3a6ce8bb58feee65a9a5d055.mp3" />
-      </audio>
+      </audio> */}
       <Controls>
         {playing ? (
           <button onClick={() => setPlaying(false)}>Pause</button>
@@ -61,12 +54,12 @@ export default function AudioPlayer() {
           <button onClick={() => setPlaying(true)}>Play</button>
           // <Play handleClick={() => setPlaying(true)} />
         )}
-        <ProgressBar
+        {/* <ProgressBar
           currentTime={currentTime}
           duration={duration}
           clickedTime={clickedTime}
           handleClick={handleClick}
-        />
+        /> */}
       </Controls>
     </Wrapper>
   );
