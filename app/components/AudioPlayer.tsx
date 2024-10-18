@@ -2,9 +2,9 @@ import { useEffect, useMemo, useState } from 'react';
 import styled from 'styled-components';
 
 const Wrapper = styled.div`
-  display: flex;
+  /* display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: center; */
   padding: 20px 0;
 `;
 
@@ -72,7 +72,7 @@ const BarTime = styled.div`
   font-size: 16px;
 `;
 
-const BarProgress = styled.div`
+const BarProgress = styled.span`
   flex: 1;
   border-radius: 5px;
   margin: 0 20px;
@@ -107,11 +107,14 @@ const Bar = ({ duration, curTime, onTimeUpdate }: BarProps) => {
 
   const calcClickedTime = (event: any) => {
     const clickPositionInPage = event.pageX;
-    const barStart = bar.getBoundingClientRect().left + window.scrollX;
-    const barWidth = bar.offsetWidth;
-    const clickPositionInBar = clickPositionInPage - barStart;
-    const timePerPixel = duration / barWidth;
-    return timePerPixel * clickPositionInBar;
+
+    if (bar) {
+      const barStart = bar.getBoundingClientRect().left + window.scrollX;
+      const barWidth = bar.offsetWidth;
+      const clickPositionInBar = clickPositionInPage - barStart;
+      const timePerPixel = duration / barWidth;
+      return timePerPixel * clickPositionInBar;
+    }
   };
 
   const handleTimeDrag = (event: any) => {
