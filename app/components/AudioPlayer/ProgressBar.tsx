@@ -86,7 +86,7 @@ export default function ProgressBar({
       >
         <BarProgressKnob $currPercent={currPercent - 2} />
       </BarProgress>
-      <BarTime className="bar__time">{duration}</BarTime>
+      <BarTime>{duration}</BarTime>
     </BarWrapper>
   );
 }
