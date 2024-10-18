@@ -12,50 +12,41 @@ const Wrapper = styled.div`
 const Controls = styled.div``;
 
 export default function AudioPlayer() {
-  const [duration, setDuration] = useState<number | undefined>();
+  const [duration, setDuration] = useState<string | undefined>();
   const [currentTime, setCurrentTime] = useState<number>(0);
   const [clickedTime, setClickedTime] = useState<number | null>(0);
   const [playing, setPlaying] = useState<boolean>(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
-  useEffect(() => {
-    if (audioRef.current !== null) {
-      const setAudioData = () => {
-        setDuration(audioRef.current.duration);
-        setCurrentTime(audioRef.current.currentTime);
-      };
+  const initPlayer = useCallback(() => {
+    return document.getElementById('audio');
+  }, []);
 
-      const setAudioTime = () => {
-        setCurrentTime(audioRef.current.currentTime);
-      };
-
-      audioRef.current.addEventListener('loadeddata', setAudioData);
-
-      audioRef.current.addEventListener('timeupdate', setAudioTime);
-
-      playing ? audioRef.current.play() : audioRef.current.pause();
-
-      if (clickedTime && clickedTime !== currentTime) {
-        audioRef.current.currentTime = clickedTime;
-        setClickedTime(null);
-      }
-
-      return () => {
-        audioRef.current.removeEventListener('loadeddata', setAudioData);
-        audioRef.current.removeEventListener('timeupdate', setAudioTime);
-      };
+  const getFormattedTime = useCallback((time: number) => {
+    if (time === 0) {
+      return '0 : 00';
+    } else {
+      const minutes = Math.floor(time / 60);
+      const seconds = time - minutes * 60;
+      return `${minutes} : 0${seconds}`;
     }
-  }, [clickedTime, playing, currentTime]);
+  }, []);
+
+  useEffect(() => {
+    initPlayer();
+    if (audioRef.current) {
+      const duration = Math.floor(audioRef.current.duration);
+      setDuration(getFormattedTime(duration));
+    }
+  }, []);
 
   const handleClick = (time: number) => {
     setClickedTime(time);
   };
 
-  console.log(duration, currentTime);
-
   return (
     <Wrapper>
-      <audio ref={audioRef}>
+      <audio ref={audioRef} id="audio">
         <source src="https://cdn.sanity.io/files/4569xi28/production/961494bdc0d6456a3a6ce8bb58feee65a9a5d055.mp3" />
       </audio>
       <Controls>
