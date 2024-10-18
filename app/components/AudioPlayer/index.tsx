@@ -12,47 +12,57 @@ const Wrapper = styled.div`
 const Controls = styled.div``;
 
 export default function AudioPlayer() {
-  const [duration, setDuration] = useState<number>(100);
+  const [duration, setDuration] = useState<number | undefined>();
   const [curTime, setCurTime] = useState<number>(0);
-  const [clickedTime, setClickedTime] = useState<number>(0);
+  const [clickedTime, setClickedTime] = useState<number | null>(0);
   const [playing, setPlaying] = useState<boolean>(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
+  const setAudioData = useCallback((audio: HTMLAudioElement) => {
+    setDuration(audio.duration);
+    setCurTime(audio.currentTime);
+  }, []);
+
   useEffect(() => {
-    const setAudioData = () => {
-      if (audioRef.current) {
-        setDuration(audioRef.current.duration);
+    if (audioRef.current !== null) {
+      setDuration(audioRef.current.duration);
+
+      // const setAudioData = () => {
+      //   setDuration(audioRef.current.duration);
+      //   setCurTime(audioRef.current.currentTime);
+      // };
+
+      const setAudioTime = () => {
         setCurTime(audioRef.current.currentTime);
+        console.log(
+          'audioRef.current.currentTime',
+          audioRef.current.currentTime
+        );
+      };
+
+      audioRef.current.addEventListener('loadeddata', setAudioData);
+
+      audioRef.current.addEventListener('timeupdate', setAudioTime);
+
+      playing ? audioRef.current.play() : audioRef.current.pause();
+
+      if (clickedTime && clickedTime !== curTime) {
+        audioRef.current.currentTime = clickedTime;
+        setClickedTime(null);
       }
-    };
 
-    const setAudioTime = () => {
-      setCurTime(audioRef.current.currentTime);
-      console.log('audioRef.current.currentTime', audioRef.current.currentTime);
-    };
-
-    audioRef.current.addEventListener('loadeddata', setAudioData);
-
-    audioRef.current.addEventListener('timeupdate', setAudioTime);
-
-    playing ? audioRef.current.play() : audioRef.current.pause();
-
-    if (clickedTime && clickedTime !== curTime) {
-      audioRef.current.currentTime = clickedTime;
-      setClickedTime(null);
+      return () => {
+        audioRef.current.removeEventListener('loadeddata', setAudioData);
+        audioRef.current.removeEventListener('timeupdate', setAudioTime);
+      };
     }
-
-    return () => {
-      audioRef.current.removeEventListener('loadeddata', setAudioData);
-      audioRef.current.removeEventListener('timeupdate', setAudioTime);
-    };
   }, [clickedTime, playing, curTime]);
 
   const handleClick = (time: number) => {
     setClickedTime(time);
   };
 
-  console.log(audioRef.current);
+  console.log(duration);
 
   return (
     <Wrapper>
