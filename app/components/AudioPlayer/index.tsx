@@ -95,10 +95,14 @@ export default function AudioPlayer({ interview }: AudioPlayerProps) {
       const hours = Math.round((time / 3600) * 100) / 100;
       const formattedHours = Math.floor(time / 3600);
       const minutes = (hours - formattedHours) * 60;
+      const formattedMinutes = Math.floor(minutes).toLocaleString('en-US', {
+        minimumIntegerDigits: 2,
+        useGrouping: false
+      });
       const seconds = time / 60 - Math.floor(time / 60);
       const formattedSeconds = Math.round(seconds * 60);
 
-      return `${formattedHours}:${minutes}:${formattedSeconds}`;
+      return `${formattedHours}:${formattedMinutes}:${formattedSeconds}`;
     }
   };
 
