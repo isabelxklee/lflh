@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import { COLORS, SmallP } from '../../globalStyles';
-import Player from './Player';
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 const AudioPlayerWrapper = styled.div`
   position: fixed;
@@ -27,6 +26,29 @@ export default function AudioPlayer({ interview }: AudioPlayerProps) {
   const [duration, setDuration] = useState<number>(0);
   const [loadedDuration, setLoadedDuration] = useState<boolean>(false);
   const [loadedProgress, setLoadedProgress] = useState<boolean>(false);
+  const audioPlayerRef = useRef(new Audio(interview.audioFileURL));
+  const intervalRef = useRef();
+  const isReady = useRef<boolean>(false);
+
+  const currentPercentage = duration
+    ? `${(trackProgress / duration) * 100}%`
+    : '0%';
+
+  const trackStyling = useMemo(() => {
+    return `-webkit-gradient(linear, 0% 0%, 100% 0%, color-stop(${currentPercentage}, #fff), color-stop(${currentPercentage}, #777))`;
+  }, []);
+
+  const onScrub = useCallback((value: any) => {
+    clearInterval(intervalRef.current);
+    audioPlayerRef.current.currentTime = value;
+    setTrackProgress(audioPlayerRef.current.currentTime);
+  }, []);
+
+  const onScrubEnd = useCallback(() => {
+    if (!playing) {
+      setPlaying(true);
+    }
+  }, []);
 
   const formatTime = (time: number) => {
     if (time < 60) {
@@ -61,13 +83,27 @@ export default function AudioPlayer({ interview }: AudioPlayerProps) {
     }
   }, [playing]);
 
+  useEffect(() => {
+    return () => {
+      audioPlayerRef.current.pause();
+      clearInterval(intervalRef.current);
+    };
+  }, []);
+
   return (
     <AudioPlayerWrapper>
       <SmallP>{interview.title}</SmallP>
-      <Player
-        duration={duration}
-        trackProgress={trackProgress}
-        audioFile={interview.audioFileURL}
+      <input
+        type="range"
+        value={trackProgress}
+        step="1"
+        min="0"
+        max={duration ? duration : `${duration}`}
+        className="progress"
+        onChange={(event: any) => onScrub(event.target.value)}
+        onMouseUp={onScrubEnd}
+        onKeyUp={onScrubEnd}
+        style={{ background: trackStyling }}
       />
       {playing ? (
         <button onClick={() => setPlaying(false)}>Pause</button>
