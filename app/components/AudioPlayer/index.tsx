@@ -75,10 +75,40 @@ export default function AudioPlayer({ interview }: AudioPlayerProps) {
         useGrouping: false
       });
       return `${minutes}:${seconds}`;
-    } else {
+    }
+
+    if (time > 60 && time < 3600) {
+      const hours = '00';
       const minutes = Math.floor(time / 60);
-      const seconds = time - minutes * 60;
-      return `${minutes}:${seconds}`;
+      const formattedMinutes = minutes.toLocaleString('en-US', {
+        minimumIntegerDigits: 2,
+        useGrouping: false
+      });
+      const seconds = Math.floor(time - minutes * 60).toLocaleString('en-US', {
+        minimumIntegerDigits: 2,
+        useGrouping: false
+      });
+      return `${hours}:${formattedMinutes}:${seconds}`;
+    }
+
+    if (time > 3600) {
+      const hours = Math.round((time / 3600) * 100) / 100;
+      const formattedHours = Math.floor(time / 3600);
+      const minutes = (hours - formattedHours) * 60;
+      const formattedMinutes = Math.floor(minutes).toLocaleString('en-US', {
+        minimumIntegerDigits: 2,
+        useGrouping: false
+      });
+      const seconds = time / 60 - Math.floor(time / 60);
+      const formattedSeconds = Math.floor(seconds * 60).toLocaleString(
+        'en-US',
+        {
+          minimumIntegerDigits: 2,
+          useGrouping: false
+        }
+      );
+
+      return `${formattedHours}:${formattedMinutes}:${formattedSeconds}`;
     }
   };
 
