@@ -28,7 +28,6 @@ export default function AudioPlayer({ interview }: AudioPlayerProps) {
   const [loadedProgress, setLoadedProgress] = useState<boolean>(false);
   const audioPlayerRef = useRef(new Audio(interview.audioFileURL));
   const intervalRef = useRef();
-  const isReady = useRef<boolean>(false);
 
   const currentPercentage = duration
     ? `${(trackProgress / duration) * 100}%`
@@ -38,17 +37,17 @@ export default function AudioPlayer({ interview }: AudioPlayerProps) {
     return `-webkit-gradient(linear, 0% 0%, 100% 0%, color-stop(${currentPercentage}, #fff), color-stop(${currentPercentage}, #777))`;
   }, []);
 
-  const onScrub = useCallback((value: any) => {
+  const onScrub = (value: any) => {
     clearInterval(intervalRef.current);
     audioPlayerRef.current.currentTime = value;
     setTrackProgress(audioPlayerRef.current.currentTime);
-  }, []);
+  };
 
-  const onScrubEnd = useCallback(() => {
+  const onScrubEnd = () => {
     if (!playing) {
       setPlaying(true);
     }
-  }, []);
+  };
 
   const formatTime = (time: number) => {
     if (time < 60) {
