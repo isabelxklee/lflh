@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { COLORS, H3, SmallP } from '../../globalStyles';
+import { COLORS, SmallP } from '../../globalStyles';
 import Player from './Player';
 
 const AudioPlayerWrapper = styled.div`
@@ -10,11 +10,11 @@ const AudioPlayerWrapper = styled.div`
   right: 0;
 `;
 
-const WaveFormWrapper = styled.div`
-  width: 80%;
-  position: relative;
-  margin: 0 auto;
-`;
+// const WaveFormWrapper = styled.div`
+//   width: 80%;
+//   position: relative;
+//   margin: 0 auto;
+// `;
 
 interface AudioPlayerProps {
   interview: any;
