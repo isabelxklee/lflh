@@ -33,7 +33,7 @@ export default function InterviewPage() {
       {interview && (
         <>
           <H3>{interview.title}</H3>
-          <AudioPlayer />
+          <AudioPlayer interview={interview} />
         </>
       )}
     </Wrapper>
