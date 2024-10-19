@@ -100,7 +100,13 @@ export default function AudioPlayer({ interview }: AudioPlayerProps) {
         useGrouping: false
       });
       const seconds = time / 60 - Math.floor(time / 60);
-      const formattedSeconds = Math.round(seconds * 60);
+      const formattedSeconds = Math.floor(seconds * 60).toLocaleString(
+        'en-US',
+        {
+          minimumIntegerDigits: 2,
+          useGrouping: false
+        }
+      );
 
       return `${formattedHours}:${formattedMinutes}:${formattedSeconds}`;
     }
