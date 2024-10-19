@@ -87,9 +87,6 @@ export default function AudioPlayer() {
 
   return (
     <Wrapper>
-      {/* <audio ref={audioRef}>
-        <source src="https://cdn.sanity.io/files/4569xi28/production/961494bdc0d6456a3a6ce8bb58feee65a9a5d055.mp3" />
-      </audio> */}
       <Controls>
         {playing ? (
           <button onClick={() => setPlaying(false)}>Pause</button>
@@ -99,11 +96,9 @@ export default function AudioPlayer() {
           // <Play handleClick={() => setPlaying(true)} />
         )}
         {loadedDuration && (
-          <>
-            <p>
-              {formatTime(trackProgress)} / {formatTime(duration)}
-            </p>
-          </>
+          <p>
+            {formatTime(trackProgress)} / {formatTime(duration)}
+          </p>
         )}
         <input
           type="range"
