@@ -13,9 +13,6 @@ const Controls = styled.div``;
 export default function Player() {
   const [trackProgress, setTrackProgress] = useState<number>(0);
   const [duration, setDuration] = useState<number>(0);
-  const [loadedDuration, setLoadedDuration] = useState<boolean>(false);
-  const [loadedProgress, setLoadedProgress] = useState<boolean>(false);
-  const [playing, setPlaying] = useState<boolean>(false);
   const audioPlayerRef = useRef(
     new Audio(
       'https://cdn.sanity.io/files/4569xi28/production/961494bdc0d6456a3a6ce8bb58feee65a9a5d055.mp3'
@@ -87,18 +84,6 @@ export default function Player() {
   return (
     <Wrapper>
       <Controls>
-        {playing ? (
-          <button onClick={() => setPlaying(false)}>Pause</button>
-        ) : (
-          // <Pause handleClick={() => setPlaying(false)} />
-          <button onClick={() => setPlaying(true)}>Play</button>
-          // <Play handleClick={() => setPlaying(true)} />
-        )}
-        {loadedDuration && (
-          <p>
-            {formatTime(trackProgress)} / {formatTime(duration)}
-          </p>
-        )}
         <input
           type="range"
           value={trackProgress}
