@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { COLORS, H3 } from '../../globalStyles';
+import { COLORS, H3, SmallP } from '../../globalStyles';
 import Player from './Player';
 
 const AudioPlayerWrapper = styled.div`
