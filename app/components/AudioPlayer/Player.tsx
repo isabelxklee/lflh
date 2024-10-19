@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { forwardRef, useCallback, useEffect, useMemo, useRef } from 'react';
 import styled from 'styled-components';
 
 const Wrapper = styled.div`
@@ -11,12 +11,16 @@ const Wrapper = styled.div`
 interface PlayerProps {
   duration: number;
   trackProgress: number;
-  ref: any;
+  audioFile: string;
 }
 
-export default function Player({ duration, trackProgress, ref }: PlayerProps) {
+export const Player = forwardRef(function Player(
+  { duration, trackProgress, audioFile }: PlayerProps,
+  ref
+) {
   const intervalRef = useRef();
   const isReady = useRef<boolean>(false);
+  const audioPlayerRef = useRef(new Audio(audioFile));
 
   const currentPercentage = duration
     ? `${(trackProgress / duration) * 100}%`
@@ -61,4 +65,4 @@ export default function Player({ duration, trackProgress, ref }: PlayerProps) {
       />
     </Wrapper>
   );
-}
+});

@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { COLORS, SmallP } from '../../globalStyles';
 import Player from './Player';
-import { forwardRef, useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 const AudioPlayerWrapper = styled.div`
   position: fixed;
@@ -21,16 +21,12 @@ interface AudioPlayerProps {
   interview: any;
 }
 
-const AudioPlayer = forwardRef(function AudioPlayer(
-  { interview }: AudioPlayerProps,
-  ref
-) {
+export default function AudioPlayer({ interview }: AudioPlayerProps) {
   const [playing, setPlaying] = useState<boolean>(false);
   const [trackProgress, setTrackProgress] = useState<number>(0);
   const [duration, setDuration] = useState<number>(0);
   const [loadedDuration, setLoadedDuration] = useState<boolean>(false);
   const [loadedProgress, setLoadedProgress] = useState<boolean>(false);
-  const audioPlayerRef = useRef(new Audio(interview.audioFileURL));
 
   const formatTime = (time: number) => {
     if (time < 60) {
@@ -68,7 +64,11 @@ const AudioPlayer = forwardRef(function AudioPlayer(
   return (
     <AudioPlayerWrapper>
       <SmallP>{interview.title}</SmallP>
-      <Player duration={duration} trackProgress={trackProgress} ref={ref} />
+      <Player
+        duration={duration}
+        trackProgress={trackProgress}
+        audioFile={interview.audioFileURL}
+      />
       {playing ? (
         <button onClick={() => setPlaying(false)}>Pause</button>
       ) : (
@@ -86,4 +86,4 @@ const AudioPlayer = forwardRef(function AudioPlayer(
       </>
     </AudioPlayerWrapper>
   );
-});
+}
