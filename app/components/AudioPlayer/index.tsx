@@ -15,7 +15,7 @@ export default function AudioPlayer() {
   const [trackProgress, setTrackProgress] = useState<number>(0);
   const [duration, setDuration] = useState<number>(0);
   const [loadedDuration, setLoadedDuration] = useState<boolean>(false);
-  const [currentTime, setCurrentTime] = useState<number>(0);
+  const [loadedProgress, setLoadedProgress] = useState<boolean>(false);
   const [playing, setPlaying] = useState<boolean>(false);
   const audioPlayerRef = useRef(
     new Audio(
@@ -45,14 +45,14 @@ export default function AudioPlayer() {
     }
   }, []);
 
-  const formatDuration = () => {
-    if (duration < 60) {
+  const formatTime = (time: number) => {
+    if (time < 60) {
       const minutes = '00';
-      const seconds = Math.floor(duration);
+      const seconds = Math.floor(time);
       return `${minutes}:${seconds}`;
     } else {
-      const minutes = Math.floor(duration / 60);
-      const seconds = duration - minutes * 60;
+      const minutes = Math.floor(time / 60);
+      const seconds = time - minutes * 60;
       return `${minutes}:${seconds}`;
     }
   };
@@ -61,6 +61,11 @@ export default function AudioPlayer() {
     if (audioPlayerRef.current.duration) {
       setDuration(audioPlayerRef.current.duration);
       setLoadedDuration(true);
+    }
+
+    if (audioPlayerRef.current.currentTime) {
+      setTrackProgress(audioPlayerRef.current.currentTime);
+      setLoadedProgress(true);
     }
 
     if (playing) {
@@ -92,7 +97,9 @@ export default function AudioPlayer() {
         )}
         {loadedDuration && (
           <>
-            <p>0:00 / {formatDuration()}</p>
+            <p>
+              {formatTime(trackProgress)} / {formatTime(duration)}
+            </p>
           </>
         )}
         <input
