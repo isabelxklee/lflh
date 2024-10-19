@@ -23,6 +23,17 @@ const Controls = styled.div`
   justify-content: space-between;
 `;
 
+const Primary = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 20px;
+`;
+
+const Secondary = styled.div`
+  display: flex;
+  gap: 20px;
+`;
+
 interface AudioPlayerProps {
   interview: any;
 }
@@ -113,7 +124,7 @@ export default function AudioPlayer({ interview }: AudioPlayerProps) {
           style={{ background: trackStyling }}
         />
         <Controls>
-          <div>
+          <Primary>
             {playing ? (
               <button onClick={() => setPlaying(false)}>Pause</button>
             ) : (
@@ -124,12 +135,12 @@ export default function AudioPlayer({ interview }: AudioPlayerProps) {
                 {formatTime(trackProgress)} / {formatTime(duration)}
               </p>
             )}
-          </div>
-          <div>
+          </Primary>
+          <Secondary>
             <button>Replay</button>
             <button>Share interview</button>
             <button>Next interview</button>
-          </div>
+          </Secondary>
         </Controls>
       </AudioPlayerWrapper>
     </Background>
