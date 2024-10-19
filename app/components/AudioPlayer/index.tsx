@@ -48,7 +48,10 @@ export default function AudioPlayer() {
   const formatTime = (time: number) => {
     if (time < 60) {
       const minutes = '00';
-      const seconds = Math.floor(time);
+      const seconds = Math.floor(time).toLocaleString('en-US', {
+        minimumIntegerDigits: 2,
+        useGrouping: false
+      });
       return `${minutes}:${seconds}`;
     } else {
       const minutes = Math.floor(time / 60);
