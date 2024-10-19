@@ -13,10 +13,10 @@ const Controls = styled.div``;
 
 export default function AudioPlayer() {
   const [trackProgress, setTrackProgress] = useState<number>(0);
+  const [duration, setDuration] = useState<number>(0);
+  const [loadedDuration, setLoadedDuration] = useState<boolean>(false);
   const [currentTime, setCurrentTime] = useState<number>(0);
-  const [clickedTime, setClickedTime] = useState<number | null>(0);
   const [playing, setPlaying] = useState<boolean>(false);
-  const audioRef = useRef<HTMLAudioElement | null>(null);
   const audioPlayerRef = useRef(
     new Audio(
       'https://cdn.sanity.io/files/4569xi28/production/961494bdc0d6456a3a6ce8bb58feee65a9a5d055.mp3'
@@ -24,7 +24,6 @@ export default function AudioPlayer() {
   );
   const intervalRef = useRef();
   const isReady = useRef<boolean>(false);
-  const { duration } = audioPlayerRef.current;
 
   const currentPercentage = duration
     ? `${(trackProgress / duration) * 100}%`
@@ -46,7 +45,24 @@ export default function AudioPlayer() {
     }
   }, []);
 
+  const formatDuration = () => {
+    if (duration < 60) {
+      const minutes = '00';
+      const seconds = Math.floor(duration);
+      return `${minutes}:${seconds}`;
+    } else {
+      const minutes = Math.floor(duration / 60);
+      const seconds = duration - minutes * 60;
+      return `${minutes}:${seconds}`;
+    }
+  };
+
   useEffect(() => {
+    if (audioPlayerRef.current.duration) {
+      setDuration(audioPlayerRef.current.duration);
+      setLoadedDuration(true);
+    }
+
     if (playing) {
       audioPlayerRef.current.play();
     } else {
@@ -73,6 +89,11 @@ export default function AudioPlayer() {
           // <Pause handleClick={() => setPlaying(false)} />
           <button onClick={() => setPlaying(true)}>Play</button>
           // <Play handleClick={() => setPlaying(true)} />
+        )}
+        {loadedDuration && (
+          <>
+            <p>0:00 / {formatDuration()}</p>
+          </>
         )}
         <input
           type="range"
