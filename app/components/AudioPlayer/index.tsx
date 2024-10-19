@@ -22,12 +22,9 @@ interface AudioPlayerProps {
 
 export default function AudioPlayer({ interview }: AudioPlayerProps) {
   return (
-    <>
-      <H3>{interview.title}</H3>
-      <AudioPlayerWrapper>
-        <SmallP>{interview.title}</SmallP>
-        {interview.audioFileURL && <Player />}
-      </AudioPlayerWrapper>
-    </>
+    <AudioPlayerWrapper>
+      <SmallP>{interview.title}</SmallP>
+      {interview.audioFileURL && <Player />}
+    </AudioPlayerWrapper>
   );
 }
