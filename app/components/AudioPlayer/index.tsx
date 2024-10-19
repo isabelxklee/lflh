@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { COLORS, SmallP } from '../../globalStyles';
 import Player from './Player';
-import { useEffect, useRef, useState } from 'react';
+import { forwardRef, useEffect, useRef, useState } from 'react';
 
 const AudioPlayerWrapper = styled.div`
   position: fixed;
@@ -21,7 +21,10 @@ interface AudioPlayerProps {
   interview: any;
 }
 
-export default function AudioPlayer({ interview }: AudioPlayerProps) {
+const AudioPlayer = forwardRef(function AudioPlayer(
+  { interview }: AudioPlayerProps,
+  ref
+) {
   const [playing, setPlaying] = useState<boolean>(false);
   const [trackProgress, setTrackProgress] = useState<number>(0);
   const [duration, setDuration] = useState<number>(0);
@@ -65,7 +68,7 @@ export default function AudioPlayer({ interview }: AudioPlayerProps) {
   return (
     <AudioPlayerWrapper>
       <SmallP>{interview.title}</SmallP>
-      <Player duration={duration} trackProgress={trackProgress} />
+      <Player duration={duration} trackProgress={trackProgress} ref={ref} />
       {playing ? (
         <button onClick={() => setPlaying(false)}>Pause</button>
       ) : (
@@ -83,4 +86,4 @@ export default function AudioPlayer({ interview }: AudioPlayerProps) {
       </>
     </AudioPlayerWrapper>
   );
-}
+});

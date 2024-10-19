@@ -11,9 +11,10 @@ const Wrapper = styled.div`
 interface PlayerProps {
   duration: number;
   trackProgress: number;
+  ref: any;
 }
 
-export default function Player({ duration, trackProgress }: PlayerProps) {
+export default function Player({ duration, trackProgress, ref }: PlayerProps) {
   const intervalRef = useRef();
   const isReady = useRef<boolean>(false);
 
