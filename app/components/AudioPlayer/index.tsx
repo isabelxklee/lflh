@@ -75,6 +75,14 @@ export default function AudioPlayer({ interview }: AudioPlayerProps) {
         useGrouping: false
       });
       return `${minutes}:${seconds}`;
+    } else if (time > 3600) {
+      const hours = Math.round((time / 3600) * 100) / 100;
+      const formattedHours = Math.floor(time / 3600);
+      const minutes = (hours - formattedHours) * 60;
+      const seconds = time / 60 - Math.floor(time / 60);
+      const formattedSeconds = Math.round(seconds * 60);
+
+      return `${formattedHours}:${minutes}:${formattedSeconds}`;
     } else {
       const minutes = Math.floor(time / 60);
       const seconds = time - minutes * 60;
