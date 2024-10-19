@@ -16,11 +16,12 @@ const AudioPlayerWrapper = styled.div`
   flex-direction: column;
 `;
 
-// const WaveFormWrapper = styled.div`
-//   width: 80%;
-//   position: relative;
-//   margin: 0 auto;
-// `;
+const Controls = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+`;
 
 interface AudioPlayerProps {
   interview: any;
@@ -111,21 +112,25 @@ export default function AudioPlayer({ interview }: AudioPlayerProps) {
           onKeyUp={onScrubEnd}
           style={{ background: trackStyling }}
         />
-        {playing ? (
-          <button onClick={() => setPlaying(false)}>Pause</button>
-        ) : (
-          <button onClick={() => setPlaying(true)}>Play</button>
-        )}
-        {loadedDuration && (
-          <p>
-            {formatTime(trackProgress)} / {formatTime(duration)}
-          </p>
-        )}
-        <>
-          <button>Replay</button>
-          <button>Share interview</button>
-          <button>Next interview</button>
-        </>
+        <Controls>
+          <div>
+            {playing ? (
+              <button onClick={() => setPlaying(false)}>Pause</button>
+            ) : (
+              <button onClick={() => setPlaying(true)}>Play</button>
+            )}
+            {loadedDuration && (
+              <p>
+                {formatTime(trackProgress)} / {formatTime(duration)}
+              </p>
+            )}
+          </div>
+          <div>
+            <button>Replay</button>
+            <button>Share interview</button>
+            <button>Next interview</button>
+          </div>
+        </Controls>
       </AudioPlayerWrapper>
     </Background>
   );
