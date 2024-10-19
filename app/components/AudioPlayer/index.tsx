@@ -1,13 +1,19 @@
 import styled from 'styled-components';
 import { COLORS, SmallP } from '../../globalStyles';
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 
-const AudioPlayerWrapper = styled.div`
+const Background = styled.div`
   position: fixed;
   bottom: 0;
-  background: ${COLORS.GREY};
-  width: 100%;
   right: 0;
+  width: 100%;
+  background: ${COLORS.GREY};
+`;
+
+const AudioPlayerWrapper = styled.div`
+  padding: 20px 200px;
+  display: flex;
+  flex-direction: column;
 `;
 
 // const WaveFormWrapper = styled.div`
@@ -90,35 +96,37 @@ export default function AudioPlayer({ interview }: AudioPlayerProps) {
   }, []);
 
   return (
-    <AudioPlayerWrapper>
-      <SmallP>{interview.title}</SmallP>
-      <input
-        type="range"
-        value={trackProgress}
-        step="1"
-        min="0"
-        max={duration ? duration : `${duration}`}
-        className="progress"
-        onChange={(event: any) => onScrub(event.target.value)}
-        onMouseUp={onScrubEnd}
-        onKeyUp={onScrubEnd}
-        style={{ background: trackStyling }}
-      />
-      {playing ? (
-        <button onClick={() => setPlaying(false)}>Pause</button>
-      ) : (
-        <button onClick={() => setPlaying(true)}>Play</button>
-      )}
-      {loadedDuration && (
-        <p>
-          {formatTime(trackProgress)} / {formatTime(duration)}
-        </p>
-      )}
-      <>
-        <button>Replay</button>
-        <button>Share interview</button>
-        <button>Next interview</button>
-      </>
-    </AudioPlayerWrapper>
+    <Background>
+      <AudioPlayerWrapper>
+        <SmallP>{interview.title}</SmallP>
+        <input
+          type="range"
+          value={trackProgress}
+          step="1"
+          min="0"
+          max={duration ? duration : `${duration}`}
+          className="progress"
+          onChange={(event: any) => onScrub(event.target.value)}
+          onMouseUp={onScrubEnd}
+          onKeyUp={onScrubEnd}
+          style={{ background: trackStyling }}
+        />
+        {playing ? (
+          <button onClick={() => setPlaying(false)}>Pause</button>
+        ) : (
+          <button onClick={() => setPlaying(true)}>Play</button>
+        )}
+        {loadedDuration && (
+          <p>
+            {formatTime(trackProgress)} / {formatTime(duration)}
+          </p>
+        )}
+        <>
+          <button>Replay</button>
+          <button>Share interview</button>
+          <button>Next interview</button>
+        </>
+      </AudioPlayerWrapper>
+    </Background>
   );
 }
