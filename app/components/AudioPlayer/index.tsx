@@ -1,6 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import styled from 'styled-components';
-import ProgressBar from './ProgressBar';
 
 const Wrapper = styled.div`
   /* display: flex;
@@ -112,12 +111,6 @@ export default function AudioPlayer() {
           onKeyUp={onScrubEnd}
           style={{ background: trackStyling }}
         />
-        {/* <ProgressBar
-          currentTime={currentTime}
-          duration={duration}
-          clickedTime={clickedTime}
-          handleClick={handleClick}
-        /> */}
       </Controls>
     </Wrapper>
   );
