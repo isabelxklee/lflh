@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { COLORS, SmallP } from '../../globalStyles';
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 const Background = styled.div`
   position: fixed;
@@ -41,32 +41,27 @@ interface AudioPlayerProps {
 export default function AudioPlayer({ interview }: AudioPlayerProps) {
   const [playing, setPlaying] = useState<boolean>(false);
   const [trackProgress, setTrackProgress] = useState<number>(0);
-  const [duration, setDuration] = useState<number>(0);
-  const [loadedDuration, setLoadedDuration] = useState<boolean>(false);
-  const [loadedProgress, setLoadedProgress] = useState<boolean>(false);
+
   const audioPlayerRef = useRef(new Audio(interview.audioFileURL));
   const intervalRef = useRef<any>();
+  const { duration } = audioPlayerRef.current;
 
   const currentPercentage = duration
     ? `${(trackProgress / duration) * 100}%`
     : '0%';
 
-  const trackStyling = useMemo(() => {
-    return `-webkit-gradient(linear, 0% 0%, 100% 0%, color-stop(${currentPercentage}, #fff), color-stop(${currentPercentage}, #777))`;
-  }, []);
+  const trackStyling = `-webkit-gradient(linear, 0% 0%, 100% 0%, color-stop(${currentPercentage}, #fff), color-stop(${currentPercentage}, #777))`;
 
   const startTimer = () => {
     clearInterval(intervalRef.current);
 
-    if (intervalRef.current) {
-      intervalRef.current = setInterval(() => {
-        if (audioPlayerRef.current.ended) {
-          // do something
-        } else {
-          setTrackProgress(audioPlayerRef.current.currentTime);
-        }
-      }, 1000);
-    }
+    intervalRef.current = setInterval(() => {
+      if (audioPlayerRef.current.ended) {
+        // do something
+      } else {
+        setTrackProgress(audioPlayerRef.current.currentTime);
+      }
+    }, 1000);
   };
 
   const onScrub = (value: any) => {
@@ -79,6 +74,7 @@ export default function AudioPlayer({ interview }: AudioPlayerProps) {
     if (!playing) {
       setPlaying(true);
     }
+    startTimer();
   };
 
   const formatTime = (time: number) => {
@@ -127,16 +123,6 @@ export default function AudioPlayer({ interview }: AudioPlayerProps) {
   };
 
   useEffect(() => {
-    if (audioPlayerRef.current.duration) {
-      setDuration(audioPlayerRef.current.duration);
-      setLoadedDuration(true);
-    }
-
-    if (audioPlayerRef.current.currentTime) {
-      setTrackProgress(audioPlayerRef.current.currentTime);
-      setLoadedProgress(true);
-    }
-
     if (playing) {
       audioPlayerRef.current.play();
       startTimer();
@@ -158,12 +144,10 @@ export default function AudioPlayer({ interview }: AudioPlayerProps) {
         <SmallP>{interview.title}</SmallP>
         <input
           type="range"
-          // this is what moves the input knob with the time
           value={trackProgress}
           step="1"
           min="0"
           max={duration ? duration : `${duration}`}
-          className="progress"
           onChange={(event: any) => onScrub(event.target.value)}
           onMouseUp={onScrubEnd}
           onKeyUp={onScrubEnd}
@@ -176,11 +160,9 @@ export default function AudioPlayer({ interview }: AudioPlayerProps) {
             ) : (
               <button onClick={() => setPlaying(true)}>Play</button>
             )}
-            {loadedDuration && (
-              <p>
-                {formatTime(trackProgress)} / {formatTime(duration)}
-              </p>
-            )}
+            <p>
+              {formatTime(trackProgress)} / {formatTime(duration)}
+            </p>
           </Primary>
           <Secondary>
             <button>Replay</button>
