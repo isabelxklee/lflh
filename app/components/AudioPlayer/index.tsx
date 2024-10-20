@@ -74,6 +74,7 @@ export default function AudioPlayer({ interview }: AudioPlayerProps) {
     if (!playing) {
       setPlaying(true);
     }
+    startTimer();
   };
 
   const formatTime = (time: number) => {
