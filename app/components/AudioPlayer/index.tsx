@@ -70,11 +70,11 @@ export default function AudioPlayer({ interview }: AudioPlayerProps) {
     setTrackProgress(audioPlayerRef.current.currentTime);
   };
 
-  // const onScrubEnd = () => {
-  //   if (!playing) {
-  //     setPlaying(true);
-  //   }
-  // };
+  const onScrubEnd = () => {
+    if (!playing) {
+      setPlaying(true);
+    }
+  };
 
   const formatTime = (time: number) => {
     if (time < 60) {
@@ -143,14 +143,13 @@ export default function AudioPlayer({ interview }: AudioPlayerProps) {
         <SmallP>{interview.title}</SmallP>
         <input
           type="range"
-          // this is what moves the input knob with the time
           value={trackProgress}
           step="1"
           min="0"
           max={duration ? duration : `${duration}`}
           onChange={(event: any) => onScrub(event.target.value)}
-          // onMouseUp={onScrubEnd}
-          // onKeyUp={onScrubEnd}
+          onMouseUp={onScrubEnd}
+          onKeyUp={onScrubEnd}
           style={{ background: trackStyling }}
         />
         <Controls>
