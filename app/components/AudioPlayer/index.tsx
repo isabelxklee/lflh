@@ -45,7 +45,7 @@ export default function AudioPlayer({ interview }: AudioPlayerProps) {
   const [loadedDuration, setLoadedDuration] = useState<boolean>(false);
   const [loadedProgress, setLoadedProgress] = useState<boolean>(false);
   const audioPlayerRef = useRef(new Audio(interview.audioFileURL));
-  const intervalRef = useRef();
+  const intervalRef = useRef<any>();
 
   const currentPercentage = duration
     ? `${(trackProgress / duration) * 100}%`
@@ -54,6 +54,20 @@ export default function AudioPlayer({ interview }: AudioPlayerProps) {
   const trackStyling = useMemo(() => {
     return `-webkit-gradient(linear, 0% 0%, 100% 0%, color-stop(${currentPercentage}, #fff), color-stop(${currentPercentage}, #777))`;
   }, []);
+
+  const startTimer = () => {
+    clearInterval(intervalRef.current);
+
+    if (intervalRef.current) {
+      intervalRef.current = setInterval(() => {
+        if (audioPlayerRef.current.ended) {
+          // do something
+        } else {
+          setTrackProgress(audioPlayerRef.current.currentTime);
+        }
+      }, 1000);
+    }
+  };
 
   const onScrub = (value: any) => {
     clearInterval(intervalRef.current);
@@ -125,6 +139,7 @@ export default function AudioPlayer({ interview }: AudioPlayerProps) {
 
     if (playing) {
       audioPlayerRef.current.play();
+      startTimer();
     } else {
       audioPlayerRef.current.pause();
     }
@@ -143,6 +158,7 @@ export default function AudioPlayer({ interview }: AudioPlayerProps) {
         <SmallP>{interview.title}</SmallP>
         <input
           type="range"
+          // this is what moves the input knob with the time
           value={trackProgress}
           step="1"
           min="0"
