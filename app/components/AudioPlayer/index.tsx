@@ -41,6 +41,7 @@ interface AudioPlayerProps {
 export default function AudioPlayer({ interview }: AudioPlayerProps) {
   const [playing, setPlaying] = useState<boolean>(false);
   const [trackProgress, setTrackProgress] = useState<number>(0);
+
   const audioPlayerRef = useRef(new Audio(interview.audioFileURL));
   const intervalRef = useRef<any>();
   const { duration } = audioPlayerRef.current;
@@ -54,15 +55,13 @@ export default function AudioPlayer({ interview }: AudioPlayerProps) {
   const startTimer = () => {
     clearInterval(intervalRef.current);
 
-    if (intervalRef.current) {
-      intervalRef.current = setInterval(() => {
-        if (audioPlayerRef.current.ended) {
-          // do something
-        } else {
-          setTrackProgress(audioPlayerRef.current.currentTime);
-        }
-      }, 1000);
-    }
+    intervalRef.current = setInterval(() => {
+      if (audioPlayerRef.current.ended) {
+        // do something
+      } else {
+        setTrackProgress(audioPlayerRef.current.currentTime);
+      }
+    }, 1000);
   };
 
   const onScrub = (value: any) => {
@@ -123,10 +122,6 @@ export default function AudioPlayer({ interview }: AudioPlayerProps) {
   };
 
   useEffect(() => {
-    if (audioPlayerRef.current.currentTime) {
-      setTrackProgress(audioPlayerRef.current.currentTime);
-    }
-
     if (playing) {
       audioPlayerRef.current.play();
       startTimer();
