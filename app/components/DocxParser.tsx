@@ -1,25 +1,26 @@
-import officeParser from 'officeparser';
-import { useEffect } from 'react';
+import { OfficeParserConfig, parseOfficeAsync } from 'officeparser';
+import { useEffect, useState } from 'react';
 
 interface DocxParser {
   url: string;
 }
 
 export default function DocxParser({ url }: DocxParser) {
+  const [parsedData, setParsedData] = useState<any>();
+
+  const config: OfficeParserConfig = {
+    newlineDelimiter: ' ', // Separate new lines with a space instead of the default \n.
+    ignoreNotes: true // Ignore notes while parsing presentation files like pptx or odp.
+  };
+
   useEffect(() => {
     const parseDocxFile = () => {
-      officeParser.parseOffice(url, (data: any, error: any) => {
-        if (error) {
-          console.log(`Error: ${error}`);
-          return;
-        }
-        console.log(data);
-      });
-
-      officeParser
-        .parseOfficeAsync(url)
-        .then((data: any) => console.log(data))
-        .then((error: any) => console.log(error));
+      parseOfficeAsync('/Users/harsh/Desktop/files/mySlides.pptx', config)
+        .then(data => {
+          const newText = data + ' look, I can parse a powerpoint file';
+          setParsedData(newText);
+        })
+        .catch(error => console.error(error));
     };
 
     parseDocxFile();
