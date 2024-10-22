@@ -18,8 +18,10 @@ export type InterviewType = {
   audioFile: any;
   audioFileURL: string;
   transcript: string;
-  transcriptText: string;
-  slug: string;
+  transcriptText: string[];
+  slug: {
+    current: string;
+  };
 };
 
 export type ExcerptType = {

@@ -7,6 +7,7 @@ import { getInterviews } from '../../../actions';
 import { H3 } from '../../../globalStyles';
 import AudioPlayer from '../../../components/AudioPlayer';
 import Transcript from '../../../components/Transcript';
+import { InterviewType } from '../../../../sanity/types/types';
 
 const Wrapper = styled.div`
   padding: 200px 25%;
@@ -18,14 +19,14 @@ const TranscriptWrapper = styled.div`
 `;
 
 export default function InterviewPage() {
-  const [interview, setInterview] = useState<any>();
+  const [interview, setInterview] = useState<InterviewType>();
   const params = useParams();
 
   useEffect(() => {
     const findInterview = async () => {
       const interviews = await getInterviews();
       const interview = interviews.find(
-        (interview: any) => interview.slug.current == params.slug
+        (interview: InterviewType) => interview.slug.current == params.slug
       );
       setInterview(interview);
     };
