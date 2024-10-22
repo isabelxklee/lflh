@@ -1,28 +1,41 @@
-import { PortableText, toPlainText } from '@portabletext/react';
-import { useCallback } from 'react';
+import { useState, useEffect } from 'react';
+import { FONT_WEIGHTS, P } from '../globalStyles';
+import { styled } from 'styled-components';
 
-export default function Transcript({ text }: any) {
-  
-  const stringStrip = useCallback(() => {
-    text.map((block: any) => {
-      return block;
-    });
-  }, []);
+interface TranscriptProps {
+  text: string;
+}
 
-  const PLogic = ({ children, value }: any) => {
-    console.log(toPlainText(value));
-    return <p>{children}</p>;
-  };
+const TextWrapper = styled.div`
+  margin-bottom: 32px;
+  display: flex;
+`;
 
-  const components = {
-    block: {
-      p: PLogic
+export default function Transcript({ text }: TranscriptProps) {
+  const [speaker, setSpeaker] = useState<string>('');
+  const [cleanText, setCleanText] = useState<string>('');
+  const [timeStamp, setTimeStamp] = useState<string>('');
+
+  useEffect(() => {
+    const index = text.indexOf(':');
+    setSpeaker(text.slice(0, index));
+    const regex = /(\([0-9:]{5,8})/g;
+    const ts = text.match(regex);
+
+    if (ts) {
+      const cleanTs = ts[0].slice(1, ts[0].length);
+      setTimeStamp(cleanTs);
+      const closingIndex = text.indexOf(ts[0]);
+      setCleanText(text.slice(index + 2, closingIndex));
+    } else {
+      setCleanText(text.slice(index + 2, text.length));
     }
-  };
+  }, [text]);
 
   return (
-    <>
-      <PortableText value={text} components={components} />
-    </>
+    <TextWrapper>
+      <P style={{ flex: 1, fontWeight: FONT_WEIGHTS.BOLD }}>{speaker}</P>
+      <P style={{ flex: 3 }}>{cleanText}</P>
+    </TextWrapper>
   );
 }

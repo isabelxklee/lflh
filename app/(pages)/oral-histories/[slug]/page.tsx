@@ -13,6 +13,10 @@ const Wrapper = styled.div`
   margin-bottom: 200px;
 `;
 
+const TranscriptWrapper = styled.div`
+  margin-top: 32px;
+`;
+
 export default function InterviewPage() {
   const [interview, setInterview] = useState<any>();
   const params = useParams();
@@ -34,10 +38,11 @@ export default function InterviewPage() {
       {interview && (
         <>
           <H3>{interview.title}</H3>
-          {interview.transcriptText.map((text: string, index: number) => (
-            <p key={index}>{text}</p>
-          ))}
-          {/* <Transcript text={interview.transcriptText} /> */}
+          <TranscriptWrapper>
+            {interview.transcriptText.map((text: string, index: number) => (
+              <Transcript key={index} text={text} />
+            ))}
+          </TranscriptWrapper>
           <AudioPlayer interview={interview} />
         </>
       )}
