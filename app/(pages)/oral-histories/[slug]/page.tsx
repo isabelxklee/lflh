@@ -35,9 +35,9 @@ export default function InterviewPage() {
         <>
           <H3>{interview.title}</H3>
           {interview.transcriptText.map((text: string, index: number) => (
-            <p key={index}>{text}</p>
+            <Transcript key={index} text={text} />
           ))}
-          {/* <Transcript text={interview.transcriptText} /> */}
+
           <AudioPlayer interview={interview} />
         </>
       )}
