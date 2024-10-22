@@ -2,7 +2,6 @@ import { PortableText, toPlainText } from '@portabletext/react';
 import { useCallback } from 'react';
 
 export default function Transcript({ text }: any) {
-  
   const stringStrip = useCallback(() => {
     text.map((block: any) => {
       return block;
