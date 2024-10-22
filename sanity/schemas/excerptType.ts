@@ -13,14 +13,11 @@ export const excerptType = defineType({
     }),
     defineField({
       name: 'startTime',
-      type: 'datetime',
-      options: {
-        timeFormat: 'HH:mm'
-      }
+      type: 'string'
     }),
     defineField({
       name: 'endTime',
-      type: 'datetime'
+      type: 'string'
     }),
     defineField({
       name: 'subTheme',
