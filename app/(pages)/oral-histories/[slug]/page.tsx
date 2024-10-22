@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react';
 import { getInterviews } from '../../../actions';
 import { H3 } from '../../../globalStyles';
 import AudioPlayer from '../../../components/AudioPlayer';
+import Transcript from '../../../components/Transcript';
 
 const Wrapper = styled.div`
   padding: 200px 25%;
@@ -33,6 +34,10 @@ export default function InterviewPage() {
       {interview && (
         <>
           <H3>{interview.title}</H3>
+          {interview.transcriptText.map((text: string, index: number) => (
+            <p key={index}>{text}</p>
+          ))}
+          {/* <Transcript text={interview.transcriptText} /> */}
           <AudioPlayer interview={interview} />
         </>
       )}
