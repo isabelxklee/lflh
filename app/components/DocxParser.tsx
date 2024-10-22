@@ -15,7 +15,7 @@ export default function DocxParser({ url }: DocxParser) {
 
   useEffect(() => {
     const parseDocxFile = () => {
-      parseOfficeAsync('/Users/harsh/Desktop/files/mySlides.pptx', config)
+      parseOfficeAsync(url, config)
         .then(data => {
           const newText = data + ' look, I can parse a powerpoint file';
           setParsedData(newText);

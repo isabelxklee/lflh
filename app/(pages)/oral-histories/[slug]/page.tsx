@@ -28,6 +28,8 @@ export default function InterviewPage() {
     findInterview();
   }, []);
 
+  console.log(interview);
+
   return (
     <Wrapper>
       {interview && (
