@@ -149,14 +149,22 @@ export default function AudioPlayer({ interview, excerpts }: AudioPlayerProps) {
         <input
           type="range"
           value={trackProgress}
+          list="values"
           step="1"
           min="0"
-          max={duration ? duration : `${duration}`}
+          max={duration && `${duration}`}
           onChange={(event: any) => onScrub(event.target.value)}
           onMouseUp={onScrubEnd}
           onKeyUp={onScrubEnd}
           style={{ background: trackStyling }}
         />
+        <datalist id="values">
+          <option value="0" label="very cold!"></option>
+          <option value="5" label="cool"></option>
+          <option value="10" label="medium"></option>
+          <option value="15" label="getting warm!"></option>
+          <option value="35" label="hot!"></option>
+        </datalist>
         <Controls>
           <Primary>
             {playing ? (
