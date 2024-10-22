@@ -6,7 +6,6 @@ import { useEffect, useState } from 'react';
 import { getInterviews } from '../../../actions';
 import { H3 } from '../../../globalStyles';
 import AudioPlayer from '../../../components/AudioPlayer';
-import DocxParser from '../../../components/DocxParser';
 import Transcript from '../../../components/Transcript';
 
 const Wrapper = styled.div`
@@ -37,7 +36,7 @@ export default function InterviewPage() {
       {interview && (
         <>
           <H3>{interview.title}</H3>
-          <Transcript transcript={interview.transcriptText} />
+          <Transcript text={interview.transcriptText} />
           <AudioPlayer interview={interview} />
         </>
       )}

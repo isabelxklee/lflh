@@ -1,15 +1,28 @@
-import { PortableText } from '@portabletext/react';
+import { PortableText, toPlainText } from '@portabletext/react';
+import { useCallback } from 'react';
 
-export default function Transcript({ transcript }: any) {
+export default function Transcript({ text }: any) {
+  
+  const stringStrip = useCallback(() => {
+    text.map((block: any) => {
+      return block;
+    });
+  }, []);
+
+  const PLogic = ({ children, value }: any) => {
+    console.log(toPlainText(value));
+    return <p>{children}</p>;
+  };
+
   const components = {
     block: {
-      h1: ({ children }: any) => <h1 className="text-2xl">{children}</h1>,
-      blockquote: ({ children }: any) => (
-        <blockquote className="border-l-purple-500">{children}</blockquote>
-      ),
-      span: ({ children }: any) => <span>{children}</span>
+      p: PLogic
     }
   };
 
-  return <PortableText value={transcript} components={components} />;
+  return (
+    <>
+      <PortableText value={text} components={components} />
+    </>
+  );
 }
