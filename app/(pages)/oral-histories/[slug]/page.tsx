@@ -3,7 +3,7 @@
 import styled from 'styled-components';
 import { useParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import { getInterviews } from '../../../actions';
+import { getInterviews, getExcerpts } from '../../../actions';
 import { H3 } from '../../../globalStyles';
 import AudioPlayer from '../../../components/AudioPlayer';
 import Transcript from '../../../components/Transcript';
@@ -20,6 +20,7 @@ const TranscriptWrapper = styled.div`
 
 export default function InterviewPage() {
   const [interview, setInterview] = useState<InterviewType>();
+  const [excerpts, setExcerpts] = useState<any>();
   const params = useParams();
 
   useEffect(() => {
@@ -32,6 +33,13 @@ export default function InterviewPage() {
     };
 
     findInterview();
+
+    const findExcerpts = async () => {
+      const excerpts = await getExcerpts();
+      console.log(excerpts);
+    };
+
+    findExcerpts();
   }, []);
 
   return (
