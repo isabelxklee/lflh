@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { COLORS, SmallP } from '../../globalStyles';
 import { useEffect, useRef, useState } from 'react';
+import { InterviewType } from '../../../sanity/types/types';
 
 const Background = styled.div`
   position: fixed;
@@ -35,10 +36,11 @@ const Secondary = styled.div`
 `;
 
 interface AudioPlayerProps {
-  interview: any;
+  interview: InterviewType;
+  excerpts: any;
 }
 
-export default function AudioPlayer({ interview }: AudioPlayerProps) {
+export default function AudioPlayer({ interview, excerpts }: AudioPlayerProps) {
   const [playing, setPlaying] = useState<boolean>(false);
   const [trackProgress, setTrackProgress] = useState<number>(0);
 
@@ -137,6 +139,8 @@ export default function AudioPlayer({ interview }: AudioPlayerProps) {
       clearInterval(intervalRef.current);
     };
   }, []);
+
+  console.log(excerpts);
 
   return (
     <Background>

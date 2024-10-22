@@ -51,7 +51,7 @@ export default function InterviewPage() {
               <Transcript key={index} text={text} />
             ))}
           </TranscriptWrapper>
-          <AudioPlayer interview={interview} />
+          <AudioPlayer interview={interview} excerpts={excerpts} />
         </>
       )}
     </Wrapper>
