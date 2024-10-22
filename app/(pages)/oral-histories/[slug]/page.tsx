@@ -24,22 +24,21 @@ export default function InterviewPage() {
   const params = useParams();
 
   useEffect(() => {
-    const findInterview = async () => {
+    const findInterviewAndExcerpts = async () => {
       const interviews = await getInterviews();
       const interview = interviews.find(
         (interview: InterviewType) => interview.slug.current == params.slug
       );
       setInterview(interview);
-    };
 
-    findInterview();
-
-    const findExcerpts = async () => {
       const excerpts = await getExcerpts();
-      console.log(excerpts);
+      const thisExcerpts = excerpts.filter(
+        (e: any) => e.interview._id == interview._id
+      );
+      setExcerpts(thisExcerpts);
     };
 
-    findExcerpts();
+    findInterviewAndExcerpts();
   }, []);
 
   return (
