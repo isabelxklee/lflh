@@ -28,6 +28,7 @@ export const INTERVIEWS_QUERY = defineQuery(`*[_type == "interview"]{
       audioFile,
       "audioFileURL": audioFile.asset->url,
       "transcript": transcript.asset->url,
+      transcriptText,
       slug
     }`);
 
