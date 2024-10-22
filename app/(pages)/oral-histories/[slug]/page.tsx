@@ -29,14 +29,15 @@ export default function InterviewPage() {
     findInterview();
   }, []);
 
-  console.log(interview);
-
   return (
     <Wrapper>
       {interview && (
         <>
           <H3>{interview.title}</H3>
-          <Transcript text={interview.transcriptText} />
+          {interview.transcriptText.map((text: string, index: number) => (
+            <p key={index}>{text}</p>
+          ))}
+          {/* <Transcript text={interview.transcriptText} /> */}
           <AudioPlayer interview={interview} />
         </>
       )}
