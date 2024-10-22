@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react';
 import { getInterviews } from '../../../actions';
 import { H3 } from '../../../globalStyles';
 import AudioPlayer from '../../../components/AudioPlayer';
+import DocxParser from '../../../components/DocxParser';
 
 const Wrapper = styled.div`
   padding: 200px 25%;
@@ -28,13 +29,12 @@ export default function InterviewPage() {
     findInterview();
   }, []);
 
-  console.log(interview);
-
   return (
     <Wrapper>
       {interview && (
         <>
           <H3>{interview.title}</H3>
+          <DocxParser url={interview.transcript} />
           <AudioPlayer interview={interview} />
         </>
       )}

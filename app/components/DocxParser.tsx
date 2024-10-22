@@ -25,5 +25,5 @@ export default function DocxParser({ url }: DocxParser) {
 
     parseDocxFile();
   }, []);
-  return <></>;
+  return <>hello world</>;
 }
