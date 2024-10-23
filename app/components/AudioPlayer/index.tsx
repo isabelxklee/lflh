@@ -140,7 +140,27 @@ export default function AudioPlayer({ interview, excerpts }: AudioPlayerProps) {
     };
   }, []);
 
-  console.log(excerpts);
+  const renderExcerpts = () => {
+    // const ts = excerpt.startTime;
+    const ts = '01:15:45';
+    // calculate excerpts timestamps as seconds
+    // loop over list
+    // and set a color for the associated subtheme
+
+    const regex = /((\d{2}):(\d{2}):(\d{2}))/g;
+
+    // hh:mm:ss
+    if (regex.test(ts)) {
+      const hour = ts.slice(0, 2);
+      const minute = ts.slice(3, 5);
+      const second = ts.slice(6, 8);
+
+      return `${hour} ${minute} ${second}`;
+    }
+    // mm:ss
+  };
+
+  console.log(renderExcerpts());
 
   return (
     <Background>
@@ -152,18 +172,20 @@ export default function AudioPlayer({ interview, excerpts }: AudioPlayerProps) {
           list="values"
           step="1"
           min="0"
-          max={duration && `${duration}`}
+          max={duration ? duration : `${duration}`}
           onChange={(event: any) => onScrub(event.target.value)}
           onMouseUp={onScrubEnd}
           onKeyUp={onScrubEnd}
           style={{ background: trackStyling }}
         />
         <datalist id="values">
+          {/* option values are in seconds */}
           <option value="0" label="very cold!"></option>
           <option value="5" label="cool"></option>
           <option value="10" label="medium"></option>
           <option value="15" label="getting warm!"></option>
           <option value="35" label="hot!"></option>
+          <option value="3600" label="hot!"></option>
         </datalist>
         <Controls>
           <Primary>
