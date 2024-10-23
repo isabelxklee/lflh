@@ -35,6 +35,11 @@ export default function SubThemePage() {
     findSubTheme();
   }, []);
 
+  // find all excerpts related to this subtheme
+  // and render them as clickable objects
+  // that navigates to the interview page
+  // with the selected excerpt already in focus
+
   return (
     <Wrapper>
       <StyledLink href="/themes">Back to all themes</StyledLink>
