@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { getSiteSettings } from '../../actions';
+import { getSiteSettings, getThemes } from '../../actions';
 import { P } from '../../globalStyles';
 import styled from 'styled-components';
 import { ThemeType } from '../../../sanity/types/types';
@@ -19,11 +19,15 @@ export default function Themes() {
   useEffect(() => {
     const fetchData = async () => {
       const siteSettings = await getSiteSettings();
+      const themes = await getThemes();
       setSiteSettings(siteSettings);
+      setThemes(themes);
     };
 
     fetchData();
   }, []);
+
+  console.log(themes);
 
   return (
     <Wrapper>
