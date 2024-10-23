@@ -60,6 +60,13 @@ export const H3 = styled.h3`
   margin: 0;
 `;
 
+export const H4 = styled.h4`
+  font-family: ${FONTS.AUTH_SANS}, sans-serif;
+  font-weight: ${FONT_WEIGHTS.BOLD};
+  font-size: 18px;
+  margin: 0;
+`;
+
 export const StyledLink = styled(Link)`
   font-family: ${FONTS.AUTH_SANS}, sans-serif;
   font-weight: ${FONT_WEIGHTS.BOLD};

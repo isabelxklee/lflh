@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { COLORS, GRADIENT_COLORS, SmallP, P } from '../../globalStyles';
+import { COLORS, GRADIENT_COLORS, SmallP, P } from '../../styles';
 import { useEffect, useRef, useState } from 'react';
 import { InterviewType } from '../../../sanity/types/types';
 import { render } from 'react-dom';

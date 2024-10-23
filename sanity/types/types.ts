@@ -3,13 +3,15 @@ export type ThemeType = {
   title: string;
   sort: number;
   description: string;
+  subThemes: any[];
 };
 
 export type SubThemeType = {
   _id: string;
   title: string;
+  slug: string;
+  theme: ThemeType;
   sort: number;
-  themeName: string;
 };
 
 export type InterviewType = {
@@ -19,9 +21,7 @@ export type InterviewType = {
   audioFileURL: string;
   transcript: string;
   transcriptText: string[];
-  slug: {
-    current: string;
-  };
+  slug: string;
 };
 
 export type ExcerptType = {

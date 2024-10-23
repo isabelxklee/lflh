@@ -1,12 +1,11 @@
 'use client';
 
 import styled from 'styled-components';
-import { useCallback, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Link from 'next/link.js';
-import { COLORS, FONT_WEIGHTS, FONTS, P } from '../../globalStyles.js';
-import { getThemes, getInterviews } from '../../actions';
-
-const ExcerptWrapper = styled.div<{ $length: number }>``;
+import { COLORS, FONT_WEIGHTS, FONTS, P } from '../../styles.js';
+import { getInterviews } from '../../actions';
+import { InterviewType, ThemeType } from '../../../sanity/types/types.js';
 
 const Wrapper = styled.div`
   padding: 200px 25%;
@@ -23,20 +22,11 @@ const StyledLink = styled(Link)`
 `;
 
 export default function OralHistories() {
-  const [themes, setThemes] = useState<any[]>([]);
-  const [interviews, setInterviews] = useState<any[]>([]);
-
-  const timeLength = useCallback((startTime: string) => {
-    const length = parseInt(startTime);
-
-    return length;
-  }, []);
+  const [interviews, setInterviews] = useState<InterviewType[]>([]);
 
   useEffect(() => {
     const fetchData = async () => {
-      const themes = await getThemes();
       const interviews = await getInterviews();
-      setThemes(themes);
       setInterviews(interviews);
     };
 
@@ -47,16 +37,11 @@ export default function OralHistories() {
     <Wrapper>
       <h1>Oral Histories</h1>
       {interviews &&
-        interviews.map((interview: any, index: number) => (
+        interviews.map((interview: InterviewType, index: number) => (
           <div key={index}>
-            <StyledLink href={`/oral-histories/${interview.slug.current}`}>
+            <StyledLink href={`/oral-histories/${interview.slug}`}>
               {interview.title}
             </StyledLink>
-            {/* {interview.excerpts.map((excerpt: any, index: number) => (
-              <ExcerptWrapper key={index} $length={excerpt.startTime}>
-                <P>{excerpt.subTheme}</P>
-              </ExcerptWrapper>
-            ))} */}
           </div>
         ))}
     </Wrapper>

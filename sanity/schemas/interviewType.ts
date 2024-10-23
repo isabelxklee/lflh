@@ -15,13 +15,7 @@ export const interviewType = defineType({
       name: 'slug',
       type: 'slug',
       options: {
-        source: 'title',
-        slugify: input =>
-          input
-            .toLowerCase()
-            .replace(/\-/g, '')
-            .replace(/\s+/g, '-')
-            .slice(0, 200)
+        source: 'title'
       }
     }),
     defineField({

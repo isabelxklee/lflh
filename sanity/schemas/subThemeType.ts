@@ -12,6 +12,13 @@ export const subThemeType = defineType({
       type: 'string'
     }),
     defineField({
+      name: 'slug',
+      type: 'slug',
+      options: {
+        source: 'title'
+      }
+    }),
+    defineField({
       name: 'sort',
       type: 'number'
     }),

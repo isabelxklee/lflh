@@ -18,6 +18,10 @@ export const siteSettings = defineType({
     defineField({
       name: 'aboutPageText',
       type: 'text'
+    }),
+    defineField({
+      name: 'themePageText',
+      type: 'text'
     })
   ]
 });

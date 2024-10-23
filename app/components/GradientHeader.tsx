@@ -1,7 +1,7 @@
 'use client';
 
 import styled from 'styled-components';
-import { GRADIENT_COLORS } from '../globalStyles';
+import { GRADIENT_COLORS } from '../styles';
 import { ThemeType } from '../../sanity/types/types';
 
 interface MiniGradientHeaderProps {

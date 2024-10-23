@@ -4,7 +4,11 @@ export const THEMES_QUERY = defineQuery(`*[_type == "theme"] | order(sort asc) {
       _id,
       title,
       sort,
-      description
+      description,
+      "subThemes": *[_type == "subTheme" && references(^._id)] {
+        title,
+        "slug": slug.current
+      }
     }`);
 
 export const SUB_THEMES_QUERY =
@@ -12,14 +16,16 @@ export const SUB_THEMES_QUERY =
       _id,
       title,
       sort,
-      "themeName": theme->title
+      theme->,
+      "slug": slug.current
     }`);
 
 export const SITE_SETTINGS_QUERY = defineQuery(`*[_type == "siteSettings"]{
       _id,
       siteTitle,
       siteLogo,
-      aboutPageText
+      aboutPageText,
+      themePageText,
     }`);
 
 export const INTERVIEWS_QUERY = defineQuery(`*[_type == "interview"]{
@@ -29,7 +35,7 @@ export const INTERVIEWS_QUERY = defineQuery(`*[_type == "interview"]{
       "audioFileURL": audioFile.asset->url,
       "transcript": transcript.asset->url,
       "transcriptText": transcriptText[].children[].text,
-      slug
+      "slug": slug.current
     }`);
 
 export const EXCERPTS_QUERY = defineQuery(`*[_type == "excerpt"]{

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { H3, P, StyledLink } from '../globalStyles';
+import { H3, P, StyledLink } from '../styles';
 
 interface ThemePreviewProps {
   theme: any;
