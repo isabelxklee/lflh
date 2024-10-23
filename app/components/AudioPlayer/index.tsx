@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { COLORS, SmallP } from '../../globalStyles';
+import { COLORS, SmallP, P } from '../../globalStyles';
 import { useEffect, useRef, useState } from 'react';
 import { InterviewType } from '../../../sanity/types/types';
 
@@ -140,27 +140,33 @@ export default function AudioPlayer({ interview, excerpts }: AudioPlayerProps) {
     };
   }, []);
 
-  const renderExcerpts = () => {
-    // const ts = excerpt.startTime;
-    const ts = '01:15:45';
-    // calculate excerpts timestamps as seconds
-    // loop over list
-    // and set a color for the associated subtheme
+  // calculate excerpts timestamps as seconds
+  // loop over list
+  // and set a color for the associated subtheme
 
-    const regex = /((\d{2}):(\d{2}):(\d{2}))/g;
+  const renderExcerpts = (ts: string) => {
+    let hours, minutes, seconds, timeInSeconds;
+    const hourRegex = /((\d{2}):(\d{2}):(\d{2}))/g;
+    const minuteRegex = /((\d{2}):(\d{2}))/g;
 
     // hh:mm:ss
-    if (regex.test(ts)) {
-      const hour = ts.slice(0, 2);
-      const minute = ts.slice(3, 5);
-      const second = ts.slice(6, 8);
+    if (hourRegex.test(ts)) {
+      hours = ts.slice(0, 2);
+      minutes = ts.slice(3, 5);
+      seconds = ts.slice(6, 8);
+      timeInSeconds =
+        parseInt(hours) * 3600 + parseInt(minutes) * 60 + parseInt(seconds);
 
-      return `${hour} ${minute} ${second}`;
+      return timeInSeconds;
+
+      // mm:ss
+    } else if (minuteRegex.test(ts)) {
+      minutes = ts.slice(0, 2);
+      seconds = ts.slice(3, 5);
+      timeInSeconds = parseInt(minutes) * 60 + parseInt(seconds);
+      return timeInSeconds;
     }
-    // mm:ss
   };
-
-  console.log(renderExcerpts());
 
   return (
     <Background>
@@ -179,13 +185,14 @@ export default function AudioPlayer({ interview, excerpts }: AudioPlayerProps) {
           style={{ background: trackStyling }}
         />
         <datalist id="values">
-          {/* option values are in seconds */}
-          <option value="0" label="very cold!"></option>
-          <option value="5" label="cool"></option>
-          <option value="10" label="medium"></option>
-          <option value="15" label="getting warm!"></option>
-          <option value="35" label="hot!"></option>
-          <option value="3600" label="hot!"></option>
+          {excerpts &&
+            excerpts.map((excerpt: any, index: number) => (
+              <option
+                key={index}
+                value={renderExcerpts(excerpt.startTime)}
+                label=""
+              />
+            ))}
         </datalist>
         <Controls>
           <Primary>
