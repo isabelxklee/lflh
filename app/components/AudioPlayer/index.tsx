@@ -36,13 +36,17 @@ const Secondary = styled.div`
 `;
 
 const Excerpt = styled.div<{ $width: number; $start: number }>`
-  position: relative;
+  position: absolute;
   background: ${GRADIENT_COLORS.ORANGE};
-  height: 4px;
-  top: -14px;
+  height: 8px;
   width: ${({ $width }) => `${$width}%`};
   left: ${({ $start }) => `${$start}%`};
   z-index: 10;
+`;
+
+const ExcerptWrapper = styled.div`
+  top: -14px;
+  position: relative;
 `;
 
 interface AudioPlayerProps {
@@ -210,17 +214,16 @@ export default function AudioPlayer({ interview, excerpts }: AudioPlayerProps) {
           onKeyUp={onScrubEnd}
           style={{ background: trackStyling }}
         />
-        {excerpts &&
-          excerpts.map((excerpt: any, index: number) => (
-            <>
+        <ExcerptWrapper>
+          {excerpts &&
+            excerpts.map((excerpt: any, index: number) => (
               <Excerpt
                 key={index}
                 $start={percentageCalc(excerpt.startTime)}
                 $width={barWidth(excerpt)}
               />
-            </>
-          ))}
-
+            ))}
+        </ExcerptWrapper>
         <Controls>
           <Primary>
             {playing ? (
