@@ -27,14 +27,17 @@ export default function Themes() {
     fetchData();
   }, []);
 
-  console.log(themes);
-
   return (
     <Wrapper>
       <h1>Themes</h1>
       <P>{text}</P>
       {themes.map((theme, index: number) => (
-        <div key={index}>{theme.title}</div>
+        <div key={index}>
+          <P>{theme.title}</P>
+          {theme.subThemes.map((subTheme, index: number) => (
+            <P key={index}>{subTheme.title}</P>
+          ))}
+        </div>
       ))}
     </Wrapper>
   );
