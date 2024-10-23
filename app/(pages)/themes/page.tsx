@@ -33,6 +33,9 @@ export default function Themes() {
     <Wrapper>
       <h1>Themes</h1>
       <P>{text}</P>
+      {themes.map((theme, index: number) => (
+        <div key={index}>{theme.title}</div>
+      ))}
     </Wrapper>
   );
 }

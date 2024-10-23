@@ -3,6 +3,7 @@ export type ThemeType = {
   title: string;
   sort: number;
   description: string;
+  subThemes: any[];
 };
 
 export type SubThemeType = {
