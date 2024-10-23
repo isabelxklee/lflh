@@ -195,23 +195,13 @@ export default function AudioPlayer({ interview, excerpts }: AudioPlayerProps) {
       percentage = (seconds / duration / 60) * 100;
     }
 
-    return Math.floor(percentage);
+    return Math.ceil(percentage);
   };
 
-  const barWidth = (excerpt: any) => {
-    const start = renderExcerpts(excerpt.startTime);
-    const end = renderExcerpts(excerpt.endTime);
-    let difference = end - start;
-    let width = 0;
-
-    if (difference > 100) {
-      width = (difference / duration / 60) * 100;
-    } else {
-      width = (difference / duration) * 100;
-    }
-
-    return Math.floor(width);
-  };
+  const barWidth = (excerpt: any) =>
+    Math.ceil(
+      percentageCalc(excerpt.endTime) - percentageCalc(excerpt.startTime)
+    );
 
   return (
     <Background>
@@ -236,10 +226,7 @@ export default function AudioPlayer({ interview, excerpts }: AudioPlayerProps) {
                 <Excerpt
                   key={index}
                   $start={percentageCalc(excerpt.startTime)}
-                  $width={
-                    percentageCalc(excerpt.endTime) -
-                    percentageCalc(excerpt.startTime)
-                  }
+                  $width={barWidth(excerpt)}
                 />
               </>
             ))}
