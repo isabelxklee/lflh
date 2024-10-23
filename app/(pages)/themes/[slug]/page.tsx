@@ -5,6 +5,8 @@ import styled from 'styled-components';
 import { getSubThemes } from '../../../actions';
 import { SubThemeType } from '../../../../sanity/types/types';
 import { useParams } from 'next/navigation';
+import Link from 'next/link';
+import { H4 } from '../../../styles';
 
 const Wrapper = styled.div`
   padding: 200px 25%;
@@ -29,9 +31,12 @@ export default function SubThemePage() {
 
   return (
     <Wrapper>
+      <Link href="/themes">Back to all themes</Link>
       {subTheme && (
         <>
-          <h1>{subTheme.title}</h1>
+          <H4>
+            {subTheme.themeName}: {subTheme.title}
+          </H4>
         </>
       )}
     </Wrapper>

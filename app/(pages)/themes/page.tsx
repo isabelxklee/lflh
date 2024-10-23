@@ -29,6 +29,8 @@ const StyledLink = styled(Link)`
   }
 `;
 
+// write logic for rendering gradient as the left border
+
 const UL = styled.ul`
   border-left: 2px solid black;
   list-style: none;
