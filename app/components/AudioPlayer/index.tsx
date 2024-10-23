@@ -187,6 +187,13 @@ export default function AudioPlayer({ interview, excerpts }: AudioPlayerProps) {
     return Math.floor(percentage);
   };
 
+  const barWidth = (excerpt: any) => {
+    const start = renderExcerpts(excerpt.startTime);
+    const end = renderExcerpts(excerpt.endTime);
+    const difference = ((end - start) / duration) * 100;
+    return Math.floor(difference);
+  };
+
   return (
     <Background>
       <AudioPlayerWrapper>
@@ -211,6 +218,7 @@ export default function AudioPlayer({ interview, excerpts }: AudioPlayerProps) {
                 $start={percentageCalc(excerpt.startTime)}
                 $width={10}
               />
+              {console.log(barWidth(excerpt))}
             </>
           ))}
 
