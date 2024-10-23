@@ -40,7 +40,7 @@ export default function Themes() {
         <ThemeWrapper key={index}>
           <H3>{theme.title}</H3>
           {theme.subThemes.map((subTheme, index: number) => (
-            <Link key={index} href={`/themes/${subTheme._id}`}>
+            <Link key={index} href={`/themes/${subTheme.slug}`}>
               {subTheme.title}
             </Link>
           ))}

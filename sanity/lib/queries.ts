@@ -5,7 +5,10 @@ export const THEMES_QUERY = defineQuery(`*[_type == "theme"] | order(sort asc) {
       title,
       sort,
       description,
-      "subThemes": *[_type == "subTheme" && references(^._id)]
+      "subThemes": *[_type == "subTheme" && references(^._id)] {
+        title,
+        "slug": slug.current
+      }
     }`);
 
 export const SUB_THEMES_QUERY =

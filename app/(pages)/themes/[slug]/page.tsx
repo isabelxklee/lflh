@@ -19,7 +19,7 @@ export default function SubThemePage() {
     const findSubTheme = async () => {
       const subThemes = await getSubThemes();
       const subTheme = subThemes.find(
-        (subTheme: SubThemeType) => subTheme.slug.current == params.slug
+        (subTheme: SubThemeType) => subTheme.slug == params.slug
       );
       setSubTheme(subTheme);
     };
@@ -29,7 +29,11 @@ export default function SubThemePage() {
 
   return (
     <Wrapper>
-      <h1>{subTheme.title}</h1>
+      {subTheme && (
+        <>
+          <h1>{subTheme.title}</h1>
+        </>
+      )}
     </Wrapper>
   );
 }
