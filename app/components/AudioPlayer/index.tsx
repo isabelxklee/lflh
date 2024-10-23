@@ -1,6 +1,8 @@
 import styled from 'styled-components';
-import { COLORS, SmallP } from '../../globalStyles';
+import { COLORS, GRADIENT_COLORS, SmallP, P } from '../../globalStyles';
 import { useEffect, useRef, useState } from 'react';
+import { InterviewType } from '../../../sanity/types/types';
+import { render } from 'react-dom';
 
 const Background = styled.div`
   position: fixed;
@@ -34,11 +36,26 @@ const Secondary = styled.div`
   gap: 20px;
 `;
 
+const Excerpt = styled.div<{ $width: number; $start: number }>`
+  position: absolute;
+  background: ${GRADIENT_COLORS.ORANGE};
+  height: 8px;
+  width: ${({ $width }) => `${$width}%`};
+  left: ${({ $start }) => `${$start}%`};
+  z-index: 10;
+`;
+
+const ExcerptWrapper = styled.div`
+  top: -14px;
+  position: relative;
+`;
+
 interface AudioPlayerProps {
-  interview: any;
+  interview: InterviewType;
+  excerpts: any;
 }
 
-export default function AudioPlayer({ interview }: AudioPlayerProps) {
+export default function AudioPlayer({ interview, excerpts }: AudioPlayerProps) {
   const [playing, setPlaying] = useState<boolean>(false);
   const [trackProgress, setTrackProgress] = useState<number>(0);
 
@@ -46,6 +63,7 @@ export default function AudioPlayer({ interview }: AudioPlayerProps) {
   const intervalRef = useRef<any>();
   const { duration } = audioPlayerRef.current;
 
+  // refactor to be reusable
   const currentPercentage = duration
     ? `${(trackProgress / duration) * 100}%`
     : '0%';
@@ -138,6 +156,41 @@ export default function AudioPlayer({ interview }: AudioPlayerProps) {
     };
   }, []);
 
+  const timeStampToSeconds = (ts: string) => {
+    let hours,
+      minutes,
+      seconds,
+      timeInSeconds = 0;
+    const hourRegex = /((\d{2}):(\d{2}):(\d{2}))/g;
+    const minuteRegex = /((\d{2}):(\d{2}))/g;
+
+    // hh:mm:ss
+    if (hourRegex.test(ts)) {
+      hours = ts.slice(0, 2);
+      minutes = ts.slice(3, 5);
+      seconds = ts.slice(6, 8);
+      timeInSeconds =
+        parseInt(hours) * 3600 + parseInt(minutes) * 60 + parseInt(seconds);
+      // mm:ss
+    } else if (minuteRegex.test(ts)) {
+      minutes = ts.slice(0, 2);
+      seconds = ts.slice(3, 5);
+      timeInSeconds = parseInt(minutes) * 60 + parseInt(seconds);
+    }
+
+    return timeInSeconds;
+  };
+
+  const percentageCalc = (ts: string) => {
+    const seconds = timeStampToSeconds(ts);
+    return Math.ceil((seconds / duration) * 100);
+  };
+
+  const barWidth = (excerpt: any) =>
+    Math.ceil(
+      percentageCalc(excerpt.endTime) - percentageCalc(excerpt.startTime)
+    );
+
   return (
     <Background>
       <AudioPlayerWrapper>
@@ -145,6 +198,7 @@ export default function AudioPlayer({ interview }: AudioPlayerProps) {
         <input
           type="range"
           value={trackProgress}
+          list="values"
           step="1"
           min="0"
           max={duration ? duration : `${duration}`}
@@ -153,6 +207,16 @@ export default function AudioPlayer({ interview }: AudioPlayerProps) {
           onKeyUp={onScrubEnd}
           style={{ background: trackStyling }}
         />
+        <ExcerptWrapper>
+          {excerpts &&
+            excerpts.map((excerpt: any, index: number) => (
+              <Excerpt
+                key={index}
+                $start={percentageCalc(excerpt.startTime)}
+                $width={barWidth(excerpt)}
+              />
+            ))}
+        </ExcerptWrapper>
         <Controls>
           <Primary>
             {playing ? (
