@@ -58,6 +58,7 @@ export default function AudioPlayer({ interview, excerpts }: AudioPlayerProps) {
   const intervalRef = useRef<any>();
   const { duration } = audioPlayerRef.current;
 
+  // refactor to be reusable
   const currentPercentage = duration
     ? `${(trackProgress / duration) * 100}%`
     : '0%';
@@ -176,6 +177,14 @@ export default function AudioPlayer({ interview, excerpts }: AudioPlayerProps) {
       timeInSeconds = parseInt(minutes) * 60 + parseInt(seconds);
       return timeInSeconds;
     }
+
+    return 0;
+  };
+
+  const percentageCalc = (ts: string) => {
+    const seconds = renderExcerpts(ts);
+    const percentage = (seconds / duration) * 100;
+    return Math.floor(percentage);
   };
 
   return (
@@ -196,12 +205,13 @@ export default function AudioPlayer({ interview, excerpts }: AudioPlayerProps) {
         />
         {excerpts &&
           excerpts.map((excerpt: any, index: number) => (
-            <Excerpt
-              key={index}
-              $start={5}
-              $width={10}
-              value={renderExcerpts(excerpt.startTime)}
-            />
+            <>
+              <Excerpt
+                key={index}
+                $start={percentageCalc(excerpt.startTime)}
+                $width={10}
+              />
+            </>
           ))}
 
         <Controls>
