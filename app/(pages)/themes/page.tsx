@@ -11,6 +11,10 @@ const Wrapper = styled.div`
   margin-bottom: 200px;
 `;
 
+const ThemeWrapper = styled.div`
+  margin-bottom: 32px;
+`;
+
 export default function Themes() {
   const [siteSettings, setSiteSettings] = useState<any[]>([]);
   const [themes, setThemes] = useState<ThemeType[]>([]);
@@ -30,14 +34,14 @@ export default function Themes() {
   return (
     <Wrapper>
       <h1>Themes</h1>
-      <P>{text}</P>
+      <P style={{ marginBottom: '32px' }}>{text}</P>
       {themes.map((theme, index: number) => (
-        <div key={index}>
+        <ThemeWrapper key={index}>
           <P>{theme.title}</P>
           {theme.subThemes.map((subTheme, index: number) => (
             <P key={index}>{subTheme.title}</P>
           ))}
-        </div>
+        </ThemeWrapper>
       ))}
     </Wrapper>
   );
