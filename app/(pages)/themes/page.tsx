@@ -1,8 +1,18 @@
+'use client';
+
 import { useState, useEffect } from 'react';
 import { getSiteSettings } from '../../actions';
+import { P } from '../../globalStyles';
+import styled from 'styled-components';
+
+const Wrapper = styled.div`
+  padding: 200px 25%;
+  margin-bottom: 200px;
+`;
 
 export default function Themes() {
   const [siteSettings, setSiteSettings] = useState<any[]>([]);
+  const text = siteSettings[0]?.themePageText;
 
   useEffect(() => {
     const fetchData = async () => {
@@ -13,11 +23,10 @@ export default function Themes() {
     fetchData();
   }, []);
 
-  console.log(siteSettings);
-
   return (
-    <>
+    <Wrapper>
       <h1>Themes</h1>
-    </>
+      <P>{text}</P>
+    </Wrapper>
   );
 }
