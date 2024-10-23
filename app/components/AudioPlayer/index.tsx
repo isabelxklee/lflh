@@ -187,15 +187,7 @@ export default function AudioPlayer({ interview, excerpts }: AudioPlayerProps) {
 
   const percentageCalc = (ts: string) => {
     const seconds = renderExcerpts(ts);
-    let percentage = 0;
-
-    if (ts.length == 5) {
-      percentage = (seconds / duration) * 100;
-    } else if (ts.length == 8) {
-      percentage = (seconds / duration / 60) * 100;
-    }
-
-    return Math.ceil(percentage);
+    return Math.ceil((seconds / duration) * 100);
   };
 
   const barWidth = (excerpt: any) =>
@@ -222,13 +214,11 @@ export default function AudioPlayer({ interview, excerpts }: AudioPlayerProps) {
         <ExcerptWrapper>
           {excerpts &&
             excerpts.map((excerpt: any, index: number) => (
-              <>
-                <Excerpt
-                  key={index}
-                  $start={percentageCalc(excerpt.startTime)}
-                  $width={barWidth(excerpt)}
-                />
-              </>
+              <Excerpt
+                key={index}
+                $start={percentageCalc(excerpt.startTime)}
+                $width={barWidth(excerpt)}
+              />
             ))}
         </ExcerptWrapper>
         <Controls>
