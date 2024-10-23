@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { getSiteSettings, getThemes } from '../../actions';
-import { P, H3, COLORS, FONT_WEIGHTS, FONTS } from '../../styles';
+import { P, H4, COLORS, FONT_WEIGHTS, FONTS } from '../../styles';
 import styled from 'styled-components';
 import { ThemeType } from '../../../sanity/types/types';
 import Link from 'next/link';
@@ -29,6 +29,14 @@ const StyledLink = styled(Link)`
   }
 `;
 
+const UL = styled.ul`
+  border-left: 2px solid black;
+  list-style: none;
+  padding-inline-start: 22px;
+`;
+
+const LI = styled.li``;
+
 export default function Themes() {
   const [siteSettings, setSiteSettings] = useState<any[]>([]);
   const [themes, setThemes] = useState<ThemeType[]>([]);
@@ -51,16 +59,16 @@ export default function Themes() {
       <P style={{ marginBottom: '32px' }}>{text}</P>
       {themes.map((theme, index: number) => (
         <ThemeWrapper key={index}>
-          <H3>{theme.title}</H3>
-          <ul>
+          <UL>
+            <H4>{theme.title}</H4>
             {theme.subThemes.map((subTheme, index: number) => (
-              <li>
+              <LI>
                 <StyledLink key={index} href={`/themes/${subTheme.slug}`}>
                   {subTheme.title}
                 </StyledLink>
-              </li>
+              </LI>
             ))}
-          </ul>
+          </UL>
         </ThemeWrapper>
       ))}
     </Wrapper>
