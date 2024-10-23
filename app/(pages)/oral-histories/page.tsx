@@ -33,6 +33,8 @@ export default function OralHistories() {
     fetchData();
   }, []);
 
+  console.log(interviews);
+
   return (
     <Wrapper>
       <h1>Oral Histories</h1>
