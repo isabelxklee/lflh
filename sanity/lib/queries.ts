@@ -4,7 +4,8 @@ export const THEMES_QUERY = defineQuery(`*[_type == "theme"] | order(sort asc) {
       _id,
       title,
       sort,
-      description
+      description,
+      "subThemes": *[_type == "subTheme" && references(^._id)]
     }`);
 
 export const SUB_THEMES_QUERY =
@@ -20,7 +21,7 @@ export const SITE_SETTINGS_QUERY = defineQuery(`*[_type == "siteSettings"]{
       siteTitle,
       siteLogo,
       aboutPageText,
-      themePageText
+      themePageText,
     }`);
 
 export const INTERVIEWS_QUERY = defineQuery(`*[_type == "interview"]{
