@@ -5,12 +5,18 @@ import styled from 'styled-components';
 import { getSubThemes } from '../../../actions';
 import { SubThemeType } from '../../../../sanity/types/types';
 import { useParams } from 'next/navigation';
-import Link from 'next/link';
-import { H4, P } from '../../../styles';
+import { H4, P, StyledLink } from '../../../styles';
 
 const Wrapper = styled.div`
   padding: 200px 25%;
   margin-bottom: 200px;
+`;
+
+const SubThemeWrapper = styled.div`
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
 `;
 
 export default function SubThemePage() {
@@ -31,14 +37,14 @@ export default function SubThemePage() {
 
   return (
     <Wrapper>
-      <Link href="/themes">Back to all themes</Link>
+      <StyledLink href="/themes">Back to all themes</StyledLink>
       {subTheme && (
-        <>
+        <SubThemeWrapper>
           <H4>
             {subTheme.theme.title}: {subTheme.title}
           </H4>
           <P>{subTheme.theme.description}</P>
-        </>
+        </SubThemeWrapper>
       )}
     </Wrapper>
   );
