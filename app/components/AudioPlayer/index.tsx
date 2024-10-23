@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { COLORS, GRADIENT_COLORS, SmallP, P } from '../../globalStyles';
 import { useEffect, useRef, useState } from 'react';
 import { InterviewType } from '../../../sanity/types/types';
+import { render } from 'react-dom';
 
 const Background = styled.div`
   position: fixed;
@@ -160,7 +161,10 @@ export default function AudioPlayer({ interview, excerpts }: AudioPlayerProps) {
   // and set a color for the associated subtheme
 
   const renderExcerpts = (ts: string) => {
-    let hours, minutes, seconds, timeInSeconds;
+    let hours,
+      minutes,
+      seconds,
+      timeInSeconds = 0;
     const hourRegex = /((\d{2}):(\d{2}):(\d{2}))/g;
     const minuteRegex = /((\d{2}):(\d{2}))/g;
 
@@ -171,31 +175,42 @@ export default function AudioPlayer({ interview, excerpts }: AudioPlayerProps) {
       seconds = ts.slice(6, 8);
       timeInSeconds =
         parseInt(hours) * 3600 + parseInt(minutes) * 60 + parseInt(seconds);
-
-      return timeInSeconds;
-
       // mm:ss
     } else if (minuteRegex.test(ts)) {
       minutes = ts.slice(0, 2);
       seconds = ts.slice(3, 5);
       timeInSeconds = parseInt(minutes) * 60 + parseInt(seconds);
-      return timeInSeconds;
     }
 
-    return 0;
+    return timeInSeconds;
   };
 
   const percentageCalc = (ts: string) => {
     const seconds = renderExcerpts(ts);
-    const percentage = (seconds / duration) * 100;
+    let percentage = 0;
+
+    if (ts.length == 5) {
+      percentage = (seconds / duration) * 100;
+    } else if (ts.length == 8) {
+      percentage = (seconds / duration / 60) * 100;
+    }
+
     return Math.floor(percentage);
   };
 
   const barWidth = (excerpt: any) => {
     const start = renderExcerpts(excerpt.startTime);
     const end = renderExcerpts(excerpt.endTime);
-    const difference = ((end - start) / duration) * 100;
-    return Math.floor(difference);
+    let difference = end - start;
+    let width = 0;
+
+    if (difference > 100) {
+      width = (difference / duration / 60) * 100;
+    } else {
+      width = (difference / duration) * 100;
+    }
+
+    return Math.floor(width);
   };
 
   return (
@@ -217,11 +232,16 @@ export default function AudioPlayer({ interview, excerpts }: AudioPlayerProps) {
         <ExcerptWrapper>
           {excerpts &&
             excerpts.map((excerpt: any, index: number) => (
-              <Excerpt
-                key={index}
-                $start={percentageCalc(excerpt.startTime)}
-                $width={barWidth(excerpt)}
-              />
+              <>
+                <Excerpt
+                  key={index}
+                  $start={percentageCalc(excerpt.startTime)}
+                  $width={
+                    percentageCalc(excerpt.endTime) -
+                    percentageCalc(excerpt.startTime)
+                  }
+                />
+              </>
             ))}
         </ExcerptWrapper>
         <Controls>
