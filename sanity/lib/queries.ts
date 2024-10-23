@@ -19,7 +19,8 @@ export const SITE_SETTINGS_QUERY = defineQuery(`*[_type == "siteSettings"]{
       _id,
       siteTitle,
       siteLogo,
-      aboutPageText
+      aboutPageText,
+      themePageText
     }`);
 
 export const INTERVIEWS_QUERY = defineQuery(`*[_type == "interview"]{
