@@ -3,7 +3,7 @@
 import styled from 'styled-components';
 import { useCallback, useEffect, useState } from 'react';
 import Link from 'next/link.js';
-import { COLORS, FONT_WEIGHTS, FONTS, P } from '../../globalStyles.js';
+import { COLORS, FONT_WEIGHTS, FONTS, P } from '../../styles.js';
 import { getThemes, getInterviews } from '../../actions';
 import { InterviewType, ThemeType } from '../../../sanity/types/types.js';
 

@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { getSiteSettings, getThemes } from '../../actions';
-import { P } from '../../globalStyles';
+import { P } from '../../styles';
 import styled from 'styled-components';
 import { ThemeType } from '../../../sanity/types/types';
 

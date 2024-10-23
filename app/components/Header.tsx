@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import styled from 'styled-components';
-import { FONTS, COLORS, FONT_WEIGHTS } from '../globalStyles';
+import { FONTS, COLORS, FONT_WEIGHTS } from '../styles';
 
 interface HeaderProps {
   show: boolean;

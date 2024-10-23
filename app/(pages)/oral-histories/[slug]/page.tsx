@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { useParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { getInterviews, getExcerpts } from '../../../actions';
-import { H3 } from '../../../globalStyles';
+import { H3 } from '../../../styles';
 import AudioPlayer from '../../../components/AudioPlayer';
 import Transcript from '../../../components/Transcript';
 import { InterviewType } from '../../../../sanity/types/types';

@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { GlobalStyles } from './globalStyles.js';
+import { GlobalStyles } from './styles.js';
 
 export const metadata: Metadata = {
   title: 'Listening for the Long Haul',
