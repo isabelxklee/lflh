@@ -5,6 +5,7 @@ import { useCallback, useEffect, useState } from 'react';
 import Link from 'next/link.js';
 import { COLORS, FONT_WEIGHTS, FONTS, P } from '../../globalStyles.js';
 import { getThemes, getInterviews } from '../../actions';
+import { InterviewType, ThemeType } from '../../../sanity/types/types.js';
 
 const ExcerptWrapper = styled.div<{ $length: number }>``;
 
@@ -23,8 +24,8 @@ const StyledLink = styled(Link)`
 `;
 
 export default function OralHistories() {
-  const [themes, setThemes] = useState<any[]>([]);
-  const [interviews, setInterviews] = useState<any[]>([]);
+  const [themes, setThemes] = useState<ThemeType[]>([]);
+  const [interviews, setInterviews] = useState<InterviewType[]>([]);
 
   const timeLength = useCallback((startTime: string) => {
     const length = parseInt(startTime);
@@ -47,7 +48,7 @@ export default function OralHistories() {
     <Wrapper>
       <h1>Oral Histories</h1>
       {interviews &&
-        interviews.map((interview: any, index: number) => (
+        interviews.map((interview: InterviewType, index: number) => (
           <div key={index}>
             <StyledLink href={`/oral-histories/${interview.slug.current}`}>
               {interview.title}
