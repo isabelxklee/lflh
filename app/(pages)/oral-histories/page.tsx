@@ -1,13 +1,11 @@
 'use client';
 
 import styled from 'styled-components';
-import { useCallback, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Link from 'next/link.js';
 import { COLORS, FONT_WEIGHTS, FONTS, P } from '../../styles.js';
-import { getThemes, getInterviews } from '../../actions';
+import { getInterviews } from '../../actions';
 import { InterviewType, ThemeType } from '../../../sanity/types/types.js';
-
-const ExcerptWrapper = styled.div<{ $length: number }>``;
 
 const Wrapper = styled.div`
   padding: 200px 25%;
@@ -24,20 +22,11 @@ const StyledLink = styled(Link)`
 `;
 
 export default function OralHistories() {
-  const [themes, setThemes] = useState<ThemeType[]>([]);
   const [interviews, setInterviews] = useState<InterviewType[]>([]);
-
-  const timeLength = useCallback((startTime: string) => {
-    const length = parseInt(startTime);
-
-    return length;
-  }, []);
 
   useEffect(() => {
     const fetchData = async () => {
-      const themes = await getThemes();
       const interviews = await getInterviews();
-      setThemes(themes);
       setInterviews(interviews);
     };
 
@@ -50,14 +39,9 @@ export default function OralHistories() {
       {interviews &&
         interviews.map((interview: InterviewType, index: number) => (
           <div key={index}>
-            <StyledLink href={`/oral-histories/${interview.slug.current}`}>
+            <StyledLink href={`/oral-histories/${interview.slug}`}>
               {interview.title}
             </StyledLink>
-            {/* {interview.excerpts.map((excerpt: any, index: number) => (
-              <ExcerptWrapper key={index} $length={excerpt.startTime}>
-                <P>{excerpt.subTheme}</P>
-              </ExcerptWrapper>
-            ))} */}
           </div>
         ))}
     </Wrapper>
