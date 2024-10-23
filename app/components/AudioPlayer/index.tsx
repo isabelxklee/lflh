@@ -156,11 +156,7 @@ export default function AudioPlayer({ interview, excerpts }: AudioPlayerProps) {
     };
   }, []);
 
-  // calculate excerpts timestamps as seconds
-  // loop over list
-  // and set a color for the associated subtheme
-
-  const renderExcerpts = (ts: string) => {
+  const timeStampToSeconds = (ts: string) => {
     let hours,
       minutes,
       seconds,
@@ -186,7 +182,7 @@ export default function AudioPlayer({ interview, excerpts }: AudioPlayerProps) {
   };
 
   const percentageCalc = (ts: string) => {
-    const seconds = renderExcerpts(ts);
+    const seconds = timeStampToSeconds(ts);
     return Math.ceil((seconds / duration) * 100);
   };
 
