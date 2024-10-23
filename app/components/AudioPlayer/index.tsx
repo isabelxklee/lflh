@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { COLORS, SmallP, P } from '../../globalStyles';
+import { COLORS, GRADIENT_COLORS, SmallP, P } from '../../globalStyles';
 import { useEffect, useRef, useState } from 'react';
 import { InterviewType } from '../../../sanity/types/types';
 
@@ -35,13 +35,14 @@ const Secondary = styled.div`
   gap: 20px;
 `;
 
-const Option = styled.div`
-  position: absolute;
-  background: ${COLORS.BLACK};
-  height: 8px;
-  width: 10%;
+const Excerpt = styled.div<{ $width: number; $start: number }>`
+  position: relative;
+  background: ${GRADIENT_COLORS.ORANGE};
+  height: 4px;
+  top: -14px;
+  width: ${({ $width }) => `${$width}%`};
+  left: 5%;
   z-index: 10;
-  top: 47px;
 `;
 
 interface AudioPlayerProps {
@@ -195,10 +196,11 @@ export default function AudioPlayer({ interview, excerpts }: AudioPlayerProps) {
         />
         {excerpts &&
           excerpts.map((excerpt: any, index: number) => (
-            <Option
+            <Excerpt
               key={index}
+              $start={5}
+              $width={10}
               value={renderExcerpts(excerpt.startTime)}
-              label=""
             />
           ))}
 
