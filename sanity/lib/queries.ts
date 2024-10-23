@@ -16,7 +16,7 @@ export const SUB_THEMES_QUERY =
       _id,
       title,
       sort,
-      "themeName": theme->title,
+      theme->,
       "slug": slug.current
     }`);
 

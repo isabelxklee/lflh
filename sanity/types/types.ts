@@ -10,8 +10,8 @@ export type SubThemeType = {
   _id: string;
   title: string;
   slug: string;
+  theme: ThemeType;
   sort: number;
-  themeName: string;
 };
 
 export type InterviewType = {

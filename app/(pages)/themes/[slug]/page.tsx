@@ -6,7 +6,7 @@ import { getSubThemes } from '../../../actions';
 import { SubThemeType } from '../../../../sanity/types/types';
 import { useParams } from 'next/navigation';
 import Link from 'next/link';
-import { H4 } from '../../../styles';
+import { H4, P } from '../../../styles';
 
 const Wrapper = styled.div`
   padding: 200px 25%;
@@ -35,8 +35,9 @@ export default function SubThemePage() {
       {subTheme && (
         <>
           <H4>
-            {subTheme.themeName}: {subTheme.title}
+            {subTheme.theme.title}: {subTheme.title}
           </H4>
+          <P>{subTheme.theme.description}</P>
         </>
       )}
     </Wrapper>
