@@ -27,7 +27,7 @@ export default function InterviewPage() {
     const findInterviewAndExcerpts = async () => {
       const interviews = await getInterviews();
       const interview = interviews.find(
-        (interview: InterviewType) => interview.slug.current == params.slug
+        (interview: InterviewType) => interview.slug == params.slug
       );
       setInterview(interview);
 
