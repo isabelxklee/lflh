@@ -13,7 +13,8 @@ export const SUB_THEMES_QUERY =
       _id,
       title,
       sort,
-      "themeName": theme->title
+      "themeName": theme->title,
+      "slug": slug.current
     }`);
 
 export const SITE_SETTINGS_QUERY = defineQuery(`*[_type == "siteSettings"]{
@@ -31,7 +32,7 @@ export const INTERVIEWS_QUERY = defineQuery(`*[_type == "interview"]{
       "audioFileURL": audioFile.asset->url,
       "transcript": transcript.asset->url,
       "transcriptText": transcriptText[].children[].text,
-      slug
+      "slug": slug.current
     }`);
 
 export const EXCERPTS_QUERY = defineQuery(`*[_type == "excerpt"]{

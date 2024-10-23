@@ -9,6 +9,7 @@ export type ThemeType = {
 export type SubThemeType = {
   _id: string;
   title: string;
+  slug: string;
   sort: number;
   themeName: string;
 };
@@ -20,9 +21,7 @@ export type InterviewType = {
   audioFileURL: string;
   transcript: string;
   transcriptText: string[];
-  slug: {
-    current: string;
-  };
+  slug: string;
 };
 
 export type ExcerptType = {
