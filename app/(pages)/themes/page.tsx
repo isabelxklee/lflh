@@ -2,9 +2,10 @@
 
 import { useState, useEffect } from 'react';
 import { getSiteSettings, getThemes } from '../../actions';
-import { P } from '../../styles';
+import { P, H3 } from '../../styles';
 import styled from 'styled-components';
 import { ThemeType } from '../../../sanity/types/types';
+import Link from 'next/link';
 
 const Wrapper = styled.div`
   padding: 200px 25%;
@@ -37,9 +38,11 @@ export default function Themes() {
       <P style={{ marginBottom: '32px' }}>{text}</P>
       {themes.map((theme, index: number) => (
         <ThemeWrapper key={index}>
-          <P>{theme.title}</P>
+          <H3>{theme.title}</H3>
           {theme.subThemes.map((subTheme, index: number) => (
-            <P key={index}>{subTheme.title}</P>
+            <Link key={index} href={`/themes/${subTheme._id}`}>
+              {subTheme.title}
+            </Link>
           ))}
         </ThemeWrapper>
       ))}
