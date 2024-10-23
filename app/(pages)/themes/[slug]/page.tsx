@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import Link from 'next/link';
 import { getSubThemes } from '../../../actions';
 import { SubThemeType } from '../../../../sanity/types/types';
 import { useParams } from 'next/navigation';
