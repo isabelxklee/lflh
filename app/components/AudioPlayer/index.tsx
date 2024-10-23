@@ -35,6 +35,15 @@ const Secondary = styled.div`
   gap: 20px;
 `;
 
+const Option = styled.div`
+  position: absolute;
+  background: ${COLORS.BLACK};
+  height: 8px;
+  width: 10%;
+  z-index: 10;
+  top: 47px;
+`;
+
 interface AudioPlayerProps {
   interview: InterviewType;
   excerpts: any;
@@ -184,16 +193,15 @@ export default function AudioPlayer({ interview, excerpts }: AudioPlayerProps) {
           onKeyUp={onScrubEnd}
           style={{ background: trackStyling }}
         />
-        <datalist id="values">
-          {excerpts &&
-            excerpts.map((excerpt: any, index: number) => (
-              <option
-                key={index}
-                value={renderExcerpts(excerpt.startTime)}
-                label=""
-              />
-            ))}
-        </datalist>
+        {excerpts &&
+          excerpts.map((excerpt: any, index: number) => (
+            <Option
+              key={index}
+              value={renderExcerpts(excerpt.startTime)}
+              label=""
+            />
+          ))}
+
         <Controls>
           <Primary>
             {playing ? (
