@@ -41,7 +41,7 @@ const Excerpt = styled.div<{ $width: number; $start: number }>`
   height: 4px;
   top: -14px;
   width: ${({ $width }) => `${$width}%`};
-  left: 5%;
+  left: ${({ $start }) => `${$start}%`};
   z-index: 10;
 `;
 
@@ -216,9 +216,8 @@ export default function AudioPlayer({ interview, excerpts }: AudioPlayerProps) {
               <Excerpt
                 key={index}
                 $start={percentageCalc(excerpt.startTime)}
-                $width={10}
+                $width={barWidth(excerpt)}
               />
-              {console.log(barWidth(excerpt))}
             </>
           ))}
 
