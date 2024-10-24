@@ -27,8 +27,7 @@ export type InterviewType = {
 export type ExcerptType = {
   _id: string;
   title: string;
-  startTime: string;
-  endTime: string;
+  transcriptText: string;
   subTheme: any;
   interview: any;
 };
