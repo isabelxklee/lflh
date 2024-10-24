@@ -25,15 +25,15 @@ interface ControlsProps {
 
 export default function Excerpt({ excerpt, duration }: ControlsProps) {
   const [text, setText] = useState<string>('');
+  const [speaker, setSpeaker] = useState<string>('');
+  const [timeStamp, setTimeStamp] = useState<string>('');
 
   useEffect(() => {
     const obj = formatTranscriptText(excerpt.transcriptText);
-    // setSpeaker(obj.speaker);
-    // setTimeStamp(obj.timestamp);
+    setSpeaker(obj.speaker);
+    setTimeStamp(obj.timestamp);
     setText(obj.text);
   }, []);
-
-  console.log(excerpt);
 
   const percentageCalc = (ts: string) => {
     const seconds = timeStampToSeconds(ts);
