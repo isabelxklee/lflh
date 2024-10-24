@@ -28,19 +28,14 @@ export default function Waveform({ width }: WaveformProps) {
   // generate <Bar>s to fill that container
   // space between bars + width of the bars
 
-  // example
-  // 625px width
-  // 625 / gap 3px / bar width 3px
-  // approx 104
-
-  // run random generator only once
-
   const randomBarHeight = () => Math.floor(Math.random() * (30 - 10) + 10);
 
   const generateBarHeights = useMemo(() => {
     let arr: number[] = [];
+    const calcWidth = Math.floor(width / 6);
+
     if (barHeights.length < 1) {
-      [...Array(width)].map(() => arr.push(randomBarHeight()));
+      [...Array(calcWidth)].map(() => arr.push(randomBarHeight()));
       setBarHeights(arr);
     }
     return arr;

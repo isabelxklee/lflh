@@ -100,7 +100,7 @@ interface AudioPlayerProps {
 export default function AudioPlayer({ interview, excerpts }: AudioPlayerProps) {
   const [playing, setPlaying] = useState<boolean>(false);
   const [trackProgress, setTrackProgress] = useState<number>(0);
-  const [waveformWidth, setWaveformWidth] = useState<number>(0);
+  const [waveformWidth, setWaveformWidth] = useState<number>();
 
   const audioPlayerRef = useRef(new Audio(interview.audioFileURL));
   const intervalRef = useRef<any>();
@@ -252,7 +252,7 @@ export default function AudioPlayer({ interview, excerpts }: AudioPlayerProps) {
       <AudioPlayerWrapper>
         <div style={{ maxWidth: '1000px', width: '100%' }}>
           <TimeStamp>{interview.title}</TimeStamp>
-          <Waveform width={waveformWidth} />
+          {waveformWidth && <Waveform width={waveformWidth} />}
           <ProgressBar
             type="range"
             value={trackProgress}
