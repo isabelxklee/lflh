@@ -15,12 +15,14 @@ const TextWrapper = styled.div`
 export default function Transcript({ text }: TranscriptProps) {
   const [speaker, setSpeaker] = useState<string>('');
   const [cleanText, setCleanText] = useState<string>('');
-  const [timeStamp, setTimeStamp] = useState<string>('');
+  const [start, setStart] = useState<string>('');
+  const [end, setEnd] = useState<string>('');
 
   useEffect(() => {
     const obj = formatTranscriptText(text);
     setSpeaker(obj.speaker);
-    setTimeStamp(obj.timestamp);
+    setStart(obj.start);
+    setEnd(obj.end);
     setCleanText(obj.text);
   }, [text]);
 

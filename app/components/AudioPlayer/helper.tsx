@@ -1,14 +1,19 @@
 export const formatTranscriptText = (text: string) => {
   const index = text.indexOf(':');
   const speaker = text.slice(0, index);
-  const regex = /(\([0-9:]{5,8})/g;
-  const ts = text.match(regex);
-  let cleanTs = '';
+  const startRegex = /(\([0-9:]{5,8})/g;
+  const endRegex = /([0-9:]{5,8}\))/g;
+  const startTime = text.match(startRegex);
+  const endTime = text.match(endRegex);
+
+  let cleanStartTime = '';
+  let cleanEndTime = '';
   let cleanText = '';
 
-  if (ts) {
-    cleanTs = ts[0].slice(1, ts[0].length);
-    const closingIndex = text.indexOf(ts[0]);
+  if (startTime && endTime) {
+    cleanStartTime = startTime[0].slice(1, startTime[0].length);
+    cleanEndTime = endTime[0].slice(0, endTime[0].length - 1);
+    const closingIndex = text.indexOf(startTime[0]);
     cleanText = text.slice(index + 2, closingIndex);
   } else {
     cleanText = text.slice(index + 2, text.length);
@@ -16,7 +21,8 @@ export const formatTranscriptText = (text: string) => {
 
   return {
     speaker: speaker,
-    timestamp: cleanTs,
+    start: cleanStartTime,
+    end: cleanEndTime,
     text: cleanText
   };
 };
