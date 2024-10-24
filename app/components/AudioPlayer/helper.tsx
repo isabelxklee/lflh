@@ -1,8 +1,4 @@
-interface formatTimeProps {
-  text: string;
-}
-
-export const formatTime = ({ text }: formatTimeProps) => {
+export const formatTime = (text: string) => {
   const index = text.indexOf(':');
   const speaker = text.slice(0, index);
   const regex = /(\([0-9:]{5,8})/g;
