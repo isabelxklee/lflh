@@ -1,16 +1,11 @@
 import styled, { css } from 'styled-components';
-import {
-  COLORS,
-  GRADIENT_COLORS,
-  P,
-  TextButton,
-  FONT_WEIGHTS
-} from '../../styles';
+import { COLORS, GRADIENT_COLORS, P, FONT_WEIGHTS } from '../../styles';
 import { useEffect, useRef, useState } from 'react';
 import { InterviewType } from '../../../sanity/types/types';
 import { IoIosPlayCircle } from 'react-icons/io';
 import { IoPauseCircleSharp } from 'react-icons/io5';
 import Waveform from './Waveform';
+import Controls from './Controls';
 
 const Background = styled.div`
   position: fixed;
@@ -30,13 +25,6 @@ const AudioPlayerWrapper = styled.div`
   width: 1200px;
 `;
 
-const Controls = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-`;
-
 const TimeStamp = styled(P)`
   font-size: 18px;
   font-weight: ${FONT_WEIGHTS.MEDIUM};
@@ -45,17 +33,6 @@ const TimeStamp = styled(P)`
 const ProgressBar = styled.input`
   margin: 30px 0;
   width: 100%;
-`;
-
-const Primary = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 20px;
-`;
-
-const Secondary = styled.div`
-  display: flex;
-  gap: 20px;
 `;
 
 const Excerpt = styled.div<{ $width: number; $start: number }>`
@@ -70,26 +47,6 @@ const Excerpt = styled.div<{ $width: number; $start: number }>`
 const ExcerptWrapper = styled.div`
   top: -42px;
   position: relative;
-`;
-
-const Button = styled.button`
-  border: none;
-  background: transparent;
-  padding: 0;
-`;
-
-const IconStyles = css`
-  width: 40px;
-  height: 40px;
-  cursor: pointer;
-`;
-
-const PlayIcon = styled(IoIosPlayCircle)`
-  ${IconStyles}
-`;
-
-const PauseIcon = styled(IoPauseCircleSharp)`
-  ${IconStyles}
 `;
 
 interface AudioPlayerProps {
@@ -282,27 +239,7 @@ export default function AudioPlayer({ interview, excerpts }: AudioPlayerProps) {
                 />
               ))}
           </ExcerptWrapper>
-          <Controls>
-            <Primary>
-              {playing ? (
-                <Button onClick={() => setPlaying(false)}>
-                  <PauseIcon />
-                </Button>
-              ) : (
-                <Button onClick={() => setPlaying(true)}>
-                  <PlayIcon />
-                </Button>
-              )}
-              <TimeStamp>
-                {formatTime(trackProgress)} / {formatTime(duration)}
-              </TimeStamp>
-            </Primary>
-            <Secondary>
-              <TextButton>Replay</TextButton>
-              <TextButton>Share interview</TextButton>
-              <TextButton>Next interview</TextButton>
-            </Secondary>
-          </Controls>
+          <Controls />
         </div>
       </AudioPlayerWrapper>
     </Background>
