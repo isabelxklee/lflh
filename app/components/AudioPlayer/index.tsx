@@ -252,9 +252,9 @@ export default function AudioPlayer({ interview, excerpts }: AudioPlayerProps) {
       <AudioPlayerWrapper>
         <div style={{ maxWidth: '1000px', width: '100%' }}>
           <TimeStamp>{interview.title}</TimeStamp>
-          {waveformWidth && (
+          {waveformWidth && excerpts && (
             <Waveform
-              width={waveformWidth}
+              pixelWidth={waveformWidth}
               excerpts={excerpts}
               duration={duration}
             />

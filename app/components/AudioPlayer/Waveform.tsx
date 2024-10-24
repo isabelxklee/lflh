@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 import { COLORS, GRADIENT_COLORS } from '../../styles';
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { ExcerptType } from '../../../sanity/types/types';
 
 interface WaveformProps {
-  width: number;
+  pixelWidth: number;
   excerpts: ExcerptType[];
   duration: number;
 }
@@ -25,55 +25,15 @@ const Bar = styled.div<{ $height: number; $color: string; $opacity: number }>`
   border-radius: 2px;
 `;
 
-export default function Waveform({ width, excerpts, duration }: WaveformProps) {
+export default function Waveform({
+  pixelWidth,
+  excerpts,
+  duration
+}: WaveformProps) {
   const [barHeights, setBarHeights] = useState<number[]>([]);
+  const [barPositions, setBarPositions] = useState<any[]>([]);
 
   // format excerpt timestamps
-
-  const formatTime = (time: number) => {
-    if (time < 60) {
-      const minutes = '00';
-      const seconds = Math.floor(time).toLocaleString('en-US', {
-        minimumIntegerDigits: 2,
-        useGrouping: false
-      });
-      return `${minutes}:${seconds}`;
-    }
-
-    if (time > 60 && time < 3600) {
-      const hours = '00';
-      const minutes = Math.floor(time / 60);
-      const formattedMinutes = minutes.toLocaleString('en-US', {
-        minimumIntegerDigits: 2,
-        useGrouping: false
-      });
-      const seconds = Math.floor(time - minutes * 60).toLocaleString('en-US', {
-        minimumIntegerDigits: 2,
-        useGrouping: false
-      });
-      return `${hours}:${formattedMinutes}:${seconds}`;
-    }
-
-    if (time > 3600) {
-      const hours = Math.round((time / 3600) * 100) / 100;
-      const formattedHours = Math.floor(time / 3600);
-      const minutes = (hours - formattedHours) * 60;
-      const formattedMinutes = Math.floor(minutes).toLocaleString('en-US', {
-        minimumIntegerDigits: 2,
-        useGrouping: false
-      });
-      const seconds = time / 60 - Math.floor(time / 60);
-      const formattedSeconds = Math.floor(seconds * 60).toLocaleString(
-        'en-US',
-        {
-          minimumIntegerDigits: 2,
-          useGrouping: false
-        }
-      );
-
-      return `${formattedHours}:${formattedMinutes}:${formattedSeconds}`;
-    }
-  };
 
   const timeStampToSeconds = (ts: string) => {
     let hours,
@@ -102,7 +62,7 @@ export default function Waveform({ width, excerpts, duration }: WaveformProps) {
 
   const percentageCalc = (ts: string) => {
     const seconds = timeStampToSeconds(ts);
-    return Math.ceil((seconds / duration) * 100);
+    return seconds / duration;
   };
 
   const barWidth = (excerpt: any) =>
@@ -110,18 +70,45 @@ export default function Waveform({ width, excerpts, duration }: WaveformProps) {
       percentageCalc(excerpt.endTime) - percentageCalc(excerpt.startTime)
     );
 
-  // get width of container
-  // generate <Bar>s to fill that container
-  // space between bars + width of the bars
-
   const randomBarHeight = () => Math.floor(Math.random() * (40 - 20) + 20);
+  const numBars = Math.floor(pixelWidth / 6);
+
+  useEffect(() => {
+    const getBarPositions = () => {
+      for (let i = 0; i < excerpts.length; i++) {
+        const startSeconds = timeStampToSeconds(excerpts[i].startTime);
+        const startPercent = startSeconds / duration;
+        const endSeconds = timeStampToSeconds(excerpts[i].endTime);
+        const endPercent = endSeconds / duration;
+
+        const obj = {
+          start: Math.floor(startPercent * numBars),
+          end: Math.floor(endPercent * numBars),
+          color: `${GRADIENT_COLORS.ORANGE}`
+        };
+
+        setBarPositions(prev => [...prev, obj]);
+      }
+
+      return barPositions;
+    };
+
+    getBarPositions();
+  }, []);
+
+  console.log(barPositions);
+
+  // figure out which bars should be colored
+  // depending on the excerpt's start and end time
+  // total number of bars = calcWidth
+  // example: 166
+  // orange: [23, 71]
 
   const generateBarHeights = useMemo(() => {
     let arr: number[] = [];
-    const calcWidth = Math.floor(width / 6);
 
     if (barHeights.length < 1) {
-      [...Array(calcWidth)].map(() => arr.push(randomBarHeight()));
+      [...Array(numBars)].map(() => arr.push(randomBarHeight()));
       setBarHeights(arr);
     }
     return arr;
@@ -149,7 +136,7 @@ export default function Waveform({ width, excerpts, duration }: WaveformProps) {
 
   return (
     <Wrapper>
-      {excerpts &&
+      {/* {excerpts &&
         excerpts.map((excerpt, index) => (
           <Bar
             key={index}
@@ -157,7 +144,7 @@ export default function Waveform({ width, excerpts, duration }: WaveformProps) {
             $color={GRADIENT_COLORS.ORANGE}
             $opacity={1}
           />
-        ))}
+        ))} */}
       {generateBarHeights.map((num, index) => (
         <Bar
           key={index}
