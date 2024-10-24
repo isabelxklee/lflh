@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { FONT_WEIGHTS, P } from '../../styles';
+import { FONT_WEIGHTS, SmallP } from '../../styles';
 import { styled } from 'styled-components';
 
 interface TranscriptProps {
@@ -34,8 +34,10 @@ export default function Transcript({ text }: TranscriptProps) {
 
   return (
     <TextWrapper>
-      <P style={{ flex: 1, fontWeight: FONT_WEIGHTS.BOLD }}>{speaker}</P>
-      <P style={{ flex: 3 }}>{cleanText}</P>
+      <SmallP style={{ flex: 1, fontWeight: FONT_WEIGHTS.BOLD }}>
+        {speaker}
+      </SmallP>
+      <SmallP style={{ flex: 3 }}>{cleanText}</SmallP>
     </TextWrapper>
   );
 }
