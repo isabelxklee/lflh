@@ -18,12 +18,16 @@ const Background = styled.div`
   right: 0;
   width: 100%;
   background: ${COLORS.GREY};
+  display: flex;
+  justify-content: center;
 `;
 
 const AudioPlayerWrapper = styled.div`
-  padding: 40px 200px;
+  padding: 40px 0;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  width: 1200px;
 `;
 
 const Controls = styled.div`
@@ -40,6 +44,7 @@ const TimeStamp = styled(P)`
 
 const ProgressBar = styled.input`
   margin: 30px 0;
+  width: 100%;
 `;
 
 const Primary = styled.div`
@@ -245,52 +250,54 @@ export default function AudioPlayer({ interview, excerpts }: AudioPlayerProps) {
   return (
     <Background>
       <AudioPlayerWrapper>
-        <TimeStamp>{interview.title}</TimeStamp>
-        <Waveform width={waveformWidth} />
-        <ProgressBar
-          type="range"
-          value={trackProgress}
-          ref={inputRef}
-          list="values"
-          step="1"
-          min="0"
-          max={duration ? duration : `${duration}`}
-          onChange={(event: any) => onScrub(event.target.value)}
-          onMouseUp={onScrubEnd}
-          onKeyUp={onScrubEnd}
-          style={{ background: trackStyling }}
-        />
-        <ExcerptWrapper>
-          {excerpts &&
-            excerpts.map((excerpt: any, index: number) => (
-              <Excerpt
-                key={index}
-                $start={percentageCalc(excerpt.startTime)}
-                $width={barWidth(excerpt)}
-              />
-            ))}
-        </ExcerptWrapper>
-        <Controls>
-          <Primary>
-            {playing ? (
-              <Button onClick={() => setPlaying(false)}>
-                <PauseIcon />
-              </Button>
-            ) : (
-              <Button onClick={() => setPlaying(true)}>
-                <PlayIcon />
-              </Button>
-            )}
-            <TimeStamp>
-              {formatTime(trackProgress)} / {formatTime(duration)}
-            </TimeStamp>
-          </Primary>
-          <Secondary>
-            <TextButton>Replay</TextButton>
-            <TextButton>Share interview</TextButton>
-            <TextButton>Next interview</TextButton>
-          </Secondary>
-        </Controls>
+        <div style={{ maxWidth: '1000px', width: '100%' }}>
+          <TimeStamp>{interview.title}</TimeStamp>
+          <Waveform width={waveformWidth} />
+          <ProgressBar
+            type="range"
+            value={trackProgress}
+            ref={inputRef}
+            list="values"
+            step="1"
+            min="0"
+            max={duration ? duration : `${duration}`}
+            onChange={(event: any) => onScrub(event.target.value)}
+            onMouseUp={onScrubEnd}
+            onKeyUp={onScrubEnd}
+            style={{ background: trackStyling }}
+          />
+          <ExcerptWrapper>
+            {excerpts &&
+              excerpts.map((excerpt: any, index: number) => (
+                <Excerpt
+                  key={index}
+                  $start={percentageCalc(excerpt.startTime)}
+                  $width={barWidth(excerpt)}
+                />
+              ))}
+          </ExcerptWrapper>
+          <Controls>
+            <Primary>
+              {playing ? (
+                <Button onClick={() => setPlaying(false)}>
+                  <PauseIcon />
+                </Button>
+              ) : (
+                <Button onClick={() => setPlaying(true)}>
+                  <PlayIcon />
+                </Button>
+              )}
+              <TimeStamp>
+                {formatTime(trackProgress)} / {formatTime(duration)}
+              </TimeStamp>
+            </Primary>
+            <Secondary>
+              <TextButton>Replay</TextButton>
+              <TextButton>Share interview</TextButton>
+              <TextButton>Next interview</TextButton>
+            </Secondary>
+          </Controls>
+        </div>
       </AudioPlayerWrapper>
     </Background>
   );

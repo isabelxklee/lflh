@@ -40,7 +40,7 @@ export default function Waveform({ width }: WaveformProps) {
   const generateBarHeights = useMemo(() => {
     let arr: number[] = [];
     if (barHeights.length < 1) {
-      [...Array(104)].map(() => arr.push(randomBarHeight()));
+      [...Array(width)].map(() => arr.push(randomBarHeight()));
       setBarHeights(arr);
     }
     return arr;
