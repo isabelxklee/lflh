@@ -1,69 +1,34 @@
-import React, { useEffect, useRef, useState } from 'react';
-import WaveSurfer from 'wavesurfer.js';
-import styled from 'styled-components';
-import { FaPauseCircle, FaPlayCircle } from 'react-icons/fa';
-import { COLORS } from '../../styles';
+import WavesurferPlayer from '@wavesurfer/react';
+import { useState } from 'react';
 
-const Wrapper = styled.div`
-  display: grid;
-  grid-template-columns: 30px 1fr;
-  align-items: center;
+interface WaveformProps {
+  audio: string;
+}
 
-  button {
-    width: 30px;
-    height: 30px;
-    border: none;
-    padding: 0;
-    background-color: ${COLORS.GREY};
-  }
-`;
+export default function Waveform({ audio }: WaveformProps) {
+  const [wavesurfer, setWavesurfer] = useState<any>();
+  const [isPlaying, setIsPlaying] = useState(false);
 
-const StyledPauseIcon = styled(FaPauseCircle)`
-  background-color: ${COLORS.GREY};
-`;
+  const onReady = (ws: any) => {
+    setWavesurfer(ws);
+    setIsPlaying(false);
+  };
 
-const StyledPlayIcon = styled(FaPlayCircle)`
-  background-color: ${COLORS.GREY};
-`;
-
-export default function WaveForm({ audio }: any) {
-  const containerRef = useRef<any>();
-  const waveSurferRef = useRef<any>({
-    isPlaying: () => false
-  });
-  const [isPlaying, toggleIsPlaying] = useState(false);
-  const [duration, setDuration] = useState<number>(0);
-
-  useEffect(() => {
-    const waveSurfer = WaveSurfer.create({
-      container: containerRef.current,
-      barWidth: 3,
-      cursorWidth: 0
-    });
-
-    waveSurfer.load(audio);
-    waveSurfer.on('ready', () => {
-      waveSurferRef.current = waveSurfer;
-      setDuration(waveSurfer.getDuration());
-    });
-
-    return () => {
-      waveSurfer.destroy();
-    };
-  }, [audio]);
+  const onPlayPause = () => {
+    wavesurfer && wavesurfer.playPause();
+  };
 
   return (
-    <Wrapper>
-      <button
-        onClick={() => {
-          waveSurferRef.current.playPause();
-          toggleIsPlaying(waveSurferRef.current.isPlaying());
-        }}
-        type="button"
-      >
-        {isPlaying ? <p>Playing</p> : <p>Paused</p>}
-      </button>
-      <div ref={containerRef}></div>
-    </Wrapper>
+    <>
+      <WavesurferPlayer
+        height={100}
+        waveColor="violet"
+        url={audio}
+        onReady={onReady}
+        onPlay={() => setIsPlaying(true)}
+        onPause={() => setIsPlaying(false)}
+      />
+      <button onClick={onPlayPause}>{isPlaying ? 'Pause' : 'Play'}</button>
+    </>
   );
 }
