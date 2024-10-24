@@ -40,7 +40,7 @@ interface AudioPlayerProps {
   setShowExcerpt: (arg0: boolean) => void;
   showExcerpt: boolean;
   setSelectedExcerpt: (arg0: boolean | ExcerptType) => void;
-  selectedExcerpt: boolean | ExcerptType;
+  selectedExcerpt: any;
 }
 
 export default function AudioPlayer({
