@@ -2,6 +2,10 @@ import styled from 'styled-components';
 import { COLORS } from '../styles';
 import { useState, useMemo } from 'react';
 
+interface WaveformProps {
+  width: number;
+}
+
 const Wrapper = styled.div`
   display: flex;
   flex-direction: row;
@@ -17,7 +21,7 @@ const Bar = styled.div<{ $height: number }>`
   border-radius: 2px;
 `;
 
-export default function Waveform() {
+export default function Waveform({ width }: WaveformProps) {
   const [barHeights, setBarHeights] = useState<number[]>([]);
 
   // get width of container

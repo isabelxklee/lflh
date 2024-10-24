@@ -2,7 +2,6 @@ import styled, { css } from 'styled-components';
 import {
   COLORS,
   GRADIENT_COLORS,
-  SmallP,
   P,
   TextButton,
   FONT_WEIGHTS
@@ -22,7 +21,7 @@ const Background = styled.div`
 `;
 
 const AudioPlayerWrapper = styled.div`
-  padding: 40px 25%;
+  padding: 40px 200px;
   display: flex;
   flex-direction: column;
 `;
@@ -96,10 +95,24 @@ interface AudioPlayerProps {
 export default function AudioPlayer({ interview, excerpts }: AudioPlayerProps) {
   const [playing, setPlaying] = useState<boolean>(false);
   const [trackProgress, setTrackProgress] = useState<number>(0);
+  const [waveformWidth, setWaveformWidth] = useState<number>(0);
 
   const audioPlayerRef = useRef(new Audio(interview.audioFileURL));
   const intervalRef = useRef<any>();
+  const inputRef = useRef<any>();
   const { duration } = audioPlayerRef.current;
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWaveformWidth(inputRef.current.clientWidth);
+    };
+
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
   // refactor to be reusable
   const currentPercentage = duration
@@ -233,10 +246,11 @@ export default function AudioPlayer({ interview, excerpts }: AudioPlayerProps) {
     <Background>
       <AudioPlayerWrapper>
         <TimeStamp>{interview.title}</TimeStamp>
-        <Waveform />
+        <Waveform width={waveformWidth} />
         <ProgressBar
           type="range"
           value={trackProgress}
+          ref={inputRef}
           list="values"
           step="1"
           min="0"
