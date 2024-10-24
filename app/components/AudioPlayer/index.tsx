@@ -1,8 +1,9 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { COLORS, GRADIENT_COLORS, SmallP, P } from '../../styles';
 import { useEffect, useRef, useState } from 'react';
 import { InterviewType } from '../../../sanity/types/types';
 import { IoIosPlayCircle } from 'react-icons/io';
+import { IoPauseCircleSharp } from 'react-icons/io5';
 
 const Background = styled.div`
   position: fixed;
@@ -56,10 +57,18 @@ const Button = styled.button`
   padding: 0;
 `;
 
-const PlayIcon = styled(IoIosPlayCircle)`
+const IconStyles = css`
   width: 40px;
   height: 40px;
   cursor: pointer;
+`;
+
+const PlayIcon = styled(IoIosPlayCircle)`
+  ${IconStyles}
+`;
+
+const PauseIcon = styled(IoPauseCircleSharp)`
+  ${IconStyles}
 `;
 
 interface AudioPlayerProps {
@@ -232,7 +241,9 @@ export default function AudioPlayer({ interview, excerpts }: AudioPlayerProps) {
         <Controls>
           <Primary>
             {playing ? (
-              <Button onClick={() => setPlaying(false)}>Pause</Button>
+              <Button onClick={() => setPlaying(false)}>
+                <PauseIcon />
+              </Button>
             ) : (
               <Button onClick={() => setPlaying(true)}>
                 <PlayIcon />
