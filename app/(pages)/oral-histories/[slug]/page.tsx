@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { useParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { getInterviews, getExcerpts } from '../../../actions';
-import { H4 } from '../../../styles';
+import { GRADIENT_COLORS, H4 } from '../../../styles';
 import AudioPlayer from '../../../components/AudioPlayer';
 import Transcript from '../../../components/AudioPlayer/Transcript';
 import { InterviewType } from '../../../../sanity/types/types';
@@ -28,9 +28,18 @@ export default function InterviewPage() {
 
   if (gradient) {
     if (showExcerpt) {
-      gradient.style.visibility = 'hidden';
+      gradient.style.background = '#F07F2E';
     } else {
-      gradient.style.visibility = 'visible';
+      gradient.style.background = `linear-gradient(90deg,
+        ${GRADIENT_COLORS.BLUE},
+        ${GRADIENT_COLORS.DUSK},
+        ${GRADIENT_COLORS.PURPLE},
+        ${GRADIENT_COLORS.BLACK},
+        ${GRADIENT_COLORS.GREEN},
+        ${GRADIENT_COLORS.LIGHT_PURPLE},
+        ${GRADIENT_COLORS.LIGHT_ORANGE},
+        ${GRADIENT_COLORS.ORANGE}
+      )`;
     }
   }
 
