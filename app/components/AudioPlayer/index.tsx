@@ -129,7 +129,11 @@ export default function AudioPlayer({
     <Background>
       <AudioPlayerWrapper>
         <div style={{ maxWidth: '1000px', width: '100%' }}>
-          <TimeStamp>{showExcerpt ? 'hello world' : interview.title}</TimeStamp>
+          <TimeStamp>
+            {showExcerpt
+              ? `${selectedExcerpt.theme.title}: ${selectedExcerpt.subTheme.title}`
+              : interview.title}
+          </TimeStamp>
           {waveformWidth && excerpts && (
             <Waveform
               pixelWidth={waveformWidth}
