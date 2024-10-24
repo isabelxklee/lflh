@@ -119,21 +119,13 @@ export default function Waveform({
     let color = '';
 
     for (let i = 0; i < barPositions.length; i++) {
-      if (num == barPositions[i].start) {
-        // if num matches the start
-        // color that bar and all other bars that follow until it hits the end position
-        color = barPositions[i].color;
-      }
-
-      if (num == barPositions[i].end) {
+      if (barPositions[i].array.includes(num)) {
         color = barPositions[i].color;
       }
     }
 
     return color;
   };
-
-  console.log(barPositions);
 
   const findOpacity = (num: number) => {
     let opacity = 0;
