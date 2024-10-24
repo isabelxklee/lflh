@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { COLORS, GRADIENT_COLORS, SmallP, P } from '../../styles';
 import { useEffect, useRef, useState } from 'react';
 import { InterviewType } from '../../../sanity/types/types';
-import { render } from 'react-dom';
+import { IoIosPlayCircle } from 'react-icons/io';
 
 const Background = styled.div`
   position: fixed;
@@ -48,6 +48,18 @@ const Excerpt = styled.div<{ $width: number; $start: number }>`
 const ExcerptWrapper = styled.div`
   top: -14px;
   position: relative;
+`;
+
+const Button = styled.button`
+  border: none;
+  background: transparent;
+  padding: 0;
+`;
+
+const PlayIcon = styled(IoIosPlayCircle)`
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
 `;
 
 interface AudioPlayerProps {
@@ -220,9 +232,11 @@ export default function AudioPlayer({ interview, excerpts }: AudioPlayerProps) {
         <Controls>
           <Primary>
             {playing ? (
-              <button onClick={() => setPlaying(false)}>Pause</button>
+              <Button onClick={() => setPlaying(false)}>Pause</Button>
             ) : (
-              <button onClick={() => setPlaying(true)}>Play</button>
+              <Button onClick={() => setPlaying(true)}>
+                <PlayIcon />
+              </Button>
             )}
             <p>
               {formatTime(trackProgress)} / {formatTime(duration)}
