@@ -41,8 +41,7 @@ export const INTERVIEWS_QUERY = defineQuery(`*[_type == "interview"]{
 export const EXCERPTS_QUERY = defineQuery(`*[_type == "excerpt"]{
       _id,
       title,
-      startTime,
-      endTime,
+      "transcriptText": transcriptText[].children[].text,
       subTheme->,
       interview->
     }`);
