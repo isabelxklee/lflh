@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 import { COLORS, P, FONT_WEIGHTS } from '../../styles';
 import { useEffect, useRef, useState } from 'react';
-import { InterviewType } from '../../../sanity/types/types';
+import { ExcerptType, InterviewType } from '../../../sanity/types/types';
 import Waveform from './Waveform';
 import Controls from './Controls';
-import Excerpts from './Excerpts';
+import Excerpt from './Excerpt';
 
 const Background = styled.div`
   position: fixed;
@@ -134,7 +134,10 @@ export default function AudioPlayer({ interview, excerpts }: AudioPlayerProps) {
             onKeyUp={onScrubEnd}
             style={{ background: trackStyling }}
           />
-          {excerpts && <Excerpts excerpts={excerpts} duration={duration} />}
+          {excerpts &&
+            excerpts.map((excerpt: ExcerptType, index: number) => (
+              <Excerpt excerpt={excerpt} duration={duration} />
+            ))}
           <Controls
             setPlaying={setPlaying}
             trackProgress={trackProgress}

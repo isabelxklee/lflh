@@ -1,9 +1,10 @@
 import styled from 'styled-components';
 import { GRADIENT_COLORS } from '../../styles';
 import { ExcerptType } from '../../../sanity/types/types';
-import { timeStampToSeconds } from './helper';
+import { formatTranscriptText, timeStampToSeconds } from './helper';
+import { useState, useEffect } from 'react';
 
-const Excerpt = styled.div<{ $width: number; $start: number }>`
+const ExcerptWrapper = styled.div<{ $width: number; $start: number }>`
   position: absolute;
   background: ${GRADIENT_COLORS.ORANGE};
   height: 8px;
@@ -18,11 +19,21 @@ const Wrapper = styled.div`
 `;
 
 interface ControlsProps {
-  excerpts: ExcerptType[];
+  excerpt: ExcerptType;
   duration: number;
 }
 
-export default function Excerpts({ excerpts, duration }: ControlsProps) {
+export default function Excerpt({ excerpt, duration }: ControlsProps) {
+  const [text, setText] = useState<string>('');
+
+  useEffect(() => {
+    const obj = formatTranscriptText(excerpt.transcriptText[0]);
+    // setSpeaker(obj.speaker);
+    // setTimeStamp(obj.timestamp);
+    setText(obj.text);
+  }, []);
+
+  console.log(excerpt);
   const percentageCalc = (ts: string) => {
     const seconds = timeStampToSeconds(ts);
     return Math.ceil((seconds / duration) * 100);
@@ -35,8 +46,8 @@ export default function Excerpts({ excerpts, duration }: ControlsProps) {
 
   return (
     <Wrapper>
-      {excerpts.map((excerpt: any, index: number) => (
-        <Excerpt
+      {excerpt.map((excerpt: any, index: number) => (
+        <ExcerptWrapper
           key={index}
           $start={percentageCalc(excerpt.startTime)}
           $width={barWidth(excerpt)}
