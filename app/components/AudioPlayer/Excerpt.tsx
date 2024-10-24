@@ -27,32 +27,32 @@ export default function Excerpt({ excerpt, duration }: ControlsProps) {
   const [text, setText] = useState<string>('');
 
   useEffect(() => {
-    const obj = formatTranscriptText(excerpt.transcriptText[0]);
+    const obj = formatTranscriptText(excerpt.transcriptText);
     // setSpeaker(obj.speaker);
     // setTimeStamp(obj.timestamp);
     setText(obj.text);
   }, []);
 
   console.log(excerpt);
+
   const percentageCalc = (ts: string) => {
     const seconds = timeStampToSeconds(ts);
     return Math.ceil((seconds / duration) * 100);
   };
 
-  const barWidth = (excerpt: ExcerptType) =>
-    Math.ceil(
-      percentageCalc(excerpt.endTime) - percentageCalc(excerpt.startTime)
-    );
+  // const barWidth = (excerpt: ExcerptType) =>
+  //   Math.ceil(
+  //     percentageCalc(excerpt.endTime) - percentageCalc(excerpt.startTime)
+  //   );
 
   return (
     <Wrapper>
-      {excerpt.map((excerpt: any, index: number) => (
-        <ExcerptWrapper
-          key={index}
-          $start={percentageCalc(excerpt.startTime)}
-          $width={barWidth(excerpt)}
-        />
-      ))}
+      <ExcerptWrapper
+        $start={100}
+        $width={100}
+        // $start={percentageCalc(excerpt.startTime)}
+        // $width={barWidth(excerpt)}
+      />
     </Wrapper>
   );
 }

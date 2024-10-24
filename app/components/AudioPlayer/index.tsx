@@ -136,7 +136,7 @@ export default function AudioPlayer({ interview, excerpts }: AudioPlayerProps) {
           />
           {excerpts &&
             excerpts.map((excerpt: ExcerptType, index: number) => (
-              <Excerpt excerpt={excerpt} duration={duration} />
+              <Excerpt key={index} excerpt={excerpt} duration={duration} />
             ))}
           <Controls
             setPlaying={setPlaying}

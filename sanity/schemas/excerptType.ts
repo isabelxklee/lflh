@@ -13,8 +13,7 @@ export const excerptType = defineType({
     }),
     defineField({
       name: 'transcriptText',
-      type: 'array',
-      of: [{ type: 'block' }]
+      type: 'text'
     }),
     defineField({
       name: 'subTheme',
