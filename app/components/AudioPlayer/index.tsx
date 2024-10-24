@@ -24,7 +24,6 @@ const AudioPlayerWrapper = styled.div`
   padding: 40px 25%;
   display: flex;
   flex-direction: column;
-  gap: 20px;
 `;
 
 const Controls = styled.div`
@@ -37,6 +36,10 @@ const Controls = styled.div`
 const TimeStamp = styled(P)`
   font-size: 18px;
   font-weight: ${FONT_WEIGHTS.MEDIUM};
+`;
+
+const ProgressBar = styled.input`
+  margin: 30px 0;
 `;
 
 const Primary = styled.div`
@@ -60,7 +63,7 @@ const Excerpt = styled.div<{ $width: number; $start: number }>`
 `;
 
 const ExcerptWrapper = styled.div`
-  top: -34px;
+  top: -42px;
   position: relative;
 `;
 
@@ -229,7 +232,7 @@ export default function AudioPlayer({ interview, excerpts }: AudioPlayerProps) {
     <Background>
       <AudioPlayerWrapper>
         <TimeStamp>{interview.title}</TimeStamp>
-        <input
+        <ProgressBar
           type="range"
           value={trackProgress}
           list="values"
