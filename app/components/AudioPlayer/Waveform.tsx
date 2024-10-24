@@ -18,8 +18,8 @@ const Wrapper = styled.div`
 `;
 
 const Bar = styled.div<{ $height: number; $color: string; $opacity: number }>`
-  background: ${({ $color }) => ($color ? $color : `${COLORS.BLACK}`)};
-  opacity: ${({ $opacity }) => $opacity};
+  background: ${({ $color }) => ($color ? $color : `${COLORS.AUDIO_GREY}`)};
+  opacity: 1;
   height: ${({ $height }) => `${$height}px`};
   width: 2px;
   border-radius: 2px;
@@ -93,8 +93,6 @@ export default function Waveform({
 
     getBarPositions();
   }, []);
-
-  console.log(barPositions);
 
   // figure out which bars should be colored
   // depending on the excerpt's start and end time

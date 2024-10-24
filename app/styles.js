@@ -15,6 +15,7 @@ export const GRADIENT_COLORS = {
 };
 
 export const COLORS = {
+  AUDIO_GREY: '#C9C9C9',
   GREY: '#F2F2F2',
   BLACK: '#000'
 };
