@@ -78,6 +78,17 @@ export const StyledLink = styled(Link)`
   margin: 0;
 `;
 
+export const TextButton = styled.button`
+  font-family: ${FONTS.AUTH_SANS}, sans-serif;
+  font-weight: ${FONT_WEIGHTS.BOLD};
+  font-size: 14px;
+  text-transform: uppercase;
+  color: ${COLORS.BLACK};
+  background: transparent;
+  border: none;
+  cursor: pointer;
+`;
+
 export const GlobalStyles = createGlobalStyle`
   @font-face {
     font-family: 'Authentic Sans';

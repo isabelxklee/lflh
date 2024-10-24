@@ -1,8 +1,16 @@
-import styled from 'styled-components';
-import { COLORS, GRADIENT_COLORS, SmallP, P } from '../../styles';
+import styled, { css } from 'styled-components';
+import {
+  COLORS,
+  GRADIENT_COLORS,
+  SmallP,
+  P,
+  TextButton,
+  FONT_WEIGHTS
+} from '../../styles';
 import { useEffect, useRef, useState } from 'react';
 import { InterviewType } from '../../../sanity/types/types';
-import { render } from 'react-dom';
+import { IoIosPlayCircle } from 'react-icons/io';
+import { IoPauseCircleSharp } from 'react-icons/io5';
 
 const Background = styled.div`
   position: fixed;
@@ -13,7 +21,7 @@ const Background = styled.div`
 `;
 
 const AudioPlayerWrapper = styled.div`
-  padding: 20px 200px;
+  padding: 40px 25%;
   display: flex;
   flex-direction: column;
 `;
@@ -23,6 +31,15 @@ const Controls = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+`;
+
+const TimeStamp = styled(P)`
+  font-size: 18px;
+  font-weight: ${FONT_WEIGHTS.MEDIUM};
+`;
+
+const ProgressBar = styled.input`
+  margin: 30px 0;
 `;
 
 const Primary = styled.div`
@@ -46,8 +63,28 @@ const Excerpt = styled.div<{ $width: number; $start: number }>`
 `;
 
 const ExcerptWrapper = styled.div`
-  top: -14px;
+  top: -42px;
   position: relative;
+`;
+
+const Button = styled.button`
+  border: none;
+  background: transparent;
+  padding: 0;
+`;
+
+const IconStyles = css`
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+`;
+
+const PlayIcon = styled(IoIosPlayCircle)`
+  ${IconStyles}
+`;
+
+const PauseIcon = styled(IoPauseCircleSharp)`
+  ${IconStyles}
 `;
 
 interface AudioPlayerProps {
@@ -194,8 +231,8 @@ export default function AudioPlayer({ interview, excerpts }: AudioPlayerProps) {
   return (
     <Background>
       <AudioPlayerWrapper>
-        <SmallP>{interview.title}</SmallP>
-        <input
+        <TimeStamp>{interview.title}</TimeStamp>
+        <ProgressBar
           type="range"
           value={trackProgress}
           list="values"
@@ -220,18 +257,22 @@ export default function AudioPlayer({ interview, excerpts }: AudioPlayerProps) {
         <Controls>
           <Primary>
             {playing ? (
-              <button onClick={() => setPlaying(false)}>Pause</button>
+              <Button onClick={() => setPlaying(false)}>
+                <PauseIcon />
+              </Button>
             ) : (
-              <button onClick={() => setPlaying(true)}>Play</button>
+              <Button onClick={() => setPlaying(true)}>
+                <PlayIcon />
+              </Button>
             )}
-            <p>
+            <TimeStamp>
               {formatTime(trackProgress)} / {formatTime(duration)}
-            </p>
+            </TimeStamp>
           </Primary>
           <Secondary>
-            <button>Replay</button>
-            <button>Share interview</button>
-            <button>Next interview</button>
+            <TextButton>Replay</TextButton>
+            <TextButton>Share interview</TextButton>
+            <TextButton>Next interview</TextButton>
           </Secondary>
         </Controls>
       </AudioPlayerWrapper>
