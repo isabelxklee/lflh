@@ -12,13 +12,23 @@ const Wrapper = styled.div`
   margin-bottom: 200px;
 `;
 
+const InterviewWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+`;
+
 const StyledLink = styled(Link)`
   font-family: ${FONTS.AUTH_SANS};
   font-weight: ${FONT_WEIGHTS.BOLD};
-  font-size: 14px;
+  font-size: 18px;
   color: ${COLORS.BLACK};
   text-decoration: none;
   margin: 0;
+
+  &:hover {
+    text-decoration: underline;
+  }
 `;
 
 export default function OralHistories() {
@@ -36,14 +46,14 @@ export default function OralHistories() {
   return (
     <Wrapper>
       <h1>Oral Histories</h1>
-      {interviews &&
-        interviews.map((interview: InterviewType, index: number) => (
-          <div key={index}>
-            <StyledLink href={`/oral-histories/${interview.slug}`}>
+      <InterviewWrapper>
+        {interviews &&
+          interviews.map((interview: InterviewType, index: number) => (
+            <StyledLink key={index} href={`/oral-histories/${interview.slug}`}>
               {interview.title}
             </StyledLink>
-          </div>
-        ))}
+          ))}
+      </InterviewWrapper>
     </Wrapper>
   );
 }
