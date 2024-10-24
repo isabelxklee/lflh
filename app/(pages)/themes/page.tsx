@@ -55,8 +55,6 @@ export default function Themes() {
     fetchData();
   }, []);
 
-  console.log(themes);
-
   return (
     <Wrapper>
       <h1>Themes</h1>

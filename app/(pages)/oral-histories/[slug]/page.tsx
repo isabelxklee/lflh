@@ -64,8 +64,6 @@ export default function InterviewPage() {
     findInterviewAndExcerpts();
   }, []);
 
-  console.log(selectedExcerpt);
-
   return (
     <Wrapper>
       {interview && (
