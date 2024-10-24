@@ -1,16 +1,10 @@
-import styled, { css } from 'styled-components';
-import {
-  COLORS,
-  GRADIENT_COLORS,
-  P,
-  TextButton,
-  FONT_WEIGHTS
-} from '../../styles';
+import styled from 'styled-components';
+import { COLORS, P, FONT_WEIGHTS } from '../../styles';
 import { useEffect, useRef, useState } from 'react';
-import { InterviewType } from '../../../sanity/types/types';
-import { IoIosPlayCircle } from 'react-icons/io';
-import { IoPauseCircleSharp } from 'react-icons/io5';
+import { ExcerptType, InterviewType } from '../../../sanity/types/types';
 import Waveform from './Waveform';
+import Controls from './Controls';
+import Excerpt from './Excerpt';
 
 const Background = styled.div`
   position: fixed;
@@ -23,73 +17,21 @@ const Background = styled.div`
 `;
 
 const AudioPlayerWrapper = styled.div`
-  padding: 40px 0;
+  padding: 30px 0;
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 1200px;
+  width: 800px;
 `;
 
-const Controls = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-`;
-
-const TimeStamp = styled(P)`
-  font-size: 18px;
+export const TimeStamp = styled(P)`
+  font-size: 14px;
   font-weight: ${FONT_WEIGHTS.MEDIUM};
 `;
 
 const ProgressBar = styled.input`
   margin: 30px 0;
   width: 100%;
-`;
-
-const Primary = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 20px;
-`;
-
-const Secondary = styled.div`
-  display: flex;
-  gap: 20px;
-`;
-
-const Excerpt = styled.div<{ $width: number; $start: number }>`
-  position: absolute;
-  background: ${GRADIENT_COLORS.ORANGE};
-  height: 8px;
-  width: ${({ $width }) => `${$width}%`};
-  left: ${({ $start }) => `${$start}%`};
-  z-index: 10;
-`;
-
-const ExcerptWrapper = styled.div`
-  top: -42px;
-  position: relative;
-`;
-
-const Button = styled.button`
-  border: none;
-  background: transparent;
-  padding: 0;
-`;
-
-const IconStyles = css`
-  width: 40px;
-  height: 40px;
-  cursor: pointer;
-`;
-
-const PlayIcon = styled(IoIosPlayCircle)`
-  ${IconStyles}
-`;
-
-const PauseIcon = styled(IoPauseCircleSharp)`
-  ${IconStyles}
 `;
 
 interface AudioPlayerProps {
@@ -151,51 +93,6 @@ export default function AudioPlayer({ interview, excerpts }: AudioPlayerProps) {
     startTimer();
   };
 
-  const formatTime = (time: number) => {
-    if (time < 60) {
-      const minutes = '00';
-      const seconds = Math.floor(time).toLocaleString('en-US', {
-        minimumIntegerDigits: 2,
-        useGrouping: false
-      });
-      return `${minutes}:${seconds}`;
-    }
-
-    if (time > 60 && time < 3600) {
-      const hours = '00';
-      const minutes = Math.floor(time / 60);
-      const formattedMinutes = minutes.toLocaleString('en-US', {
-        minimumIntegerDigits: 2,
-        useGrouping: false
-      });
-      const seconds = Math.floor(time - minutes * 60).toLocaleString('en-US', {
-        minimumIntegerDigits: 2,
-        useGrouping: false
-      });
-      return `${hours}:${formattedMinutes}:${seconds}`;
-    }
-
-    if (time > 3600) {
-      const hours = Math.round((time / 3600) * 100) / 100;
-      const formattedHours = Math.floor(time / 3600);
-      const minutes = (hours - formattedHours) * 60;
-      const formattedMinutes = Math.floor(minutes).toLocaleString('en-US', {
-        minimumIntegerDigits: 2,
-        useGrouping: false
-      });
-      const seconds = time / 60 - Math.floor(time / 60);
-      const formattedSeconds = Math.floor(seconds * 60).toLocaleString(
-        'en-US',
-        {
-          minimumIntegerDigits: 2,
-          useGrouping: false
-        }
-      );
-
-      return `${formattedHours}:${formattedMinutes}:${formattedSeconds}`;
-    }
-  };
-
   useEffect(() => {
     if (playing) {
       audioPlayerRef.current.play();
@@ -211,41 +108,6 @@ export default function AudioPlayer({ interview, excerpts }: AudioPlayerProps) {
       clearInterval(intervalRef.current);
     };
   }, []);
-
-  const timeStampToSeconds = (ts: string) => {
-    let hours,
-      minutes,
-      seconds,
-      timeInSeconds = 0;
-    const hourRegex = /((\d{2}):(\d{2}):(\d{2}))/g;
-    const minuteRegex = /((\d{2}):(\d{2}))/g;
-
-    // hh:mm:ss
-    if (hourRegex.test(ts)) {
-      hours = ts.slice(0, 2);
-      minutes = ts.slice(3, 5);
-      seconds = ts.slice(6, 8);
-      timeInSeconds =
-        parseInt(hours) * 3600 + parseInt(minutes) * 60 + parseInt(seconds);
-      // mm:ss
-    } else if (minuteRegex.test(ts)) {
-      minutes = ts.slice(0, 2);
-      seconds = ts.slice(3, 5);
-      timeInSeconds = parseInt(minutes) * 60 + parseInt(seconds);
-    }
-
-    return timeInSeconds;
-  };
-
-  const percentageCalc = (ts: string) => {
-    const seconds = timeStampToSeconds(ts);
-    return Math.ceil((seconds / duration) * 100);
-  };
-
-  const barWidth = (excerpt: any) =>
-    Math.ceil(
-      percentageCalc(excerpt.endTime) - percentageCalc(excerpt.startTime)
-    );
 
   return (
     <Background>
@@ -272,37 +134,16 @@ export default function AudioPlayer({ interview, excerpts }: AudioPlayerProps) {
             onKeyUp={onScrubEnd}
             style={{ background: trackStyling }}
           />
-          <ExcerptWrapper>
-            {excerpts &&
-              excerpts.map((excerpt: any, index: number) => (
-                <Excerpt
-                  key={index}
-                  $start={percentageCalc(excerpt.startTime)}
-                  $width={barWidth(excerpt)}
-                />
-              ))}
-          </ExcerptWrapper>
-          <Controls>
-            <Primary>
-              {playing ? (
-                <Button onClick={() => setPlaying(false)}>
-                  <PauseIcon />
-                </Button>
-              ) : (
-                <Button onClick={() => setPlaying(true)}>
-                  <PlayIcon />
-                </Button>
-              )}
-              <TimeStamp>
-                {formatTime(trackProgress)} / {formatTime(duration)}
-              </TimeStamp>
-            </Primary>
-            <Secondary>
-              <TextButton>Replay</TextButton>
-              <TextButton>Share interview</TextButton>
-              <TextButton>Next interview</TextButton>
-            </Secondary>
-          </Controls>
+          {excerpts &&
+            excerpts.map((excerpt: ExcerptType, index: number) => (
+              <Excerpt key={index} excerpt={excerpt} duration={duration} />
+            ))}
+          <Controls
+            setPlaying={setPlaying}
+            trackProgress={trackProgress}
+            duration={duration}
+            playing={playing}
+          />
         </div>
       </AudioPlayerWrapper>
     </Background>

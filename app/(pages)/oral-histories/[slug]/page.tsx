@@ -4,9 +4,9 @@ import styled from 'styled-components';
 import { useParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { getInterviews, getExcerpts } from '../../../actions';
-import { H3 } from '../../../styles';
+import { H4 } from '../../../styles';
 import AudioPlayer from '../../../components/AudioPlayer';
-import Transcript from '../../../components/Transcript';
+import Transcript from '../../../components/AudioPlayer/Transcript';
 import { InterviewType } from '../../../../sanity/types/types';
 
 const Wrapper = styled.div`
@@ -45,7 +45,7 @@ export default function InterviewPage() {
     <Wrapper>
       {interview && (
         <>
-          <H3>{interview.title}</H3>
+          <H4>{interview.title}</H4>
           <TranscriptWrapper>
             {interview.transcriptText.map((text: string, index: number) => (
               <Transcript key={index} text={text} />

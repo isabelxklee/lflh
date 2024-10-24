@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { COLORS, GRADIENT_COLORS } from '../../styles';
 import { useState, useMemo, useEffect } from 'react';
 import { ExcerptType } from '../../../sanity/types/types';
+import { formatTranscriptText, timeStampToSeconds } from './helper';
 
 interface WaveformProps {
   pixelWidth: number;
@@ -33,33 +34,6 @@ export default function Waveform({
   const [barHeights, setBarHeights] = useState<number[]>([]);
   const [barPositions, setBarPositions] = useState<any[]>([]);
 
-  // format excerpt timestamps
-
-  const timeStampToSeconds = (ts: string) => {
-    let hours,
-      minutes,
-      seconds,
-      timeInSeconds = 0;
-    const hourRegex = /((\d{2}):(\d{2}):(\d{2}))/g;
-    const minuteRegex = /((\d{2}):(\d{2}))/g;
-
-    // hh:mm:ss
-    if (hourRegex.test(ts)) {
-      hours = ts.slice(0, 2);
-      minutes = ts.slice(3, 5);
-      seconds = ts.slice(6, 8);
-      timeInSeconds =
-        parseInt(hours) * 3600 + parseInt(minutes) * 60 + parseInt(seconds);
-      // mm:ss
-    } else if (minuteRegex.test(ts)) {
-      minutes = ts.slice(0, 2);
-      seconds = ts.slice(3, 5);
-      timeInSeconds = parseInt(minutes) * 60 + parseInt(seconds);
-    }
-
-    return timeInSeconds;
-  };
-
   const randomBarHeight = () => Math.floor(Math.random() * (40 - 20) + 20);
   const numBars = Math.floor(pixelWidth / 6);
   const calculateBar = (ts: string) => {
@@ -69,10 +43,12 @@ export default function Waveform({
   };
 
   useEffect(() => {
+    let obj;
     const getBarPositions = () => {
       for (let i = 0; i < excerpts.length; i++) {
-        const start = calculateBar(excerpts[i].startTime);
-        const end = calculateBar(excerpts[i].endTime);
+        const cleanExcerpt = formatTranscriptText(excerpts[i].transcriptText);
+        const start = calculateBar(cleanExcerpt.start);
+        const end = calculateBar(cleanExcerpt.end);
         const arrRange = Array.from(
           { length: end - start },
           (value, index) => start + index

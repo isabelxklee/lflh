@@ -12,12 +12,8 @@ export const excerptType = defineType({
       type: 'string'
     }),
     defineField({
-      name: 'startTime',
-      type: 'string'
-    }),
-    defineField({
-      name: 'endTime',
-      type: 'string'
+      name: 'transcriptText',
+      type: 'text'
     }),
     defineField({
       name: 'subTheme',
