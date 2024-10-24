@@ -25,6 +25,10 @@ const StyledLink = styled(Link)`
   color: ${COLORS.BLACK};
   text-decoration: none;
   margin: 0;
+
+  &:hover {
+    text-decoration: underline;
+  }
 `;
 
 export default function OralHistories() {
