@@ -18,7 +18,7 @@ const Wrapper = styled.div`
 `;
 
 const Bar = styled.div<{ $height: number; $color: string; $opacity: number }>`
-  background: ${({ $color }) => $color};
+  background: ${({ $color }) => ($color ? $color : `${COLORS.BLACK}`)};
   opacity: ${({ $opacity }) => $opacity};
   height: ${({ $height }) => `${$height}px`};
   width: 2px;
@@ -117,8 +117,6 @@ export default function Waveform({
         // color that bar and all other bars that follow until it hits the end position
         console.log(num);
         color = barPositions[i].color;
-      } else {
-        color = `${COLORS.BLACK}`;
       }
     }
 
