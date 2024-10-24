@@ -1,11 +1,10 @@
-import styled, { css } from 'styled-components';
-import { COLORS, GRADIENT_COLORS, P, FONT_WEIGHTS } from '../../styles';
+import styled from 'styled-components';
+import { COLORS, P, FONT_WEIGHTS } from '../../styles';
 import { useEffect, useRef, useState } from 'react';
-import { InterviewType } from '../../../sanity/types/types';
-import { IoIosPlayCircle } from 'react-icons/io';
-import { IoPauseCircleSharp } from 'react-icons/io5';
+import { ExcerptType, InterviewType } from '../../../sanity/types/types';
 import Waveform from './Waveform';
 import Controls from './Controls';
+import Excerpts from './Excerpts';
 
 const Background = styled.div`
   position: fixed;
@@ -33,20 +32,6 @@ export const TimeStamp = styled(P)`
 const ProgressBar = styled.input`
   margin: 30px 0;
   width: 100%;
-`;
-
-const Excerpt = styled.div<{ $width: number; $start: number }>`
-  position: absolute;
-  background: ${GRADIENT_COLORS.ORANGE};
-  height: 8px;
-  width: ${({ $width }) => `${$width}%`};
-  left: ${({ $start }) => `${$start}%`};
-  z-index: 10;
-`;
-
-const ExcerptWrapper = styled.div`
-  top: -42px;
-  position: relative;
 `;
 
 interface AudioPlayerProps {
@@ -199,7 +184,7 @@ export default function AudioPlayer({ interview, excerpts }: AudioPlayerProps) {
     return Math.ceil((seconds / duration) * 100);
   };
 
-  const barWidth = (excerpt: any) =>
+  const barWidth = (excerpt: ExcerptType) =>
     Math.ceil(
       percentageCalc(excerpt.endTime) - percentageCalc(excerpt.startTime)
     );
@@ -229,16 +214,13 @@ export default function AudioPlayer({ interview, excerpts }: AudioPlayerProps) {
             onKeyUp={onScrubEnd}
             style={{ background: trackStyling }}
           />
-          <ExcerptWrapper>
-            {excerpts &&
-              excerpts.map((excerpt: any, index: number) => (
-                <Excerpt
-                  key={index}
-                  $start={percentageCalc(excerpt.startTime)}
-                  $width={barWidth(excerpt)}
-                />
-              ))}
-          </ExcerptWrapper>
+          {excerpts && (
+            <Excerpts
+              excerpts={excerpts}
+              percentageCalc={percentageCalc}
+              barWidth={barWidth}
+            />
+          )}
           <Controls
             formatTime={formatTime}
             setPlaying={setPlaying}
