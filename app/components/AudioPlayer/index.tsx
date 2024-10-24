@@ -21,9 +21,10 @@ const Background = styled.div`
 `;
 
 const AudioPlayerWrapper = styled.div`
-  padding: 20px 200px;
+  padding: 40px 25%;
   display: flex;
   flex-direction: column;
+  gap: 20px;
 `;
 
 const Controls = styled.div`
@@ -227,7 +228,7 @@ export default function AudioPlayer({ interview, excerpts }: AudioPlayerProps) {
   return (
     <Background>
       <AudioPlayerWrapper>
-        <SmallP>{interview.title}</SmallP>
+        <TimeStamp>{interview.title}</TimeStamp>
         <input
           type="range"
           value={trackProgress}
