@@ -23,6 +23,9 @@ export default function InterviewPage() {
   const [excerpts, setExcerpts] = useState<any>();
   const params = useParams();
 
+  const gradient = document.getElementById('gradient');
+  console.log(gradient);
+
   useEffect(() => {
     const findInterviewAndExcerpts = async () => {
       const interviews = await getInterviews();
