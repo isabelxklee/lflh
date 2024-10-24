@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { COLORS, GRADIENT_COLORS, SmallP, P } from '../../styles';
+import { COLORS, GRADIENT_COLORS, SmallP, TextButton } from '../../styles';
 import { useEffect, useRef, useState } from 'react';
 import { InterviewType } from '../../../sanity/types/types';
 import { IoIosPlayCircle } from 'react-icons/io';
@@ -254,9 +254,9 @@ export default function AudioPlayer({ interview, excerpts }: AudioPlayerProps) {
             </p>
           </Primary>
           <Secondary>
-            <button>Replay</button>
-            <button>Share interview</button>
-            <button>Next interview</button>
+            <TextButton>Replay</TextButton>
+            <TextButton>Share interview</TextButton>
+            <TextButton>Next interview</TextButton>
           </Secondary>
         </Controls>
       </AudioPlayerWrapper>
