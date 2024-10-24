@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { COLORS, P, FONT_WEIGHTS } from '../../styles';
 import { useEffect, useRef, useState } from 'react';
-import { ExcerptType, InterviewType } from '../../../sanity/types/types';
+import { InterviewType } from '../../../sanity/types/types';
 import Waveform from './Waveform';
 import Controls from './Controls';
 import Excerpts from './Excerpts';
