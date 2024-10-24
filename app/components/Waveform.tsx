@@ -9,9 +9,9 @@ const Wrapper = styled.div`
   margin-top: 20px;
 `;
 
-const Bar = styled.div<{ $height: string }>`
+const Bar = styled.div<{ $height: number }>`
   background: ${COLORS.BLACK};
-  height: ${({ $height }) => $height};
+  height: ${({ $height }) => `${$height}px`};
   width: 3px;
   border-radius: 2px;
 `;
@@ -26,6 +26,8 @@ export default function Waveform() {
   // 625 / gap 3px / bar width 3px
   // approx 104
 
+  const randomBarHeight = () => Math.floor(Math.random() * (30 - 10) + 10);
+
   return (
     <Wrapper>
       {/* <Bar $height="20px" />
@@ -33,7 +35,7 @@ export default function Waveform() {
       <Bar $height="30px" />
       <Bar $height="10px" /> */}
       {[...Array(104)].map((num, index) => (
-        <Bar key={index} $height="20px" />
+        <Bar key={index} $height={randomBarHeight()} />
       ))}
     </Wrapper>
   );
