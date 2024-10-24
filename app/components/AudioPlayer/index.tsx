@@ -253,7 +253,11 @@ export default function AudioPlayer({ interview, excerpts }: AudioPlayerProps) {
         <div style={{ maxWidth: '1000px', width: '100%' }}>
           <TimeStamp>{interview.title}</TimeStamp>
           {waveformWidth && (
-            <Waveform width={waveformWidth} excerpts={excerpts} />
+            <Waveform
+              width={waveformWidth}
+              excerpts={excerpts}
+              duration={duration}
+            />
           )}
           <ProgressBar
             type="range"
