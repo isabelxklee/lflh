@@ -17,12 +17,24 @@ const Bar = styled.div<{ $height: string }>`
 `;
 
 export default function Waveform() {
+  // get width of container
+  // generate <Bar>s to fill that container
+  // space between bars + width of the bars
+
+  // example
+  // 625px width
+  // 625 / gap 3px / bar width 3px
+  // approx 104
+
   return (
     <Wrapper>
-      <Bar $height="20px" />
+      {/* <Bar $height="20px" />
       <Bar $height="10px" />
       <Bar $height="30px" />
-      <Bar $height="10px" />
+      <Bar $height="10px" /> */}
+      {[...Array(104)].map((num, index) => (
+        <Bar key={index} $height="20px" />
+      ))}
     </Wrapper>
   );
 }
