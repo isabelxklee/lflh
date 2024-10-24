@@ -12,12 +12,9 @@ export const excerptType = defineType({
       type: 'string'
     }),
     defineField({
-      name: 'startTime',
-      type: 'string'
-    }),
-    defineField({
-      name: 'endTime',
-      type: 'string'
+      name: 'transcriptText',
+      type: 'array',
+      of: [{ type: 'block' }]
     }),
     defineField({
       name: 'subTheme',
