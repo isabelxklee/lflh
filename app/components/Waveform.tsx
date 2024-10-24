@@ -1,12 +1,18 @@
 import styled from 'styled-components';
 import { COLORS } from '../styles';
 
-const Wrapper = styled.div``;
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 3px;
+  margin-top: 20px;
+`;
 
 const Bar = styled.div<{ $height: string }>`
   background: ${COLORS.BLACK};
   height: ${({ $height }) => $height};
-  width: 4px;
+  width: 3px;
   border-radius: 2px;
 `;
 
