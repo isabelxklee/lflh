@@ -43,7 +43,6 @@ export default function Waveform({
   };
 
   useEffect(() => {
-    let obj;
     const getBarPositions = () => {
       for (let i = 0; i < excerpts.length; i++) {
         const cleanExcerpt = formatTranscriptText(excerpts[i].transcriptText);
