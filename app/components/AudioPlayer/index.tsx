@@ -36,10 +36,21 @@ const ProgressBar = styled.input`
 
 interface AudioPlayerProps {
   interview: InterviewType;
-  excerpts: any;
+  excerpts: ExcerptType[];
+  setShowExcerpt: (arg0: boolean) => void;
+  showExcerpt: boolean;
+  setSelectedExcerpt: (arg0: boolean | ExcerptType) => void;
+  selectedExcerpt: any;
 }
 
-export default function AudioPlayer({ interview, excerpts }: AudioPlayerProps) {
+export default function AudioPlayer({
+  interview,
+  excerpts,
+  setShowExcerpt,
+  showExcerpt,
+  setSelectedExcerpt,
+  selectedExcerpt
+}: AudioPlayerProps) {
   const [playing, setPlaying] = useState<boolean>(false);
   const [trackProgress, setTrackProgress] = useState<number>(0);
   const [waveformWidth, setWaveformWidth] = useState<number>();
@@ -109,11 +120,20 @@ export default function AudioPlayer({ interview, excerpts }: AudioPlayerProps) {
     };
   }, []);
 
+  const handleClick = (excerpt: ExcerptType) => {
+    setShowExcerpt(true);
+    setSelectedExcerpt(excerpt);
+  };
+
   return (
     <Background>
       <AudioPlayerWrapper>
         <div style={{ maxWidth: '1000px', width: '100%' }}>
-          <TimeStamp>{interview.title}</TimeStamp>
+          <TimeStamp>
+            {showExcerpt
+              ? `${selectedExcerpt.theme.title}: ${selectedExcerpt.subTheme.title}`
+              : interview.title}
+          </TimeStamp>
           {waveformWidth && excerpts && (
             <Waveform
               pixelWidth={waveformWidth}
@@ -136,13 +156,18 @@ export default function AudioPlayer({ interview, excerpts }: AudioPlayerProps) {
           />
           {excerpts &&
             excerpts.map((excerpt: ExcerptType, index: number) => (
-              <Excerpt key={index} excerpt={excerpt} duration={duration} />
+              <div key={index} onClick={() => handleClick(excerpt)}>
+                <Excerpt excerpt={excerpt} duration={duration} />
+              </div>
             ))}
           <Controls
             setPlaying={setPlaying}
             trackProgress={trackProgress}
             duration={duration}
             playing={playing}
+            showExcerpt={showExcerpt}
+            setShowExcerpt={setShowExcerpt}
+            setSelectedExcerpt={setSelectedExcerpt}
           />
         </div>
       </AudioPlayerWrapper>

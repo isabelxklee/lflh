@@ -59,7 +59,7 @@ export const GradientHeader = ({ themes, setTheme }: GradientHeaderProps) => {
 
 export const MiniGradientHeader = ({ themes }: MiniGradientHeaderProps) => {
   return (
-    <Gradient $clickable={false} $height="short">
+    <Gradient $clickable={false} $height="short" id="gradient">
       {themes.map((theme: any) => (
         <ThemeColor key={theme.sort} $num={themes.length} />
       ))}

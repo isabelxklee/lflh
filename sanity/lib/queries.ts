@@ -43,5 +43,6 @@ export const EXCERPTS_QUERY = defineQuery(`*[_type == "excerpt"]{
       title,
       transcriptText,
       subTheme->,
+      "theme": subTheme->theme->,
       interview->
     }`);

@@ -30,4 +30,5 @@ export type ExcerptType = {
   transcriptText: string;
   subTheme: any;
   interview: any;
+  theme: any;
 };
