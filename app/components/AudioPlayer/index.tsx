@@ -1,5 +1,12 @@
 import styled, { css } from 'styled-components';
-import { COLORS, GRADIENT_COLORS, SmallP, TextButton } from '../../styles';
+import {
+  COLORS,
+  GRADIENT_COLORS,
+  SmallP,
+  P,
+  TextButton,
+  FONT_WEIGHTS
+} from '../../styles';
 import { useEffect, useRef, useState } from 'react';
 import { InterviewType } from '../../../sanity/types/types';
 import { IoIosPlayCircle } from 'react-icons/io';
@@ -24,6 +31,11 @@ const Controls = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+`;
+
+const TimeStamp = styled(P)`
+  font-size: 18px;
+  font-weight: ${FONT_WEIGHTS.MEDIUM};
 `;
 
 const Primary = styled.div`
@@ -249,9 +261,9 @@ export default function AudioPlayer({ interview, excerpts }: AudioPlayerProps) {
                 <PlayIcon />
               </Button>
             )}
-            <p>
+            <TimeStamp>
               {formatTime(trackProgress)} / {formatTime(duration)}
-            </p>
+            </TimeStamp>
           </Primary>
           <Secondary>
             <TextButton>Replay</TextButton>
