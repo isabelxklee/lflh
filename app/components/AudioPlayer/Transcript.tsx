@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { FONT_WEIGHTS, P } from '../styles';
+import { FONT_WEIGHTS, P } from '../../styles';
 import { styled } from 'styled-components';
 
 interface TranscriptProps {

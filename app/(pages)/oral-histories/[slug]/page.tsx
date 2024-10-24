@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react';
 import { getInterviews, getExcerpts } from '../../../actions';
 import { H3 } from '../../../styles';
 import AudioPlayer from '../../../components/AudioPlayer';
-import Transcript from '../../../components/Transcript';
+import Transcript from '../../../components/AudioPlayer/Transcript';
 import { InterviewType } from '../../../../sanity/types/types';
 
 const Wrapper = styled.div`

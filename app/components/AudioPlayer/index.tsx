@@ -18,15 +18,15 @@ const Background = styled.div`
 `;
 
 const AudioPlayerWrapper = styled.div`
-  padding: 40px 0;
+  padding: 30px 0;
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 1200px;
+  width: 800px;
 `;
 
 export const TimeStamp = styled(P)`
-  font-size: 18px;
+  font-size: 14px;
   font-weight: ${FONT_WEIGHTS.MEDIUM};
 `;
 
