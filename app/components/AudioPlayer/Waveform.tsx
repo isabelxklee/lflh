@@ -17,7 +17,7 @@ const Wrapper = styled.div`
   margin-top: 20px;
 `;
 
-const Bar = styled.div<{ $height: number; $color: string; $opacity: number }>`
+const Bar = styled.div<{ $height: number; $color: string }>`
   background: ${({ $color }) => ($color ? $color : `${COLORS.AUDIO_GREY}`)};
   opacity: 1;
   height: ${({ $height }) => `${$height}px`};
@@ -94,12 +94,6 @@ export default function Waveform({
     getBarPositions();
   }, []);
 
-  // figure out which bars should be colored
-  // depending on the excerpt's start and end time
-  // total number of bars = calcWidth
-  // example: 166
-  // orange: [23, 71]
-
   const generateBarHeights = useMemo(() => {
     let arr: number[] = [];
 
@@ -111,9 +105,6 @@ export default function Waveform({
   }, []);
 
   const findColor = (num: number) => {
-    // if num matches start or end of barPositions
-    // set color to given color from that obj
-    // otherwise set to default black
     let color = '';
 
     for (let i = 0; i < barPositions.length; i++) {
@@ -125,16 +116,6 @@ export default function Waveform({
     return color;
   };
 
-  const findOpacity = (num: number) => {
-    let opacity = 0;
-    if (num < 100) {
-      opacity = 1;
-    } else {
-      opacity = 0.25;
-    }
-    return opacity;
-  };
-
   return (
     <Wrapper>
       {generateBarHeights.map((num, index) => (
@@ -142,7 +123,6 @@ export default function Waveform({
           key={index}
           $height={randomBarHeight()}
           $color={findColor(index)}
-          $opacity={findOpacity(index)}
         />
       ))}
     </Wrapper>
