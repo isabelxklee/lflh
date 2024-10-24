@@ -30,10 +30,6 @@ export default function Waveform() {
 
   return (
     <Wrapper>
-      {/* <Bar $height="20px" />
-      <Bar $height="10px" />
-      <Bar $height="30px" />
-      <Bar $height="10px" /> */}
       {[...Array(104)].map((num, index) => (
         <Bar key={index} $height={randomBarHeight()} />
       ))}
