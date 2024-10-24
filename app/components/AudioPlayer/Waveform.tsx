@@ -89,8 +89,6 @@ export default function Waveform({
     getBarPositions();
   }, []);
 
-  console.log(barPositions);
-
   // figure out which bars should be colored
   // depending on the excerpt's start and end time
   // total number of bars = calcWidth
@@ -108,14 +106,26 @@ export default function Waveform({
   }, []);
 
   const findColor = (num: number) => {
+    // if num matches start or end of barPositions
+    // set color to given color from that obj
+    // otherwise set to default black
     let color = '';
-    if (num < 100) {
-      color = `${COLORS.BLACK}`;
-    } else {
-      color = `${COLORS.BLACK}`;
+
+    for (let i = 0; i < barPositions.length; i++) {
+      if (num == barPositions[i].start) {
+        // if num matches the start
+        // color that bar and all other bars that follow until it hits the end position
+        console.log(num);
+        color = barPositions[i].color;
+      } else {
+        color = `${COLORS.BLACK}`;
+      }
     }
+
     return color;
   };
+
+  console.log(barPositions);
 
   const findOpacity = (num: number) => {
     let opacity = 0;
@@ -129,15 +139,6 @@ export default function Waveform({
 
   return (
     <Wrapper>
-      {/* {excerpts &&
-        excerpts.map((excerpt, index) => (
-          <Bar
-            key={index}
-            $height={randomBarHeight()}
-            $color={GRADIENT_COLORS.ORANGE}
-            $opacity={1}
-          />
-        ))} */}
       {generateBarHeights.map((num, index) => (
         <Bar
           key={index}
