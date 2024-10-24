@@ -26,12 +26,14 @@ interface ControlsProps {
 export default function Excerpt({ excerpt, duration }: ControlsProps) {
   const [text, setText] = useState<string>('');
   const [speaker, setSpeaker] = useState<string>('');
-  const [timeStamp, setTimeStamp] = useState<string>('');
+  const [start, setStart] = useState<string>('');
+  const [end, setEnd] = useState<string>('');
 
   useEffect(() => {
     const obj = formatTranscriptText(excerpt.transcriptText);
     setSpeaker(obj.speaker);
-    setTimeStamp(obj.timestamp);
+    setStart(obj.start);
+    setEnd(obj.end);
     setText(obj.text);
   }, []);
 
@@ -41,14 +43,12 @@ export default function Excerpt({ excerpt, duration }: ControlsProps) {
   };
 
   const barWidth = (excerpt: ExcerptType) =>
-    Math.ceil(
-      percentageCalc(excerpt.endTime) - percentageCalc(excerpt.startTime)
-    );
+    Math.ceil(percentageCalc(end) - percentageCalc(start));
 
   return (
     <Wrapper>
       <ExcerptWrapper
-        $start={percentageCalc(excerpt.startTime)}
+        $start={percentageCalc(start)}
         $width={barWidth(excerpt)}
       />
     </Wrapper>
