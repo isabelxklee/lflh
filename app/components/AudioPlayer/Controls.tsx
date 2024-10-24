@@ -43,7 +43,7 @@ const PauseIcon = styled(IoPauseCircleSharp)`
 `;
 
 interface ControlsProps {
-  formatTime: (arg0: number) => string;
+  formatTime: (arg0: number) => string | undefined;
   setPlaying: (arg0: any) => void;
   trackProgress: number;
   duration: number;
