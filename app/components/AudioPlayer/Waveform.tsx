@@ -60,30 +60,23 @@ export default function Waveform({
     return timeInSeconds;
   };
 
-  const percentageCalc = (ts: string) => {
-    const seconds = timeStampToSeconds(ts);
-    return seconds / duration;
-  };
-
-  const barWidth = (excerpt: any) =>
-    Math.ceil(
-      percentageCalc(excerpt.endTime) - percentageCalc(excerpt.startTime)
-    );
-
   const randomBarHeight = () => Math.floor(Math.random() * (40 - 20) + 20);
   const numBars = Math.floor(pixelWidth / 6);
+  const calculateBar = (ts: string) => {
+    const seconds = timeStampToSeconds(ts);
+    const percent = seconds / duration;
+    return Math.floor(percent * numBars);
+  };
 
   useEffect(() => {
     const getBarPositions = () => {
       for (let i = 0; i < excerpts.length; i++) {
-        const startSeconds = timeStampToSeconds(excerpts[i].startTime);
-        const startPercent = startSeconds / duration;
-        const endSeconds = timeStampToSeconds(excerpts[i].endTime);
-        const endPercent = endSeconds / duration;
+        const start = calculateBar(excerpts[i].startTime);
+        const end = calculateBar(excerpts[i].endTime);
 
         const obj = {
-          start: Math.floor(startPercent * numBars),
-          end: Math.floor(endPercent * numBars),
+          start: start,
+          end: end,
           color: `${GRADIENT_COLORS.ORANGE}`
         };
 
