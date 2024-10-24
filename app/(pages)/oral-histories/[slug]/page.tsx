@@ -26,6 +26,14 @@ export default function InterviewPage() {
 
   const gradient = document.getElementById('gradient');
 
+  if (gradient) {
+    if (showExcerpt) {
+      gradient.style.visibility = 'hidden';
+    } else {
+      gradient.style.visibility = 'visible';
+    }
+  }
+
   useEffect(() => {
     const findInterviewAndExcerpts = async () => {
       const interviews = await getInterviews();
