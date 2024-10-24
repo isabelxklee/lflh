@@ -65,6 +65,7 @@ export default function InterviewPage() {
           <AudioPlayer
             interview={interview}
             excerpts={excerpts}
+            showExcerpt={showExcerpt}
             setShowExcerpt={setShowExcerpt}
           />
         </>

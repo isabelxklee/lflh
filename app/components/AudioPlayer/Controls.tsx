@@ -44,7 +44,9 @@ const PauseIcon = styled(IoPauseCircleSharp)`
 `;
 
 interface ControlsProps {
-  setPlaying: (arg0: any) => void;
+  setPlaying: (arg0: boolean) => void;
+  setShowExcerpt: (arg0: boolean) => void;
+  showExcerpt: boolean;
   trackProgress: number;
   duration: number;
   playing: boolean;
@@ -52,6 +54,8 @@ interface ControlsProps {
 
 export default function Controls({
   setPlaying,
+  setShowExcerpt,
+  showExcerpt,
   trackProgress,
   duration,
   playing
@@ -73,9 +77,18 @@ export default function Controls({
         </TimeStamp>
       </Primary>
       <Secondary>
-        <TextButton>Replay</TextButton>
-        <TextButton>Share interview</TextButton>
-        <TextButton>Next interview</TextButton>
+        {showExcerpt ? (
+          <>
+            <TextButton>Close Excerpt</TextButton>
+            <TextButton>Explore Theme</TextButton>
+          </>
+        ) : (
+          <>
+            <TextButton>Replay</TextButton>
+            <TextButton>Share interview</TextButton>
+            <TextButton>Next interview</TextButton>
+          </>
+        )}
       </Secondary>
     </Wrapper>
   );

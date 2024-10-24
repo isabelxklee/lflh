@@ -38,12 +38,14 @@ interface AudioPlayerProps {
   interview: InterviewType;
   excerpts: ExcerptType[];
   setShowExcerpt: (arg0: boolean) => void;
+  showExcerpt: boolean;
 }
 
 export default function AudioPlayer({
   interview,
   excerpts,
-  setShowExcerpt
+  setShowExcerpt,
+  showExcerpt
 }: AudioPlayerProps) {
   const [playing, setPlaying] = useState<boolean>(false);
   const [trackProgress, setTrackProgress] = useState<number>(0);
@@ -154,6 +156,8 @@ export default function AudioPlayer({
             trackProgress={trackProgress}
             duration={duration}
             playing={playing}
+            showExcerpt={showExcerpt}
+            setShowExcerpt={setShowExcerpt}
           />
         </div>
       </AudioPlayerWrapper>
