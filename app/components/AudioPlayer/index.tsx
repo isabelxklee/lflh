@@ -10,7 +10,7 @@ import { useEffect, useRef, useState } from 'react';
 import { InterviewType } from '../../../sanity/types/types';
 import { IoIosPlayCircle } from 'react-icons/io';
 import { IoPauseCircleSharp } from 'react-icons/io5';
-import Waveform from '../Waveform';
+import Waveform from './Waveform';
 
 const Background = styled.div`
   position: fixed;

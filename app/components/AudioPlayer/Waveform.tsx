@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { COLORS } from '../styles';
+import { COLORS } from '../../styles';
 import { useState, useMemo } from 'react';
 
 interface WaveformProps {
@@ -16,6 +16,7 @@ const Wrapper = styled.div`
 
 const Bar = styled.div<{ $height: number }>`
   background: ${COLORS.BLACK};
+  opacity: 0.25;
   height: ${({ $height }) => `${$height}px`};
   width: 3px;
   border-radius: 2px;
