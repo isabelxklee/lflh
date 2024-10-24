@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { FONT_WEIGHTS, SmallP } from '../../styles';
 import { styled } from 'styled-components';
-import { formatTime } from './helper';
+import { formatTranscriptText } from './helper';
 
 interface TranscriptProps {
   text: string;
@@ -18,7 +18,7 @@ export default function Transcript({ text }: TranscriptProps) {
   const [timeStamp, setTimeStamp] = useState<string>('');
 
   useEffect(() => {
-    const obj = formatTime(text);
+    const obj = formatTranscriptText(text);
     setSpeaker(obj.speaker);
     setTimeStamp(obj.timestamp);
     setCleanText(obj.text);
