@@ -109,6 +109,10 @@ export default function AudioPlayer({ interview, excerpts }: AudioPlayerProps) {
     };
   }, []);
 
+  const handleClick = (excerpt: ExcerptType) => {
+    console.log(excerpt);
+  };
+
   return (
     <Background>
       <AudioPlayerWrapper>
@@ -136,7 +140,9 @@ export default function AudioPlayer({ interview, excerpts }: AudioPlayerProps) {
           />
           {excerpts &&
             excerpts.map((excerpt: ExcerptType, index: number) => (
-              <Excerpt key={index} excerpt={excerpt} duration={duration} />
+              <div key={index} onClick={() => handleClick(excerpt)}>
+                <Excerpt excerpt={excerpt} duration={duration} />
+              </div>
             ))}
           <Controls
             setPlaying={setPlaying}
