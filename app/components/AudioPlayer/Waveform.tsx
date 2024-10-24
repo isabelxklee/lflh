@@ -23,6 +23,9 @@ export default function Waveform({ audio }: WaveformProps) {
       <WavesurferPlayer
         height={100}
         waveColor="violet"
+        barGap={2}
+        barRadius={4}
+        barWidth={3}
         url={audio}
         onReady={onReady}
         onPlay={() => setIsPlaying(true)}
