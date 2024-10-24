@@ -42,15 +42,11 @@ export default function Excerpt({ excerpt, duration }: ControlsProps) {
     return Math.ceil((seconds / duration) * 100);
   };
 
-  const barWidth = (excerpt: ExcerptType) =>
-    Math.ceil(percentageCalc(end) - percentageCalc(start));
+  const barWidth = Math.ceil(percentageCalc(end) - percentageCalc(start));
 
   return (
     <Wrapper>
-      <ExcerptWrapper
-        $start={percentageCalc(start)}
-        $width={barWidth(excerpt)}
-      />
+      <ExcerptWrapper $start={percentageCalc(start)} $width={barWidth} />
     </Wrapper>
   );
 }
