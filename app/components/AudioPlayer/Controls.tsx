@@ -79,7 +79,9 @@ export default function Controls({
       <Secondary>
         {showExcerpt ? (
           <>
-            <TextButton>Close Excerpt</TextButton>
+            <TextButton onClick={() => setShowExcerpt(false)}>
+              Close Excerpt
+            </TextButton>
             <TextButton>Explore Theme</TextButton>
           </>
         ) : (
