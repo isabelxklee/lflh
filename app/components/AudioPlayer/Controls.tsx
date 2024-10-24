@@ -4,6 +4,7 @@ import styled, { css } from 'styled-components';
 import { TextButton } from '../../styles';
 import { TimeStamp } from '.';
 import { formatTime } from './helper';
+import { ExcerptType } from '../../../sanity/types/types';
 
 const Wrapper = styled.div`
   display: flex;
@@ -46,6 +47,7 @@ const PauseIcon = styled(IoPauseCircleSharp)`
 interface ControlsProps {
   setPlaying: (arg0: boolean) => void;
   setShowExcerpt: (arg0: boolean) => void;
+  setSelectedExcerpt: (arg0: boolean | ExcerptType) => void;
   showExcerpt: boolean;
   trackProgress: number;
   duration: number;
@@ -58,8 +60,14 @@ export default function Controls({
   showExcerpt,
   trackProgress,
   duration,
-  playing
+  playing,
+  setSelectedExcerpt
 }: ControlsProps) {
+  const handleClick = () => {
+    setShowExcerpt(false);
+    setSelectedExcerpt(false);
+  };
+
   return (
     <Wrapper>
       <Primary>
@@ -79,9 +87,7 @@ export default function Controls({
       <Secondary>
         {showExcerpt ? (
           <>
-            <TextButton onClick={() => setShowExcerpt(false)}>
-              Close Excerpt
-            </TextButton>
+            <TextButton onClick={handleClick}>Close Excerpt</TextButton>
             <TextButton>Explore Theme</TextButton>
           </>
         ) : (

@@ -39,13 +39,17 @@ interface AudioPlayerProps {
   excerpts: ExcerptType[];
   setShowExcerpt: (arg0: boolean) => void;
   showExcerpt: boolean;
+  setSelectedExcerpt: (arg0: boolean | ExcerptType) => void;
+  selectedExcerpt: ExcerptType;
 }
 
 export default function AudioPlayer({
   interview,
   excerpts,
   setShowExcerpt,
-  showExcerpt
+  showExcerpt,
+  setSelectedExcerpt,
+  selectedExcerpt
 }: AudioPlayerProps) {
   const [playing, setPlaying] = useState<boolean>(false);
   const [trackProgress, setTrackProgress] = useState<number>(0);
@@ -118,13 +122,14 @@ export default function AudioPlayer({
 
   const handleClick = (excerpt: ExcerptType) => {
     setShowExcerpt(true);
+    setSelectedExcerpt(excerpt);
   };
 
   return (
     <Background>
       <AudioPlayerWrapper>
         <div style={{ maxWidth: '1000px', width: '100%' }}>
-          <TimeStamp>{interview.title}</TimeStamp>
+          <TimeStamp>{showExcerpt ? 'hello world' : interview.title}</TimeStamp>
           {waveformWidth && excerpts && (
             <Waveform
               pixelWidth={waveformWidth}
@@ -158,6 +163,7 @@ export default function AudioPlayer({
             playing={playing}
             showExcerpt={showExcerpt}
             setShowExcerpt={setShowExcerpt}
+            setSelectedExcerpt={setSelectedExcerpt}
           />
         </div>
       </AudioPlayerWrapper>

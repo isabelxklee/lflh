@@ -7,7 +7,7 @@ import { getInterviews, getExcerpts } from '../../../actions';
 import { GRADIENT_COLORS, H4 } from '../../../styles';
 import AudioPlayer from '../../../components/AudioPlayer';
 import Transcript from '../../../components/AudioPlayer/Transcript';
-import { InterviewType } from '../../../../sanity/types/types';
+import { ExcerptType, InterviewType } from '../../../../sanity/types/types';
 
 const Wrapper = styled.div`
   padding: 200px 25%;
@@ -21,6 +21,9 @@ const TranscriptWrapper = styled.div`
 export default function InterviewPage() {
   const [interview, setInterview] = useState<InterviewType>();
   const [excerpts, setExcerpts] = useState<any>();
+  const [selectedExcerpt, setSelectedExcerpt] = useState<boolean | ExcerptType>(
+    false
+  );
   const [showExcerpt, setShowExcerpt] = useState<boolean>(false);
   const params = useParams();
 
@@ -61,6 +64,8 @@ export default function InterviewPage() {
     findInterviewAndExcerpts();
   }, []);
 
+  console.log(selectedExcerpt);
+
   return (
     <Wrapper>
       {interview && (
@@ -76,6 +81,8 @@ export default function InterviewPage() {
             excerpts={excerpts}
             showExcerpt={showExcerpt}
             setShowExcerpt={setShowExcerpt}
+            selectedExcerpt={selectedExcerpt}
+            setSelectedExcerpt={setSelectedExcerpt}
           />
         </>
       )}
