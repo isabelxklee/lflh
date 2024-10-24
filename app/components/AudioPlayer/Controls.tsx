@@ -2,6 +2,7 @@ import { IoIosPlayCircle } from 'react-icons/io';
 import { IoPauseCircleSharp } from 'react-icons/io5';
 import styled, { css } from 'styled-components';
 import { TextButton } from '../../styles';
+import { TimeStamp } from '.';
 
 const Wrapper = styled.div`
   display: flex;
@@ -41,7 +42,21 @@ const PauseIcon = styled(IoPauseCircleSharp)`
   ${IconStyles}
 `;
 
-export default function Controls() {
+interface ControlsProps {
+  formatTime: (arg0: number) => string;
+  setPlaying: (arg0: any) => void;
+  trackProgress: number;
+  duration: number;
+  playing: boolean;
+}
+
+export default function Controls({
+  formatTime,
+  setPlaying,
+  trackProgress,
+  duration,
+  playing
+}: ControlsProps) {
   return (
     <Wrapper>
       <Primary>

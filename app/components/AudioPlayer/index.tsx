@@ -25,7 +25,7 @@ const AudioPlayerWrapper = styled.div`
   width: 1200px;
 `;
 
-const TimeStamp = styled(P)`
+export const TimeStamp = styled(P)`
   font-size: 18px;
   font-weight: ${FONT_WEIGHTS.MEDIUM};
 `;
@@ -239,7 +239,13 @@ export default function AudioPlayer({ interview, excerpts }: AudioPlayerProps) {
                 />
               ))}
           </ExcerptWrapper>
-          <Controls />
+          <Controls
+            formatTime={formatTime}
+            setPlaying={setPlaying}
+            trackProgress={trackProgress}
+            duration={duration}
+            playing={playing}
+          />
         </div>
       </AudioPlayerWrapper>
     </Background>
