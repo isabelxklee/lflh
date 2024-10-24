@@ -21,10 +21,10 @@ const TranscriptWrapper = styled.div`
 export default function InterviewPage() {
   const [interview, setInterview] = useState<InterviewType>();
   const [excerpts, setExcerpts] = useState<any>();
+  const [showExcerpt, setShowExcerpt] = useState<boolean>(false);
   const params = useParams();
 
   const gradient = document.getElementById('gradient');
-  console.log(gradient);
 
   useEffect(() => {
     const findInterviewAndExcerpts = async () => {
@@ -54,7 +54,11 @@ export default function InterviewPage() {
               <Transcript key={index} text={text} />
             ))}
           </TranscriptWrapper>
-          <AudioPlayer interview={interview} excerpts={excerpts} />
+          <AudioPlayer
+            interview={interview}
+            excerpts={excerpts}
+            setShowExcerpt={setShowExcerpt}
+          />
         </>
       )}
     </Wrapper>

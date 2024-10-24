@@ -36,10 +36,15 @@ const ProgressBar = styled.input`
 
 interface AudioPlayerProps {
   interview: InterviewType;
-  excerpts: any;
+  excerpts: ExcerptType[];
+  setShowExcerpt: (arg0: boolean) => void;
 }
 
-export default function AudioPlayer({ interview, excerpts }: AudioPlayerProps) {
+export default function AudioPlayer({
+  interview,
+  excerpts,
+  setShowExcerpt
+}: AudioPlayerProps) {
   const [playing, setPlaying] = useState<boolean>(false);
   const [trackProgress, setTrackProgress] = useState<number>(0);
   const [waveformWidth, setWaveformWidth] = useState<number>();
@@ -110,7 +115,7 @@ export default function AudioPlayer({ interview, excerpts }: AudioPlayerProps) {
   }, []);
 
   const handleClick = (excerpt: ExcerptType) => {
-    console.log(excerpt);
+    setShowExcerpt(true);
   };
 
   return (
