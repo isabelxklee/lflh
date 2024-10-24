@@ -73,10 +73,15 @@ export default function Waveform({
       for (let i = 0; i < excerpts.length; i++) {
         const start = calculateBar(excerpts[i].startTime);
         const end = calculateBar(excerpts[i].endTime);
+        const arrRange = Array.from(
+          { length: end - start },
+          (value, index) => start + index
+        );
 
         const obj = {
           start: start,
           end: end,
+          array: arrRange,
           color: `${GRADIENT_COLORS.ORANGE}`
         };
 
@@ -88,6 +93,8 @@ export default function Waveform({
 
     getBarPositions();
   }, []);
+
+  console.log(barPositions);
 
   // figure out which bars should be colored
   // depending on the excerpt's start and end time
@@ -115,7 +122,10 @@ export default function Waveform({
       if (num == barPositions[i].start) {
         // if num matches the start
         // color that bar and all other bars that follow until it hits the end position
-        console.log(num);
+        color = barPositions[i].color;
+      }
+
+      if (num == barPositions[i].end) {
         color = barPositions[i].color;
       }
     }
