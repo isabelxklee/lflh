@@ -60,7 +60,7 @@ const Excerpt = styled.div<{ $width: number; $start: number }>`
 `;
 
 const ExcerptWrapper = styled.div`
-  top: -14px;
+  top: -34px;
   position: relative;
 `;
 
