@@ -2,7 +2,6 @@ import styled, { css } from 'styled-components';
 import {
   COLORS,
   GRADIENT_COLORS,
-  SmallP,
   P,
   TextButton,
   FONT_WEIGHTS
@@ -11,6 +10,7 @@ import { useEffect, useRef, useState } from 'react';
 import { InterviewType } from '../../../sanity/types/types';
 import { IoIosPlayCircle } from 'react-icons/io';
 import { IoPauseCircleSharp } from 'react-icons/io5';
+import Waveform from './Waveform';
 
 const Background = styled.div`
   position: fixed;
@@ -232,6 +232,7 @@ export default function AudioPlayer({ interview, excerpts }: AudioPlayerProps) {
     <Background>
       <AudioPlayerWrapper>
         <TimeStamp>{interview.title}</TimeStamp>
+        <Waveform audio={interview.audioFileURL} />
         <ProgressBar
           type="range"
           value={trackProgress}
