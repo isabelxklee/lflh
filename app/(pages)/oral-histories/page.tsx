@@ -9,7 +9,6 @@ import { InterviewType, ThemeType } from '../../../sanity/types/types.js';
 
 const Wrapper = styled.div`
   padding: 200px 25%;
-  margin-bottom: 200px;
 `;
 
 const InterviewWrapper = styled.div`

@@ -16,7 +16,6 @@ import Link from 'next/link';
 
 const Wrapper = styled.div`
   padding: 200px 25%;
-  margin-bottom: 200px;
 `;
 
 const ThemeWrapper = styled.div`
