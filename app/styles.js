@@ -2,6 +2,7 @@
 
 import styled, { createGlobalStyle } from 'styled-components';
 import Link from 'next/link';
+import { FaArrowLeft as LeftArrow } from 'react-icons/fa6';
 
 export const GRADIENT_COLORS = {
   BLUE: '#1F4DBB',
@@ -97,6 +98,23 @@ export const TextButton = styled.button`
   background: transparent;
   border: none;
   cursor: pointer;
+`;
+
+export const LeftArrowIcon = styled(LeftArrow)``;
+
+export const IconLinkWrapper = styled(Link)`
+  /* link text style */
+  font-family: ${FONTS.AUTH_SANS}, sans-serif;
+  font-weight: ${FONT_WEIGHTS.BOLD};
+  font-size: 14px;
+  text-transform: uppercase;
+  color: ${COLORS.BLACK};
+  text-decoration: none;
+  margin: 0;
+
+  /* wrapper style */
+  display: flex;
+  gap: 8px;
 `;
 
 export const GlobalStyles = createGlobalStyle`

@@ -5,8 +5,9 @@ import {
   FONT_WEIGHTS,
   PageWrapper,
   P,
-  StyledLink,
-  AuthP
+  AuthP,
+  LeftArrowIcon,
+  IconLinkWrapper
 } from '../../../styles';
 import { TextLink } from '../page';
 import { PlayIcon } from '../../../components/AudioPlayer/Controls';
@@ -37,7 +38,10 @@ const RighTextLink = styled(TextLink)`
 export default function ParticipantsPage() {
   return (
     <PageWrapper>
-      <StyledLink href="/about">Back to about</StyledLink>
+      <IconLinkWrapper href="/about">
+        <LeftArrowIcon />
+        Back to about
+      </IconLinkWrapper>
       <PersonWrapper>
         <AuthP style={{ flex: 1, fontWeight: FONT_WEIGHTS.BOLD }}>Lygia</AuthP>
         <TextWrapper>
