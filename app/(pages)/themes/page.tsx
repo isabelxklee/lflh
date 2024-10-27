@@ -68,7 +68,9 @@ const UL = styled.ul`
   margin: 0;
 `;
 
-const LI = styled.li``;
+const LI = styled.li`
+  margin: 8px 0;
+`;
 
 export default function Themes() {
   const [siteSettings, setSiteSettings] = useState<any[]>([]);
@@ -89,7 +91,7 @@ export default function Themes() {
   return (
     <Wrapper>
       {/* <h1>Themes</h1> */}
-      <P style={{ marginBottom: '32px' }}>{text}</P>
+      <P style={{ marginBottom: '60px' }}>{text}</P>
       <VerticalWrapper>
         <VerticalGradient />
         <div>
