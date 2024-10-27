@@ -13,7 +13,12 @@ export const colorType = defineType({
     }),
     defineField({
       name: 'hexCode',
-      type: 'string'
+      type: 'string',
+      validation: Rule =>
+        Rule.regex(
+          /#?([\da-fA-F]{2})([\da-fA-F]{2})([\da-fA-F]{2})/g,
+          'valid hex code'
+        )
     })
   ]
 });
