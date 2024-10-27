@@ -116,10 +116,7 @@ export const PauseIcon = styled(IoPauseCircleSharp)`
   ${IconStyles}
 `;
 
-export const LeftArrowIcon = styled(LeftArrow)`
-  width: 24px;
-  height: 24px;
-`;
+export const LeftArrowIcon = styled(LeftArrow)``;
 
 export const IconLinkWrapper = styled(Link)`
   /* link text style */
