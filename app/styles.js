@@ -49,6 +49,12 @@ export const P = styled.p`
   margin: 0;
 `;
 
+export const AuthP = styled(P)`
+  font-family: ${FONTS.AUTH_SANS}, sans-serif;
+  font-size: 22px;
+  margin: 0;
+`;
+
 export const SmallP = styled(P)`
   font-size: 16px;
   font-weight: ${FONT_WEIGHTS.REGULAR};
