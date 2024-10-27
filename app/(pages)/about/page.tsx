@@ -31,6 +31,13 @@ const LinkWrapper = styled.div`
   gap: 10px;
 `;
 
+const HR = styled.hr`
+  border-width: 2px;
+  color: ${COLORS.BLACK};
+  border-bottom-style: hidden;
+  border-top-style: solid;
+`;
+
 export default function About() {
   return (
     <PageWrapper>
@@ -51,6 +58,11 @@ export default function About() {
         </StyledLink>
         <StyledLink href="/">Our Methodology</StyledLink>
         <StyledLink href="/">Consent Process</StyledLink>
+      </LinkWrapper>
+      <HR />
+      <LinkWrapper>
+        <StyledLink href="/">Participants</StyledLink>
+        <StyledLink href="/">Interviews & Architects</StyledLink>
       </LinkWrapper>
     </PageWrapper>
   );
