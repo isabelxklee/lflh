@@ -28,7 +28,6 @@ const Wrapper = styled.div`
 `;
 
 const TextWrapper = styled.div`
-  margin-bottom: 200px;
   padding: 100px 25%;
 `;
 

@@ -16,7 +16,6 @@ import Link from 'next/link';
 
 const Wrapper = styled.div`
   padding: 200px 25%;
-  margin-bottom: 200px;
 `;
 
 const ThemeWrapper = styled.div`
@@ -30,7 +29,7 @@ const ThemeWrapper = styled.div`
 const StyledLink = styled(Link)`
   font-family: ${FONTS.AUTH_SANS}, sans-serif;
   font-weight: ${FONT_WEIGHTS.MEDIUM};
-  font-size: 18px;
+  font-size: 22px;
   color: ${COLORS.BLACK};
   text-decoration: none;
   margin: 0;
@@ -68,7 +67,9 @@ const UL = styled.ul`
   margin: 0;
 `;
 
-const LI = styled.li``;
+const LI = styled.li`
+  margin: 8px 0;
+`;
 
 export default function Themes() {
   const [siteSettings, setSiteSettings] = useState<any[]>([]);
@@ -88,8 +89,8 @@ export default function Themes() {
 
   return (
     <Wrapper>
-      <h1>Themes</h1>
-      <P style={{ marginBottom: '32px' }}>{text}</P>
+      {/* <h1>Themes</h1> */}
+      <P style={{ marginBottom: '60px' }}>{text}</P>
       <VerticalWrapper>
         <VerticalGradient />
         <div>

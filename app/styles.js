@@ -49,6 +49,12 @@ export const P = styled.p`
   margin: 0;
 `;
 
+export const AuthP = styled(P)`
+  font-family: ${FONTS.AUTH_SANS}, sans-serif;
+  font-size: 22px;
+  margin: 0;
+`;
+
 export const SmallP = styled(P)`
   font-size: 16px;
   font-weight: ${FONT_WEIGHTS.REGULAR};
@@ -64,7 +70,7 @@ export const H3 = styled.h3`
 export const H4 = styled.h4`
   font-family: ${FONTS.AUTH_SANS}, sans-serif;
   font-weight: ${FONT_WEIGHTS.BOLD};
-  font-size: 18px;
+  font-size: 22px;
   margin: 0;
 `;
 
@@ -75,14 +81,13 @@ export const StyledLink = styled(Link)`
   text-transform: uppercase;
   color: ${COLORS.BLACK};
   text-decoration: none;
-  letter-spacing: 1px;
   margin: 0;
 `;
 
 export const TextButton = styled.button`
   font-family: ${FONTS.AUTH_SANS}, sans-serif;
   font-weight: ${FONT_WEIGHTS.BOLD};
-  font-size: 12px;
+  font-size: 14px;
   text-transform: uppercase;
   color: ${COLORS.BLACK};
   background: transparent;

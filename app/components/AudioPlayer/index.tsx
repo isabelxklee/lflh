@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { COLORS, P, FONT_WEIGHTS } from '../../styles';
+import { COLORS, P, FONT_WEIGHTS, FONTS, AuthP } from '../../styles';
 import { useEffect, useRef, useState } from 'react';
 import { ExcerptType, InterviewType } from '../../../sanity/types/types';
 import Waveform from './Waveform';
@@ -24,9 +24,9 @@ const AudioPlayerWrapper = styled.div`
   width: 800px;
 `;
 
-export const TimeStamp = styled(P)`
-  font-size: 14px;
-  font-weight: ${FONT_WEIGHTS.MEDIUM};
+export const StyledP = styled(AuthP)`
+  font-weight: ${FONT_WEIGHTS.BOLD};
+  font-size: 18px;
 `;
 
 const ProgressBar = styled.input`
@@ -129,11 +129,11 @@ export default function AudioPlayer({
     <Background>
       <AudioPlayerWrapper>
         <div style={{ maxWidth: '1000px', width: '100%' }}>
-          <TimeStamp>
+          <StyledP>
             {showExcerpt
               ? `${selectedExcerpt.theme.title}: ${selectedExcerpt.subTheme.title}`
               : interview.title}
-          </TimeStamp>
+          </StyledP>
           {waveformWidth && excerpts && (
             <Waveform
               pixelWidth={waveformWidth}

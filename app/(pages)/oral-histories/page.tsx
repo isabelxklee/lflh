@@ -9,7 +9,6 @@ import { InterviewType, ThemeType } from '../../../sanity/types/types.js';
 
 const Wrapper = styled.div`
   padding: 200px 25%;
-  margin-bottom: 200px;
 `;
 
 const InterviewWrapper = styled.div`
@@ -21,7 +20,7 @@ const InterviewWrapper = styled.div`
 const StyledLink = styled(Link)`
   font-family: ${FONTS.AUTH_SANS};
   font-weight: ${FONT_WEIGHTS.BOLD};
-  font-size: 18px;
+  font-size: 22px;
   color: ${COLORS.BLACK};
   text-decoration: none;
   margin: 0;
@@ -45,7 +44,7 @@ export default function OralHistories() {
 
   return (
     <Wrapper>
-      <h1>Oral Histories</h1>
+      {/* <h1>Oral Histories</h1> */}
       <InterviewWrapper>
         {interviews &&
           interviews.map((interview: InterviewType, index: number) => (

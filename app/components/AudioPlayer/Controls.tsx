@@ -2,7 +2,7 @@ import { IoIosPlayCircle } from 'react-icons/io';
 import { IoPauseCircleSharp } from 'react-icons/io5';
 import styled, { css } from 'styled-components';
 import { TextButton } from '../../styles';
-import { TimeStamp } from '.';
+import { StyledP } from '.';
 import { formatTime } from './helper';
 import { ExcerptType } from '../../../sanity/types/types';
 
@@ -80,9 +80,9 @@ export default function Controls({
             <PlayIcon />
           </Button>
         )}
-        <TimeStamp>
+        <StyledP>
           {formatTime(trackProgress)} / {formatTime(duration)}
-        </TimeStamp>
+        </StyledP>
       </Primary>
       <Secondary>
         {showExcerpt ? (
