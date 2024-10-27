@@ -9,6 +9,7 @@ import {
   AuthP
 } from '../../../styles';
 import { TextLink } from '../page';
+import { PlayIcon } from '../../../components/AudioPlayer/Controls';
 
 const PersonWrapper = styled.div`
   margin: 50px 0 32px 0;
@@ -23,7 +24,14 @@ const TextWrapper = styled.div`
 `;
 
 const RighTextLink = styled(TextLink)`
-  text-align: right;
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+
+  svg {
+    width: 24px;
+    height: 24px;
+  }
 `;
 
 export default function ParticipantsPage() {
@@ -46,7 +54,10 @@ export default function ParticipantsPage() {
             There were no real precautions yet, a lot of confusion, and the
             vaccines were not developed yet.
           </P>
-          <RighTextLink href="/">Listen to Lygia's story</RighTextLink>
+          <RighTextLink href="/">
+            <PlayIcon />
+            Listen to Lygia's story
+          </RighTextLink>
         </TextWrapper>
       </PersonWrapper>
     </PageWrapper>

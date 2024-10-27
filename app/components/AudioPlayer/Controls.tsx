@@ -36,7 +36,7 @@ const IconStyles = css`
   cursor: pointer;
 `;
 
-const PlayIcon = styled(IoIosPlayCircle)`
+export const PlayIcon = styled(IoIosPlayCircle)`
   ${IconStyles}
 `;
 
