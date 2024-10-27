@@ -61,7 +61,7 @@ export default function About() {
       </LinkWrapper>
       <HR />
       <LinkWrapper>
-        <StyledLink href="/">Participants</StyledLink>
+        <StyledLink href="/about/participants">Participants</StyledLink>
         <StyledLink href="/">Interviews & Architects</StyledLink>
       </LinkWrapper>
     </PageWrapper>
