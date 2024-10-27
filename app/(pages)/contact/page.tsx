@@ -5,14 +5,18 @@ export default function Contact() {
     <PageWrapper>
       <PageTitle>Contact us</PageTitle>
       <P>
-        About page description project of people living with Long COVID and
-        associated conditions (pwLCAC). In this section of the exhibition we
-        encourage you find a quiet space where you can listen to, and process,
-        the audio clips from the interviews. Here you will hear original
-        interviews, and also in the way the exhibition is organized, with one
-        clip following the other and organized by theme. To keep this section
-        accessible, we have included the transcript with each audio clip, so
-        that you can read while you listen and listen while you read.
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
+        tristique et odio vitae aliquam. Nunc vitae sapien ac sapien porta
+        maximus vitae quis ante. Phasellus quis tortor nibh. Proin varius felis
+        eu rutrum elementum. Integer ut faucibus lectus, et tincidunt lorem.
+        Morbi suscipit mollis libero, ac interdum ligula cursus at. Sed vel
+        metus nec diam suscipit feugiat eu et sapien. Suspendisse aliquet odio
+        sed odio ultrices sollicitudin. Etiam sit amet gravida tellus. Quisque
+        non elit ac augue auctor scelerisque eget eget erat. Proin gravida,
+        risus sit amet tristique lacinia, est felis viverra nulla, in
+        ullamcorper justo lorem eu ligula. Nam ac vestibulum dui, sit amet
+        tempor ipsum. Aliquam auctor tellus eu libero lacinia tempus. Vivamus
+        placerat lacinia efficitur.
       </P>
     </PageWrapper>
   );
