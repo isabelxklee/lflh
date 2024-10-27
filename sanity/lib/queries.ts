@@ -8,7 +8,9 @@ export const THEMES_QUERY = defineQuery(`*[_type == "theme"] | order(sort asc) {
       "subThemes": *[_type == "subTheme" && references(^._id)] {
         title,
         "slug": slug.current
-      }
+      },
+      "colorTitle": color->title,
+      "colorHex": color->hexCode
     }`);
 
 export const SUB_THEMES_QUERY =

@@ -4,6 +4,8 @@ export type ThemeType = {
   sort: number;
   description: string;
   subThemes: any[];
+  colorTitle: string;
+  colorHex: string;
 };
 
 export type SubThemeType = {
