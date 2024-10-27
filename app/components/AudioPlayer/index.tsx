@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { COLORS, P, FONT_WEIGHTS } from '../../styles';
+import { COLORS, P, REG_FONT_WEIGHTS } from '../../styles';
 import { useEffect, useRef, useState } from 'react';
 import { ExcerptType, InterviewType } from '../../../sanity/types/types';
 import Waveform from './Waveform';
@@ -26,7 +26,7 @@ const AudioPlayerWrapper = styled.div`
 
 export const TimeStamp = styled(P)`
   font-size: 14px;
-  font-weight: ${FONT_WEIGHTS.MEDIUM};
+  font-weight: ${REG_FONT_WEIGHTS.MEDIUM};
 `;
 
 const ProgressBar = styled.input`

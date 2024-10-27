@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import styled from 'styled-components';
-import { FONTS, COLORS, FONT_WEIGHTS } from '../styles';
+import { FONTS, COLORS, AUTH_FONT_WEIGHTS } from '../styles';
 
 interface HeaderProps {
   show: boolean;
@@ -32,7 +32,7 @@ const StyledLink = styled(Link)<{ $isActive: boolean }>`
   color: black;
   font-family: ${FONTS.AUTH_SANS}, sans-serif;
   font-weight: ${({ $isActive }) =>
-    $isActive ? FONT_WEIGHTS.BOLD : FONT_WEIGHTS.REGULAR};
+    $isActive ? AUTH_FONT_WEIGHTS.MEDIUM : AUTH_FONT_WEIGHTS.REGULAR};
 `;
 
 const Header = ({ show }: HeaderProps) => {

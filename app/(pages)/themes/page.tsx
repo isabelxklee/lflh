@@ -6,9 +6,9 @@ import {
   P,
   H4,
   COLORS,
-  FONT_WEIGHTS,
   FONTS,
-  GRADIENT_COLORS
+  GRADIENT_COLORS,
+  AUTH_FONT_WEIGHTS
 } from '../../styles';
 import styled from 'styled-components';
 import { ThemeType } from '../../../sanity/types/types';
@@ -29,7 +29,7 @@ const ThemeWrapper = styled.div`
 
 const StyledLink = styled(Link)`
   font-family: ${FONTS.AUTH_SANS}, sans-serif;
-  font-weight: ${FONT_WEIGHTS.MEDIUM};
+  font-weight: ${AUTH_FONT_WEIGHTS.MEDIUM};
   font-size: 18px;
   color: ${COLORS.BLACK};
   text-decoration: none;

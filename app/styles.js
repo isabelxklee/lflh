@@ -20,10 +20,16 @@ export const COLORS = {
   BLACK: '#000'
 };
 
-export const FONT_WEIGHTS = {
+export const REG_FONT_WEIGHTS = {
   REGULAR: 400,
   MEDIUM: 500,
   BOLD: 600
+};
+
+export const AUTH_FONT_WEIGHTS = {
+  LIGHT: 60,
+  REGULAR: 90,
+  MEDIUM: 130
 };
 
 export const FONTS = {
@@ -44,44 +50,42 @@ export const GlobalWrapper = styled.div`
 
 export const P = styled.p`
   font-family: ${FONTS.FANN}, sans-serif;
-  font-weight: ${FONT_WEIGHTS.REGULAR};
+  font-weight: ${REG_FONT_WEIGHTS.REGULAR};
   font-size: 22px;
   margin: 0;
 `;
 
 export const SmallP = styled(P)`
   font-size: 16px;
-  font-weight: ${FONT_WEIGHTS.REGULAR};
 `;
 
 export const H3 = styled.h3`
   font-family: ${FONTS.AUTH_SANS}, sans-serif;
-  font-weight: ${FONT_WEIGHTS.BOLD};
+  font-weight: ${AUTH_FONT_WEIGHTS.MEDIUM};
   font-size: 22px;
   margin: 0;
 `;
 
 export const H4 = styled.h4`
   font-family: ${FONTS.AUTH_SANS}, sans-serif;
-  font-weight: ${FONT_WEIGHTS.BOLD};
+  font-weight: ${AUTH_FONT_WEIGHTS.MEDIUM};
   font-size: 18px;
   margin: 0;
 `;
 
 export const StyledLink = styled(Link)`
   font-family: ${FONTS.AUTH_SANS}, sans-serif;
-  font-weight: ${FONT_WEIGHTS.BOLD};
+  font-weight: ${AUTH_FONT_WEIGHTS.MEDIUM};
   font-size: 14px;
   text-transform: uppercase;
   color: ${COLORS.BLACK};
   text-decoration: none;
-  letter-spacing: 1px;
   margin: 0;
 `;
 
 export const TextButton = styled.button`
   font-family: ${FONTS.AUTH_SANS}, sans-serif;
-  font-weight: ${FONT_WEIGHTS.BOLD};
+  font-weight: ${AUTH_FONT_WEIGHTS.MEDIUM};
   font-size: 12px;
   text-transform: uppercase;
   color: ${COLORS.BLACK};
@@ -137,7 +141,7 @@ export const GlobalStyles = createGlobalStyle`
     margin: 0;
     padding: 0;
     font-family: ${FONTS.FANN}, sans-serif;
-    font-weight: ${FONT_WEIGHTS.REGULAR};
+    font-weight: ${REG_FONT_WEIGHTS.REGULAR};
     color: ${COLORS.BLACK};
   }
 `;

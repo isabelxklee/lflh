@@ -3,9 +3,9 @@
 import styled from 'styled-components';
 import { useEffect, useState } from 'react';
 import Link from 'next/link.js';
-import { COLORS, FONT_WEIGHTS, FONTS, P } from '../../styles.js';
+import { AUTH_FONT_WEIGHTS, COLORS, FONTS } from '../../styles.js';
 import { getInterviews } from '../../actions';
-import { InterviewType, ThemeType } from '../../../sanity/types/types.js';
+import { InterviewType } from '../../../sanity/types/types.js';
 
 const Wrapper = styled.div`
   padding: 200px 25%;
@@ -20,7 +20,7 @@ const InterviewWrapper = styled.div`
 
 const StyledLink = styled(Link)`
   font-family: ${FONTS.AUTH_SANS};
-  font-weight: ${FONT_WEIGHTS.BOLD};
+  font-weight: ${AUTH_FONT_WEIGHTS.MEDIUM};
   font-size: 18px;
   color: ${COLORS.BLACK};
   text-decoration: none;
