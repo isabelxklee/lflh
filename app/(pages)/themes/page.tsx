@@ -30,7 +30,7 @@ const ThemeWrapper = styled.div`
 const StyledLink = styled(Link)`
   font-family: ${FONTS.AUTH_SANS}, sans-serif;
   font-weight: ${FONT_WEIGHTS.MEDIUM};
-  font-size: 18px;
+  font-size: 22px;
   color: ${COLORS.BLACK};
   text-decoration: none;
   margin: 0;
@@ -88,7 +88,7 @@ export default function Themes() {
 
   return (
     <Wrapper>
-      <h1>Themes</h1>
+      {/* <h1>Themes</h1> */}
       <P style={{ marginBottom: '32px' }}>{text}</P>
       <VerticalWrapper>
         <VerticalGradient />

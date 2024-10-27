@@ -87,7 +87,7 @@ export const StyledLink = styled(Link)`
 export const TextButton = styled.button`
   font-family: ${FONTS.AUTH_SANS}, sans-serif;
   font-weight: ${FONT_WEIGHTS.BOLD};
-  font-size: 12px;
+  font-size: 14px;
   text-transform: uppercase;
   color: ${COLORS.BLACK};
   background: transparent;
