@@ -75,7 +75,6 @@ export const StyledLink = styled(Link)`
   text-transform: uppercase;
   color: ${COLORS.BLACK};
   text-decoration: none;
-  letter-spacing: 1px;
   margin: 0;
 `;
 
