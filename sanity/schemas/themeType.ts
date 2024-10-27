@@ -19,7 +19,6 @@ export const themeType = defineType({
       name: 'sort',
       type: 'number'
     }),
-
     defineField({
       name: 'color',
       type: 'reference',
