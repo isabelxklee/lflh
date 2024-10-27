@@ -2,7 +2,7 @@ import { TagIcon } from '@sanity/icons';
 import { defineField, defineType } from 'sanity';
 
 export const colorType = defineType({
-  name: 'colorType',
+  name: 'color',
   title: 'Color',
   type: 'document',
   icon: TagIcon,
@@ -16,7 +16,7 @@ export const colorType = defineType({
       type: 'string',
       validation: Rule =>
         Rule.regex(
-          /#?([\da-fA-F]{2})([\da-fA-F]{2})([\da-fA-F]{2})/g,
+          /#([\da-fA-F]{2})([\da-fA-F]{2})([\da-fA-F]{2})/g,
           'valid hex code'
         )
     })
