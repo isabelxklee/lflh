@@ -4,6 +4,13 @@ import Link from 'next/link';
 import styled from 'styled-components';
 import { COLORS, FONT_WEIGHTS, FONTS, P, PageWrapper } from '../../styles';
 
+const Title = styled.h1`
+  font-family: ${FONTS.AUTH_SANS}, sans-serif;
+  font-weight: ${FONT_WEIGHTS.BOLD};
+  font-size: 22px;
+  margin: 0 0 40px 0;
+`;
+
 const StyledLink = styled(Link)`
   font-family: ${FONTS.AUTH_SANS}, sans-serif;
   font-weight: ${FONT_WEIGHTS.BOLD};
@@ -18,7 +25,7 @@ const StyledLink = styled(Link)`
 `;
 
 const LinkWrapper = styled.div`
-  margin: 60px 0;
+  margin: 50px 0;
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -27,7 +34,7 @@ const LinkWrapper = styled.div`
 export default function About() {
   return (
     <PageWrapper>
-      <h1>About Listening for the Long Haul</h1>
+      <Title>About Listening for the Long Haul</Title>
       <P>
         About page description project of people living with Long COVID and
         associated conditions (pwLCAC). In this section of the exhibition we
