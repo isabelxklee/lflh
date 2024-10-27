@@ -3,13 +3,9 @@
 import styled from 'styled-components';
 import { useEffect, useState } from 'react';
 import Link from 'next/link.js';
-import { COLORS, FONT_WEIGHTS, FONTS, P } from '../../styles.js';
+import { COLORS, FONT_WEIGHTS, FONTS, P, PageWrapper } from '../../styles.js';
 import { getInterviews } from '../../actions';
-import { InterviewType, ThemeType } from '../../../sanity/types/types.js';
-
-const Wrapper = styled.div`
-  padding: 200px 25%;
-`;
+import { InterviewType } from '../../../sanity/types/types.js';
 
 const InterviewWrapper = styled.div`
   display: flex;
@@ -43,7 +39,7 @@ export default function OralHistories() {
   }, []);
 
   return (
-    <Wrapper>
+    <PageWrapper>
       {/* <h1>Oral Histories</h1> */}
       <InterviewWrapper>
         {interviews &&
@@ -53,6 +49,6 @@ export default function OralHistories() {
             </StyledLink>
           ))}
       </InterviewWrapper>
-    </Wrapper>
+    </PageWrapper>
   );
 }

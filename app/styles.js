@@ -42,6 +42,10 @@ export const GlobalWrapper = styled.div`
   margin-bottom: 200px;
 `;
 
+export const PageWrapper = styled.div`
+  padding: 200px 25%;
+`;
+
 export const P = styled.p`
   font-family: ${FONTS.FANN}, sans-serif;
   font-weight: ${FONT_WEIGHTS.REGULAR};

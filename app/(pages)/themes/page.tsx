@@ -8,15 +8,12 @@ import {
   COLORS,
   FONT_WEIGHTS,
   FONTS,
-  GRADIENT_COLORS
+  GRADIENT_COLORS,
+  PageWrapper
 } from '../../styles';
 import styled from 'styled-components';
 import { ThemeType } from '../../../sanity/types/types';
 import Link from 'next/link';
-
-const Wrapper = styled.div`
-  padding: 200px 25%;
-`;
 
 const ThemeWrapper = styled.div`
   margin-bottom: 32px;
@@ -88,7 +85,7 @@ export default function Themes() {
   }, []);
 
   return (
-    <Wrapper>
+    <PageWrapper>
       {/* <h1>Themes</h1> */}
       <P style={{ marginBottom: '60px' }}>{text}</P>
       <VerticalWrapper>
@@ -110,6 +107,6 @@ export default function Themes() {
           ))}
         </div>
       </VerticalWrapper>
-    </Wrapper>
+    </PageWrapper>
   );
 }
