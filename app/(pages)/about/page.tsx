@@ -11,7 +11,7 @@ const Title = styled.h1`
   margin: 0 0 40px 0;
 `;
 
-const StyledLink = styled(Link)`
+export const TextLink = styled(Link)`
   font-family: ${FONTS.AUTH_SANS}, sans-serif;
   font-weight: ${FONT_WEIGHTS.BOLD};
   font-size: 22px;
@@ -53,16 +53,16 @@ export default function About() {
         that you can read while you listen and listen while you read.
       </P>
       <LinkWrapper>
-        <StyledLink href="/">
+        <TextLink href="/">
           Deep Listening Practice: How to use this site
-        </StyledLink>
-        <StyledLink href="/">Our Methodology</StyledLink>
-        <StyledLink href="/">Consent Process</StyledLink>
+        </TextLink>
+        <TextLink href="/">Our Methodology</TextLink>
+        <TextLink href="/">Consent Process</TextLink>
       </LinkWrapper>
       <HR />
       <LinkWrapper>
-        <StyledLink href="/about/participants">Participants</StyledLink>
-        <StyledLink href="/">Interviews & Architects</StyledLink>
+        <TextLink href="/about/participants">Participants</TextLink>
+        <TextLink href="/">Interviews & Architects</TextLink>
       </LinkWrapper>
     </PageWrapper>
   );
