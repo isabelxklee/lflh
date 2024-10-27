@@ -7,10 +7,10 @@ import {
   P,
   AuthP,
   LeftArrowIcon,
-  IconLinkWrapper
+  IconLinkWrapper,
+  PlayIcon
 } from '../../../styles';
 import { TextLink } from '../page';
-import { PlayIcon } from '../../../components/AudioPlayer/Controls';
 
 const PersonWrapper = styled.div`
   margin: 50px 0;
@@ -28,11 +28,6 @@ const RighTextLink = styled(TextLink)`
   display: flex;
   justify-content: flex-end;
   gap: 10px;
-
-  svg {
-    width: 24px;
-    height: 24px;
-  }
 `;
 
 export default function ParticipantsPage() {

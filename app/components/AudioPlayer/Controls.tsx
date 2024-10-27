@@ -1,7 +1,5 @@
-import { IoIosPlayCircle } from 'react-icons/io';
-import { IoPauseCircleSharp } from 'react-icons/io5';
-import styled, { css } from 'styled-components';
-import { TextButton } from '../../styles';
+import styled from 'styled-components';
+import { PauseIcon, PlayIcon, TextButton } from '../../styles';
 import { StyledP } from '.';
 import { formatTime } from './helper';
 import { ExcerptType } from '../../../sanity/types/types';
@@ -28,20 +26,6 @@ const Button = styled.button`
   border: none;
   background: transparent;
   padding: 0;
-`;
-
-const IconStyles = css`
-  width: 40px;
-  height: 40px;
-  cursor: pointer;
-`;
-
-export const PlayIcon = styled(IoIosPlayCircle)`
-  ${IconStyles}
-`;
-
-const PauseIcon = styled(IoPauseCircleSharp)`
-  ${IconStyles}
 `;
 
 interface ControlsProps {

@@ -1,8 +1,10 @@
 'use client';
 
-import styled, { createGlobalStyle } from 'styled-components';
+import styled, { createGlobalStyle, css } from 'styled-components';
 import Link from 'next/link';
 import { FaArrowLeft as LeftArrow } from 'react-icons/fa6';
+import { IoIosPlayCircle } from 'react-icons/io';
+import { IoPauseCircleSharp } from 'react-icons/io5';
 
 export const GRADIENT_COLORS = {
   BLUE: '#1F4DBB',
@@ -100,7 +102,24 @@ export const TextButton = styled.button`
   cursor: pointer;
 `;
 
-export const LeftArrowIcon = styled(LeftArrow)``;
+const IconStyles = css`
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+`;
+
+export const PlayIcon = styled(IoIosPlayCircle)`
+  ${IconStyles}
+`;
+
+export const PauseIcon = styled(IoPauseCircleSharp)`
+  ${IconStyles}
+`;
+
+export const LeftArrowIcon = styled(LeftArrow)`
+  width: 24px;
+  height: 24px;
+`;
 
 export const IconLinkWrapper = styled(Link)`
   /* link text style */
