@@ -64,7 +64,7 @@ export const H3 = styled.h3`
 export const H4 = styled.h4`
   font-family: ${FONTS.AUTH_SANS}, sans-serif;
   font-weight: ${FONT_WEIGHTS.BOLD};
-  font-size: 18px;
+  font-size: 22px;
   margin: 0;
 `;
 
