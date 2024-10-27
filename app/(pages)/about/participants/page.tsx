@@ -8,9 +8,11 @@ import {
   AuthP,
   LeftArrowIcon,
   IconLinkWrapper,
-  PlayIcon
+  PlayIcon,
+  COLORS,
+  FONTS
 } from '../../../styles';
-import { TextLink } from '../page';
+import Link from 'next/link';
 
 const PersonWrapper = styled.div`
   margin: 50px 0;
@@ -24,10 +26,28 @@ const TextWrapper = styled.div`
   flex-direction: column;
 `;
 
-const RighTextLink = styled(TextLink)`
+const RightTextLink = styled(Link)`
+  font-family: ${FONTS.AUTH_SANS}, sans-serif;
+  font-weight: ${FONT_WEIGHTS.BOLD};
+  font-size: 22px;
+  margin: 0;
+  text-decoration: none;
+  color: ${COLORS.BLACK};
+
+  /* layout */
   display: flex;
   justify-content: flex-end;
-  gap: 10px;
+  gap: 8px;
+  align-items: flex-start;
+
+  svg {
+    width: unset;
+    height: unset;
+  }
+
+  &:hover {
+    text-decoration: underline;
+  }
 `;
 
 export default function ParticipantsPage() {
@@ -53,10 +73,10 @@ export default function ParticipantsPage() {
             There were no real precautions yet, a lot of confusion, and the
             vaccines were not developed yet.
           </P>
-          <RighTextLink href="/">
+          <RightTextLink href="/">
             <PlayIcon />
             Listen to Lygia's story
-          </RighTextLink>
+          </RightTextLink>
         </TextWrapper>
       </PersonWrapper>
       <PersonWrapper>
@@ -75,10 +95,10 @@ export default function ParticipantsPage() {
             There were no real precautions yet, a lot of confusion, and the
             vaccines were not developed yet.
           </P>
-          <RighTextLink href="/">
+          <RightTextLink href="/">
             <PlayIcon />
             Listen to Athena's story
-          </RighTextLink>
+          </RightTextLink>
         </TextWrapper>
       </PersonWrapper>
     </PageWrapper>

@@ -11,7 +11,7 @@ const Title = styled.h1`
   margin: 0 0 40px 0;
 `;
 
-export const TextLink = styled(Link)`
+const TextLink = styled(Link)`
   font-family: ${FONTS.AUTH_SANS}, sans-serif;
   font-weight: ${FONT_WEIGHTS.BOLD};
   font-size: 22px;
