@@ -33,4 +33,6 @@ export type ExcerptType = {
   subTheme: any;
   interview: any;
   theme: any;
+  colorTitle: string;
+  colorHex: string;
 };

@@ -45,6 +45,7 @@ export default function Waveform({
   useEffect(() => {
     const getBarPositions = () => {
       for (let i = 0; i < excerpts.length; i++) {
+        const colorHex = excerpts[i].colorHex;
         const cleanExcerpt = formatTranscriptText(excerpts[i].transcriptText);
         const start = calculateBar(cleanExcerpt.start);
         const end = calculateBar(cleanExcerpt.end);
@@ -57,7 +58,7 @@ export default function Waveform({
           start: start,
           end: end,
           array: arrRange,
-          color: `${GRADIENT_COLORS.ORANGE}`
+          color: colorHex
         };
 
         setBarPositions(prev => [...prev, obj]);

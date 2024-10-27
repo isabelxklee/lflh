@@ -46,7 +46,11 @@ export default function Excerpt({ excerpt, duration }: ControlsProps) {
 
   return (
     <Wrapper>
-      <ExcerptWrapper $start={percentageCalc(start)} $width={barWidth} />
+      <ExcerptWrapper
+        $start={percentageCalc(start)}
+        $width={barWidth}
+        color={excerpt.colorHex}
+      />
     </Wrapper>
   );
 }

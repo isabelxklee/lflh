@@ -46,5 +46,7 @@ export const EXCERPTS_QUERY = defineQuery(`*[_type == "excerpt"]{
       transcriptText,
       subTheme->,
       "theme": subTheme->theme->,
+      "colorTitle": subTheme->theme->color->title,
+      "colorHex": subTheme->theme->color->hexCode,
       interview->
     }`);
