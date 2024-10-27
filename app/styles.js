@@ -67,6 +67,13 @@ export const SmallP = styled(P)`
   font-weight: ${FONT_WEIGHTS.REGULAR};
 `;
 
+export const PageTitle = styled.h1`
+  font-family: ${FONTS.AUTH_SANS}, sans-serif;
+  font-weight: ${FONT_WEIGHTS.BOLD};
+  font-size: 22px;
+  margin: 0 0 40px 0;
+`;
+
 export const H3 = styled.h3`
   font-family: ${FONTS.AUTH_SANS}, sans-serif;
   font-weight: ${FONT_WEIGHTS.BOLD};

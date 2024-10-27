@@ -2,14 +2,14 @@
 
 import Link from 'next/link';
 import styled from 'styled-components';
-import { COLORS, FONT_WEIGHTS, FONTS, P, PageWrapper } from '../../styles';
-
-const Title = styled.h1`
-  font-family: ${FONTS.AUTH_SANS}, sans-serif;
-  font-weight: ${FONT_WEIGHTS.BOLD};
-  font-size: 22px;
-  margin: 0 0 40px 0;
-`;
+import {
+  COLORS,
+  FONT_WEIGHTS,
+  FONTS,
+  P,
+  PageTitle,
+  PageWrapper
+} from '../../styles';
 
 const TextLink = styled(Link)`
   font-family: ${FONTS.AUTH_SANS}, sans-serif;
@@ -41,7 +41,7 @@ const HR = styled.hr`
 export default function About() {
   return (
     <PageWrapper>
-      <Title>About Listening for the Long Haul</Title>
+      <PageTitle>About Listening for the Long Haul</PageTitle>
       <P>
         About page description project of people living with Long COVID and
         associated conditions (pwLCAC). In this section of the exhibition we
