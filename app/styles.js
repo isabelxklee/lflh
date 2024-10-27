@@ -1,7 +1,10 @@
 'use client';
 
-import styled, { createGlobalStyle } from 'styled-components';
+import styled, { createGlobalStyle, css } from 'styled-components';
 import Link from 'next/link';
+import { FaArrowLeft as LeftArrow } from 'react-icons/fa6';
+import { IoIosPlayCircle } from 'react-icons/io';
+import { IoPauseCircleSharp } from 'react-icons/io5';
 
 export const GRADIENT_COLORS = {
   BLUE: '#1F4DBB',
@@ -40,6 +43,10 @@ export const BREAKPOINTS = {
 export const GlobalWrapper = styled.div`
   padding: 100px 25%;
   margin-bottom: 200px;
+`;
+
+export const PageWrapper = styled.div`
+  padding: 200px 25%;
 `;
 
 export const P = styled.p`
@@ -93,6 +100,37 @@ export const TextButton = styled.button`
   background: transparent;
   border: none;
   cursor: pointer;
+`;
+
+const IconStyles = css`
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+`;
+
+export const PlayIcon = styled(IoIosPlayCircle)`
+  ${IconStyles}
+`;
+
+export const PauseIcon = styled(IoPauseCircleSharp)`
+  ${IconStyles}
+`;
+
+export const LeftArrowIcon = styled(LeftArrow)``;
+
+export const IconLinkWrapper = styled(Link)`
+  /* link text style */
+  font-family: ${FONTS.AUTH_SANS}, sans-serif;
+  font-weight: ${FONT_WEIGHTS.BOLD};
+  font-size: 14px;
+  text-transform: uppercase;
+  color: ${COLORS.BLACK};
+  text-decoration: none;
+  margin: 0;
+
+  /* wrapper style */
+  display: flex;
+  gap: 8px;
 `;
 
 export const GlobalStyles = createGlobalStyle`

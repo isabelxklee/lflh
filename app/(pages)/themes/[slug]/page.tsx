@@ -5,10 +5,15 @@ import styled from 'styled-components';
 import { getSubThemes } from '../../../actions';
 import { SubThemeType } from '../../../../sanity/types/types';
 import { useParams } from 'next/navigation';
-import { H4, P, StyledLink } from '../../../styles';
+import {
+  H4,
+  IconLinkWrapper,
+  LeftArrowIcon,
+  P,
+  PageWrapper
+} from '../../../styles';
 
-const Wrapper = styled.div`
-  padding: 200px 25%;
+const Wrapper = styled(PageWrapper)`
   margin-bottom: 200px;
 `;
 
@@ -42,7 +47,10 @@ export default function SubThemePage() {
 
   return (
     <Wrapper>
-      <StyledLink href="/themes">Back to all themes</StyledLink>
+      <IconLinkWrapper href="/themes">
+        <LeftArrowIcon />
+        Back to all themes
+      </IconLinkWrapper>
       {subTheme && (
         <SubThemeWrapper>
           <H4>

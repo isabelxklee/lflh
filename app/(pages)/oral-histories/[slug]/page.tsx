@@ -4,13 +4,12 @@ import styled from 'styled-components';
 import { useParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { getInterviews, getExcerpts } from '../../../actions';
-import { GRADIENT_COLORS, H4 } from '../../../styles';
+import { GRADIENT_COLORS, H4, PageWrapper } from '../../../styles';
 import AudioPlayer from '../../../components/AudioPlayer';
 import Transcript from '../../../components/AudioPlayer/Transcript';
 import { ExcerptType, InterviewType } from '../../../../sanity/types/types';
 
-const Wrapper = styled.div`
-  padding: 200px 25%;
+const Wrapper = styled(PageWrapper)`
   margin-bottom: 200px;
 `;
 
