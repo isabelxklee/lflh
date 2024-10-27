@@ -18,6 +18,11 @@ export const themeType = defineType({
     defineField({
       name: 'sort',
       type: 'number'
+    }),
+    defineField({
+      name: 'color',
+      type: 'reference',
+      to: { type: 'color' }
     })
   ],
   orderings: [
