@@ -23,13 +23,12 @@ export default function InterviewPage() {
   const [selectedExcerpt, setSelectedExcerpt] = useState<boolean | ExcerptType>(
     false
   );
-  const [showExcerpt, setShowExcerpt] = useState<boolean>(false);
   const params = useParams();
 
   const gradient = document.getElementById('gradient');
 
   if (gradient) {
-    if (showExcerpt) {
+    if (selectedExcerpt) {
       gradient.style.background = '#F07F2E';
     } else {
       gradient.style.background = `linear-gradient(90deg,
@@ -76,8 +75,6 @@ export default function InterviewPage() {
           <AudioPlayer
             interview={interview}
             excerpts={excerpts}
-            showExcerpt={showExcerpt}
-            setShowExcerpt={setShowExcerpt}
             selectedExcerpt={selectedExcerpt}
             setSelectedExcerpt={setSelectedExcerpt}
           />

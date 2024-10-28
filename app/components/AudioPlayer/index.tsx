@@ -31,8 +31,6 @@ export const StyledP = styled(AuthP)`
 interface AudioPlayerProps {
   interview: InterviewType;
   excerpts: ExcerptType[];
-  setShowExcerpt: (arg0: boolean) => void;
-  showExcerpt: boolean;
   setSelectedExcerpt: (arg0: boolean | ExcerptType) => void;
   selectedExcerpt: any;
 }
