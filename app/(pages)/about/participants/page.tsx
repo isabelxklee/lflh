@@ -73,7 +73,7 @@ export default function ParticipantsPage() {
             There were no real precautions yet, a lot of confusion, and the
             vaccines were not developed yet.
           </P>
-          <RightTextLink href="/">
+          <RightTextLink href="/oral-histories/lygia-interviewed-by-jacquie-and-sarah">
             <PlayIcon />
             Listen to Lygia's story
           </RightTextLink>
@@ -95,7 +95,7 @@ export default function ParticipantsPage() {
             There were no real precautions yet, a lot of confusion, and the
             vaccines were not developed yet.
           </P>
-          <RightTextLink href="/">
+          <RightTextLink href="/oral-histories/athena-interviewed-by-akua-and-jenna">
             <PlayIcon />
             Listen to Athena's story
           </RightTextLink>

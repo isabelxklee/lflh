@@ -23,10 +23,6 @@ export const interviewType = defineType({
       type: 'file'
     }),
     defineField({
-      name: 'transcript',
-      type: 'file'
-    }),
-    defineField({
       name: 'transcriptText',
       type: 'array',
       of: [{ type: 'block' }]

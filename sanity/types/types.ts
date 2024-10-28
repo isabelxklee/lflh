@@ -21,7 +21,6 @@ export type InterviewType = {
   title: string;
   audioFile: any;
   audioFileURL: string;
-  transcript: string;
   transcriptText: string[];
   slug: string;
 };
