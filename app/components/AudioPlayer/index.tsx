@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { COLORS, P, FONT_WEIGHTS, AuthP } from '../../styles';
+import { COLORS, FONT_WEIGHTS, AuthP } from '../../styles';
 import { useEffect, useRef, useState } from 'react';
 import { ExcerptType, InterviewType } from '../../../sanity/types/types';
 import Waveform from './Waveform';
@@ -26,11 +26,6 @@ const AudioPlayerWrapper = styled.div`
 export const StyledP = styled(AuthP)`
   font-weight: ${FONT_WEIGHTS.BOLD};
   font-size: 18px;
-`;
-
-const ProgressBar = styled.input`
-  margin: 30px 0;
-  width: 100%;
 `;
 
 interface AudioPlayerProps {
@@ -90,13 +85,6 @@ export default function AudioPlayer({
     setTrackProgress(value);
   };
 
-  const onScrubEnd = () => {
-    if (!playing) {
-      setPlaying(true);
-    }
-    startTimer();
-  };
-
   useEffect(() => {
     if (playing) {
       audioPlayerRef.current.play();
@@ -114,7 +102,6 @@ export default function AudioPlayer({
   }, []);
 
   // pass this down to waveform
-
   const handleClick = (excerpt: ExcerptType) => {
     setShowExcerpt(true);
     setSelectedExcerpt(excerpt);
