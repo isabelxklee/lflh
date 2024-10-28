@@ -9,6 +9,7 @@ interface WaveformProps {
   excerpts: ExcerptType[];
   duration: number;
   progress: number;
+  setTrackProgress: (arg0: number) => void;
 }
 
 const Wrapper = styled.div`
@@ -31,7 +32,8 @@ export default function Waveform({
   pixelWidth,
   excerpts,
   duration,
-  progress
+  progress,
+  setTrackProgress
 }: WaveformProps) {
   const [barHeights, setBarHeights] = useState<number[]>([]);
   const [barPositions, setBarPositions] = useState<any[]>([]);
@@ -114,7 +116,7 @@ export default function Waveform({
   };
 
   const handleClick = (index: number) => {
-    console.log('hello world', index);
+    setTrackProgress((index / numBars) * duration);
   };
 
   return (
