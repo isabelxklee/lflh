@@ -31,8 +31,6 @@ export const StyledP = styled(AuthP)`
 interface AudioPlayerProps {
   interview: InterviewType;
   excerpts: ExcerptType[];
-  setShowExcerpt: (arg0: boolean) => void;
-  showExcerpt: boolean;
   setSelectedExcerpt: (arg0: boolean | ExcerptType) => void;
   selectedExcerpt: any;
 }
@@ -40,8 +38,6 @@ interface AudioPlayerProps {
 export default function AudioPlayer({
   interview,
   excerpts,
-  setShowExcerpt,
-  showExcerpt,
   setSelectedExcerpt,
   selectedExcerpt
 }: AudioPlayerProps) {
@@ -65,11 +61,23 @@ export default function AudioPlayer({
     }, 1000);
   };
 
-  const handleWaveformClick = (num: number, numBars: number) => {
+  const handleWaveformClick = (
+    num: number,
+    numBars: number,
+    excerptPositions: any
+  ) => {
     const value = (num / numBars) * duration;
     clearInterval(intervalRef.current);
     audioPlayerRef.current.currentTime = value;
     setTrackProgress(value);
+    setSelectedExcerpt(false);
+
+    // check if bar is part of an excerpt
+    for (let i = 0; i < excerptPositions.length; i++) {
+      if (num >= excerptPositions[i].start && num <= excerptPositions[i].end) {
+        setSelectedExcerpt(excerptPositions[i].fullExcerpt);
+      }
+    }
   };
 
   useEffect(() => {
@@ -88,18 +96,12 @@ export default function AudioPlayer({
     };
   }, []);
 
-  // pass this down to waveform
-  const handleClick = (excerpt: ExcerptType) => {
-    setShowExcerpt(true);
-    setSelectedExcerpt(excerpt);
-  };
-
   return (
     <Background>
       <AudioPlayerWrapper>
         <div style={{ maxWidth: '1000px', width: '100%' }}>
           <StyledP ref={titleRef}>
-            {showExcerpt
+            {selectedExcerpt
               ? `${selectedExcerpt.theme.title}: ${selectedExcerpt.subTheme.title}`
               : interview.title}
           </StyledP>
@@ -116,8 +118,7 @@ export default function AudioPlayer({
             trackProgress={trackProgress}
             duration={duration}
             playing={playing}
-            showExcerpt={showExcerpt}
-            setShowExcerpt={setShowExcerpt}
+            selectedExcerpt={selectedExcerpt}
             setSelectedExcerpt={setSelectedExcerpt}
           />
         </div>

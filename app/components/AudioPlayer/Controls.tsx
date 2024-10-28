@@ -30,9 +30,8 @@ const Button = styled.button`
 
 interface ControlsProps {
   setPlaying: (arg0: boolean) => void;
-  setShowExcerpt: (arg0: boolean) => void;
   setSelectedExcerpt: (arg0: boolean | ExcerptType) => void;
-  showExcerpt: boolean;
+  selectedExcerpt: ExcerptType;
   trackProgress: number;
   duration: number;
   playing: boolean;
@@ -40,15 +39,13 @@ interface ControlsProps {
 
 export default function Controls({
   setPlaying,
-  setShowExcerpt,
-  showExcerpt,
+  selectedExcerpt,
   trackProgress,
   duration,
   playing,
   setSelectedExcerpt
 }: ControlsProps) {
   const handleClick = () => {
-    setShowExcerpt(false);
     setSelectedExcerpt(false);
   };
 
@@ -69,7 +66,7 @@ export default function Controls({
         </StyledP>
       </Primary>
       <Secondary>
-        {showExcerpt ? (
+        {selectedExcerpt ? (
           <>
             <TextButton onClick={handleClick}>Close Excerpt</TextButton>
             <TextButton>Explore Theme</TextButton>
