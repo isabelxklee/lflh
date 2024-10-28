@@ -16,7 +16,7 @@ const Background = styled.div`
 `;
 
 const AudioPlayerWrapper = styled.div`
-  padding: 30px 0;
+  padding: 20px 0;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -47,24 +47,11 @@ export default function AudioPlayer({
 }: AudioPlayerProps) {
   const [playing, setPlaying] = useState<boolean>(false);
   const [trackProgress, setTrackProgress] = useState<number>(0);
-  const [waveformWidth, setWaveformWidth] = useState<number>();
 
   const audioPlayerRef = useRef(new Audio(interview.audioFileURL));
   const intervalRef = useRef<any>();
   const titleRef = useRef<any>();
   const { duration } = audioPlayerRef.current;
-
-  useEffect(() => {
-    const handleResize = () => {
-      setWaveformWidth(titleRef.current.clientWidth);
-    };
-
-    handleResize();
-    window.addEventListener('resize', handleResize);
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
 
   const startTimer = () => {
     clearInterval(intervalRef.current);
@@ -116,9 +103,8 @@ export default function AudioPlayer({
               ? `${selectedExcerpt.theme.title}: ${selectedExcerpt.subTheme.title}`
               : interview.title}
           </StyledP>
-          {waveformWidth && excerpts && (
+          {excerpts && (
             <Waveform
-              pixelWidth={waveformWidth}
               excerpts={excerpts}
               duration={duration}
               progress={trackProgress}

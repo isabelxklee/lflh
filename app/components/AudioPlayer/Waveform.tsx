@@ -5,7 +5,6 @@ import { ExcerptType } from '../../../sanity/types/types';
 import { formatTranscriptText, timeStampToSeconds } from './helper';
 
 interface WaveformProps {
-  pixelWidth: number;
   excerpts: ExcerptType[];
   duration: number;
   progress: number;
@@ -17,7 +16,7 @@ const Wrapper = styled.div`
   flex-direction: row;
   align-items: center;
   gap: 4px;
-  margin-top: 20px;
+  margin: 20px 0;
 `;
 
 const Bar = styled.div<{ $height: number; $color: string }>`
@@ -29,7 +28,6 @@ const Bar = styled.div<{ $height: number; $color: string }>`
 `;
 
 export default function Waveform({
-  pixelWidth,
   excerpts,
   duration,
   progress,
@@ -38,7 +36,7 @@ export default function Waveform({
   const [barHeights, setBarHeights] = useState<number[]>([]);
   const [barPositions, setBarPositions] = useState<any[]>([]);
 
-  const numBars = Math.floor(pixelWidth / 6);
+  const numBars = Math.floor(800 / 6);
   const calculateBar = (ts: string) => {
     const seconds = timeStampToSeconds(ts);
     const percent = seconds / duration;
