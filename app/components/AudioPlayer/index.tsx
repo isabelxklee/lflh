@@ -40,8 +40,6 @@ interface AudioPlayerProps {
 export default function AudioPlayer({
   interview,
   excerpts,
-  setShowExcerpt,
-  showExcerpt,
   setSelectedExcerpt,
   selectedExcerpt
 }: AudioPlayerProps) {
@@ -78,8 +76,9 @@ export default function AudioPlayer({
     // check if bar is part of an excerpt
     excerptPositions.forEach((e: any) => {
       if (num >= e.start && num <= e.end) {
-        setShowExcerpt(true);
         setSelectedExcerpt(e.fullExcerpt);
+      } else {
+        setSelectedExcerpt(false);
       }
     });
   };
@@ -100,18 +99,12 @@ export default function AudioPlayer({
     };
   }, []);
 
-  // pass this down to waveform
-  const handleClick = (excerpt: ExcerptType) => {
-    setShowExcerpt(true);
-    setSelectedExcerpt(excerpt);
-  };
-
   return (
     <Background>
       <AudioPlayerWrapper>
         <div style={{ maxWidth: '1000px', width: '100%' }}>
           <StyledP ref={titleRef}>
-            {showExcerpt
+            {selectedExcerpt
               ? `${selectedExcerpt.theme.title}: ${selectedExcerpt.subTheme.title}`
               : interview.title}
           </StyledP>
@@ -128,8 +121,7 @@ export default function AudioPlayer({
             trackProgress={trackProgress}
             duration={duration}
             playing={playing}
-            showExcerpt={showExcerpt}
-            setShowExcerpt={setShowExcerpt}
+            selectedExcerpt={selectedExcerpt}
             setSelectedExcerpt={setSelectedExcerpt}
           />
         </div>
