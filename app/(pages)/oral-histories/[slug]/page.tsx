@@ -20,27 +20,27 @@ const TranscriptWrapper = styled.div`
 export default function InterviewPage() {
   const [interview, setInterview] = useState<InterviewType>();
   const [excerpts, setExcerpts] = useState<any>();
-  const [selectedExcerpt, setSelectedExcerpt] = useState<boolean | ExcerptType>(
-    false
-  );
+  const [selectedExcerpt, setSelectedExcerpt] = useState<
+    boolean | ExcerptType | any
+  >(false);
   const params = useParams();
 
   const gradient = document.getElementById('gradient');
 
   if (gradient) {
-    if (selectedExcerpt) {
-      gradient.style.background = '#F07F2E';
-    } else {
+    if (!selectedExcerpt) {
       gradient.style.background = `linear-gradient(90deg,
-        ${GRADIENT_COLORS.BLUE},
-        ${GRADIENT_COLORS.DUSK},
-        ${GRADIENT_COLORS.PURPLE},
-        ${GRADIENT_COLORS.BLACK},
-        ${GRADIENT_COLORS.GREEN},
-        ${GRADIENT_COLORS.LIGHT_PURPLE},
-        ${GRADIENT_COLORS.LIGHT_ORANGE},
-        ${GRADIENT_COLORS.ORANGE}
-      )`;
+      ${GRADIENT_COLORS.BLUE},
+      ${GRADIENT_COLORS.DUSK},
+      ${GRADIENT_COLORS.PURPLE},
+      ${GRADIENT_COLORS.BLACK},
+      ${GRADIENT_COLORS.GREEN},
+      ${GRADIENT_COLORS.LIGHT_PURPLE},
+      ${GRADIENT_COLORS.LIGHT_ORANGE},
+      ${GRADIENT_COLORS.ORANGE}
+    )`;
+    } else {
+      gradient.style.background = selectedExcerpt.colorHex;
     }
   }
 
