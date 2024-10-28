@@ -34,7 +34,7 @@ export default function Waveform({
   const [barHeights, setBarHeights] = useState<number[]>([]);
   const [barPositions, setBarPositions] = useState<any[]>([]);
 
-  const randomBarHeight = () => Math.floor(Math.random() * (40 - 20) + 20);
+  // const num () => Math.floor(Math.random() * (40 - 20) + 20);
   const numBars = Math.floor(pixelWidth / 6);
   const calculateBar = (ts: string) => {
     const seconds = timeStampToSeconds(ts);
@@ -68,16 +68,23 @@ export default function Waveform({
     };
 
     getBarPositions();
-  }, []);
 
-  const generateBarHeights = useMemo(() => {
-    let arr: number[] = [];
+    const generateBarHeights = () => {
+      const arr: number[] = [
+        40, 20, 30, 20, 40, 30, 40, 20, 30, 20, 40, 30, 40, 20, 30, 20, 40, 30,
+        40, 20, 30, 20, 40, 30, 20, 40, 30, 40, 20, 30, 20, 40, 30, 40, 20, 30,
+        20, 40, 30, 40, 20, 30, 20, 40, 30, 40, 20, 30, 20, 40, 30, 40, 20, 30,
+        20, 40, 30, 40, 20, 30, 20, 40, 30, 40, 20, 30, 20, 40, 30, 20, 40, 30,
+        40, 20, 30, 20, 40, 30, 40, 20, 30, 20, 40, 30, 40, 20, 30, 20, 40, 30,
+        20, 30, 20, 40, 30, 40, 20, 30, 20, 40, 30, 40, 20, 30, 20, 40, 30, 40,
+        20, 30, 20, 40, 30, 20, 40, 30, 40, 20, 30, 20, 40, 30, 40, 20, 30, 20,
+        40, 30, 40, 20, 30, 20
+      ];
 
-    if (barHeights.length < 1) {
-      [...Array(numBars)].map(() => arr.push(randomBarHeight()));
       setBarHeights(arr);
-    }
-    return arr;
+    };
+
+    generateBarHeights();
   }, []);
 
   const findColor = (num: number) => {
@@ -94,12 +101,8 @@ export default function Waveform({
 
   return (
     <Wrapper>
-      {generateBarHeights.map((num, index) => (
-        <Bar
-          key={index}
-          $height={randomBarHeight()}
-          $color={findColor(index)}
-        />
+      {barHeights.map((num, index) => (
+        <Bar key={index} $height={num} $color={findColor(index)} />
       ))}
     </Wrapper>
   );
