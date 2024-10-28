@@ -1,10 +1,9 @@
 import styled from 'styled-components';
-import { COLORS, P, FONT_WEIGHTS, FONTS, AuthP } from '../../styles';
+import { COLORS, FONT_WEIGHTS, AuthP } from '../../styles';
 import { useEffect, useRef, useState } from 'react';
 import { ExcerptType, InterviewType } from '../../../sanity/types/types';
 import Waveform from './Waveform';
 import Controls from './Controls';
-import Excerpt from './Excerpt';
 
 const Background = styled.div`
   position: fixed;
@@ -17,7 +16,7 @@ const Background = styled.div`
 `;
 
 const AudioPlayerWrapper = styled.div`
-  padding: 30px 0;
+  padding: 20px 0;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -27,11 +26,6 @@ const AudioPlayerWrapper = styled.div`
 export const StyledP = styled(AuthP)`
   font-weight: ${FONT_WEIGHTS.BOLD};
   font-size: 18px;
-`;
-
-const ProgressBar = styled.input`
-  margin: 30px 0;
-  width: 100%;
 `;
 
 interface AudioPlayerProps {
@@ -53,55 +47,29 @@ export default function AudioPlayer({
 }: AudioPlayerProps) {
   const [playing, setPlaying] = useState<boolean>(false);
   const [trackProgress, setTrackProgress] = useState<number>(0);
-  const [waveformWidth, setWaveformWidth] = useState<number>();
 
   const audioPlayerRef = useRef(new Audio(interview.audioFileURL));
   const intervalRef = useRef<any>();
-  const inputRef = useRef<any>();
+  const titleRef = useRef<any>();
   const { duration } = audioPlayerRef.current;
-
-  useEffect(() => {
-    const handleResize = () => {
-      setWaveformWidth(inputRef.current.clientWidth);
-    };
-
-    handleResize();
-    window.addEventListener('resize', handleResize);
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
-
-  // refactor to be reusable
-  const currentPercentage = duration
-    ? `${(trackProgress / duration) * 100}%`
-    : '0%';
-
-  const trackStyling = `-webkit-gradient(linear, 0% 0%, 100% 0%, color-stop(${currentPercentage}, #fff), color-stop(${currentPercentage}, #777))`;
 
   const startTimer = () => {
     clearInterval(intervalRef.current);
 
     intervalRef.current = setInterval(() => {
       if (audioPlayerRef.current.ended) {
-        // do something
+        // write some functionality for when the track is finished
       } else {
         setTrackProgress(audioPlayerRef.current.currentTime);
       }
     }, 1000);
   };
 
-  const onScrub = (value: any) => {
+  const handleWaveformClick = (num: number, numBars: number) => {
+    const value = (num / numBars) * duration;
     clearInterval(intervalRef.current);
     audioPlayerRef.current.currentTime = value;
-    setTrackProgress(audioPlayerRef.current.currentTime);
-  };
-
-  const onScrubEnd = () => {
-    if (!playing) {
-      setPlaying(true);
-    }
-    startTimer();
+    setTrackProgress(value);
   };
 
   useEffect(() => {
@@ -120,6 +88,7 @@ export default function AudioPlayer({
     };
   }, []);
 
+  // pass this down to waveform
   const handleClick = (excerpt: ExcerptType) => {
     setShowExcerpt(true);
     setSelectedExcerpt(excerpt);
@@ -129,37 +98,19 @@ export default function AudioPlayer({
     <Background>
       <AudioPlayerWrapper>
         <div style={{ maxWidth: '1000px', width: '100%' }}>
-          <StyledP>
+          <StyledP ref={titleRef}>
             {showExcerpt
               ? `${selectedExcerpt.theme.title}: ${selectedExcerpt.subTheme.title}`
               : interview.title}
           </StyledP>
-          {waveformWidth && excerpts && (
+          {excerpts && (
             <Waveform
-              pixelWidth={waveformWidth}
               excerpts={excerpts}
               duration={duration}
+              progress={trackProgress}
+              handleWaveformClick={handleWaveformClick}
             />
           )}
-          <ProgressBar
-            type="range"
-            value={trackProgress}
-            ref={inputRef}
-            list="values"
-            step="1"
-            min="0"
-            max={duration ? duration : `${duration}`}
-            onChange={(event: any) => onScrub(event.target.value)}
-            onMouseUp={onScrubEnd}
-            onKeyUp={onScrubEnd}
-            style={{ background: trackStyling }}
-          />
-          {excerpts &&
-            excerpts.map((excerpt: ExcerptType, index: number) => (
-              <div key={index} onClick={() => handleClick(excerpt)}>
-                <Excerpt excerpt={excerpt} duration={duration} />
-              </div>
-            ))}
           <Controls
             setPlaying={setPlaying}
             trackProgress={trackProgress}

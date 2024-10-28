@@ -1,13 +1,14 @@
 import styled from 'styled-components';
-import { COLORS, GRADIENT_COLORS } from '../../styles';
-import { useState, useMemo, useEffect } from 'react';
+import { COLORS } from '../../styles';
+import { useState, useEffect } from 'react';
 import { ExcerptType } from '../../../sanity/types/types';
 import { formatTranscriptText, timeStampToSeconds } from './helper';
 
 interface WaveformProps {
-  pixelWidth: number;
   excerpts: ExcerptType[];
   duration: number;
+  progress: number;
+  handleWaveformClick: (arg0: number, arg1: number) => void;
 }
 
 const Wrapper = styled.div`
@@ -15,7 +16,8 @@ const Wrapper = styled.div`
   flex-direction: row;
   align-items: center;
   gap: 4px;
-  margin-top: 20px;
+  margin: 20px 0;
+  cursor: pointer;
 `;
 
 const Bar = styled.div<{ $height: number; $color: string }>`
@@ -27,20 +29,23 @@ const Bar = styled.div<{ $height: number; $color: string }>`
 `;
 
 export default function Waveform({
-  pixelWidth,
   excerpts,
-  duration
+  duration,
+  progress,
+  handleWaveformClick
 }: WaveformProps) {
   const [barHeights, setBarHeights] = useState<number[]>([]);
   const [barPositions, setBarPositions] = useState<any[]>([]);
 
-  const randomBarHeight = () => Math.floor(Math.random() * (40 - 20) + 20);
-  const numBars = Math.floor(pixelWidth / 6);
+  const numBars = Math.floor(800 / 6);
   const calculateBar = (ts: string) => {
     const seconds = timeStampToSeconds(ts);
     const percent = seconds / duration;
     return Math.floor(percent * numBars);
   };
+
+  const currentPercentage = progress / duration;
+  const pastBars = Math.floor(currentPercentage * 133);
 
   useEffect(() => {
     const getBarPositions = () => {
@@ -68,20 +73,37 @@ export default function Waveform({
     };
 
     getBarPositions();
-  }, []);
 
-  const generateBarHeights = useMemo(() => {
-    let arr: number[] = [];
+    const generateBarHeights = () => {
+      const arr: number[] = [
+        40, 20, 30, 20, 40, 30, 40, 20, 30, 20, 40, 30, 40, 20, 30, 20, 40, 30,
+        40, 20, 30, 20, 40, 30, 20, 40, 30, 40, 20, 30, 20, 40, 30, 40, 20, 30,
+        20, 40, 30, 40, 20, 30, 20, 40, 30, 40, 20, 30, 20, 40, 30, 40, 20, 30,
+        20, 40, 30, 40, 20, 30, 20, 40, 30, 40, 20, 30, 20, 40, 30, 20, 40, 30,
+        40, 20, 30, 20, 40, 30, 40, 20, 30, 20, 40, 30, 40, 20, 30, 20, 40, 30,
+        20, 30, 20, 40, 30, 40, 20, 30, 20, 40, 30, 40, 20, 30, 20, 40, 30, 40,
+        20, 30, 20, 40, 30, 20, 40, 30, 40, 20, 30, 20, 40, 30, 40, 20, 30, 20,
+        40, 30, 40, 20, 30, 20, 40
+      ];
 
-    if (barHeights.length < 1) {
-      [...Array(numBars)].map(() => arr.push(randomBarHeight()));
+      // arr.length = 133
+
       setBarHeights(arr);
-    }
-    return arr;
+    };
+
+    generateBarHeights();
   }, []);
+
+  // color should depend on the following variables:
+  // the timestamp - is it past or future?
+  // is it an excerpt or not?
 
   const findColor = (num: number) => {
     let color = '';
+
+    if (num <= pastBars) {
+      color = COLORS.BLACK;
+    }
 
     for (let i = 0; i < barPositions.length; i++) {
       if (barPositions[i].array.includes(num)) {
@@ -94,11 +116,12 @@ export default function Waveform({
 
   return (
     <Wrapper>
-      {generateBarHeights.map((num, index) => (
+      {barHeights.map((num, index) => (
         <Bar
           key={index}
-          $height={randomBarHeight()}
+          $height={num}
           $color={findColor(index)}
+          onClick={() => handleWaveformClick(index, numBars)}
         />
       ))}
     </Wrapper>
