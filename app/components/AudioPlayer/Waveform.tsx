@@ -43,6 +43,9 @@ export default function Waveform({
     return Math.floor(percent * numBars);
   };
 
+  const currentPercentage = progress / duration;
+  const pastBars = Math.floor(currentPercentage * 133);
+
   useEffect(() => {
     const getBarPositions = () => {
       for (let i = 0; i < excerpts.length; i++) {
@@ -79,8 +82,10 @@ export default function Waveform({
         40, 20, 30, 20, 40, 30, 40, 20, 30, 20, 40, 30, 40, 20, 30, 20, 40, 30,
         20, 30, 20, 40, 30, 40, 20, 30, 20, 40, 30, 40, 20, 30, 20, 40, 30, 40,
         20, 30, 20, 40, 30, 20, 40, 30, 40, 20, 30, 20, 40, 30, 40, 20, 30, 20,
-        40, 30, 40, 20, 30, 20
+        40, 30, 40, 20, 30, 20, 40
       ];
+
+      // arr.length = 133
 
       setBarHeights(arr);
     };
@@ -94,6 +99,10 @@ export default function Waveform({
 
   const findColor = (num: number) => {
     let color = '';
+
+    if (num <= pastBars) {
+      color = COLORS.BLACK;
+    }
 
     for (let i = 0; i < barPositions.length; i++) {
       if (barPositions[i].array.includes(num)) {
