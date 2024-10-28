@@ -32,7 +32,7 @@ export default function SimpleWaveform({
   const [barHeights, setBarHeights] = useState<number[]>([]);
   const [barPositions, setBarPositions] = useState<any[]>([]);
 
-  const numBars = Math.floor(800 / 6);
+  const numBars = 108;
   const calculateBar = (ts: string) => {
     const seconds = timeStampToSeconds(ts);
     const percent = seconds / duration;
