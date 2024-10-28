@@ -140,6 +140,7 @@ export default function AudioPlayer({
               excerpts={excerpts}
               duration={duration}
               progress={trackProgress}
+              playing={playing}
             />
           )}
           <ProgressBar

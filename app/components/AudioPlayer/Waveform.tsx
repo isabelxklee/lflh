@@ -9,6 +9,7 @@ interface WaveformProps {
   excerpts: ExcerptType[];
   duration: number;
   progress: number;
+  playing: boolean;
 }
 
 const Wrapper = styled.div`
@@ -31,7 +32,8 @@ export default function Waveform({
   pixelWidth,
   excerpts,
   duration,
-  progress
+  progress,
+  playing
 }: WaveformProps) {
   const [barHeights, setBarHeights] = useState<number[]>([]);
   const [barPositions, setBarPositions] = useState<any[]>([]);
