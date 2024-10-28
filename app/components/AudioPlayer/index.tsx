@@ -65,11 +65,23 @@ export default function AudioPlayer({
     }, 1000);
   };
 
-  const handleWaveformClick = (num: number, numBars: number) => {
+  const handleWaveformClick = (
+    num: number,
+    numBars: number,
+    excerptPositions: any
+  ) => {
     const value = (num / numBars) * duration;
     clearInterval(intervalRef.current);
     audioPlayerRef.current.currentTime = value;
     setTrackProgress(value);
+
+    // check if bar is part of an excerpt
+    excerptPositions.forEach((e: any) => {
+      if (num >= e.start && num <= e.end) {
+        setShowExcerpt(true);
+        setSelectedExcerpt(e.fullExcerpt);
+      }
+    });
   };
 
   useEffect(() => {

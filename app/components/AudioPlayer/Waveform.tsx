@@ -8,7 +8,7 @@ interface WaveformProps {
   excerpts: ExcerptType[];
   duration: number;
   progress: number;
-  handleWaveformClick: (arg0: number, arg1: number) => void;
+  handleWaveformClick: (arg0: number, arg1: number, arg2: any) => void;
 }
 
 const Wrapper = styled.div`
@@ -63,7 +63,8 @@ export default function Waveform({
           start: start,
           end: end,
           array: arrRange,
-          color: colorHex
+          color: colorHex,
+          fullExcerpt: excerpts[i]
         };
 
         setBarPositions(prev => [...prev, obj]);
@@ -121,7 +122,7 @@ export default function Waveform({
           key={index}
           $height={num}
           $color={findColor(index)}
-          onClick={() => handleWaveformClick(index, numBars)}
+          onClick={() => handleWaveformClick(index, numBars, barPositions)}
         />
       ))}
     </Wrapper>
