@@ -17,6 +17,7 @@ const Wrapper = styled.div`
   align-items: center;
   gap: 4px;
   margin: 20px 0;
+  cursor: pointer;
 `;
 
 const Bar = styled.div<{ $height: number; $color: string }>`
