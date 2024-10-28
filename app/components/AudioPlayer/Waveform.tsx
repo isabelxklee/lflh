@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import { COLORS, GRADIENT_COLORS } from '../../styles';
-import { useState, useMemo, useEffect } from 'react';
+import { COLORS } from '../../styles';
+import { useState, useEffect } from 'react';
 import { ExcerptType } from '../../../sanity/types/types';
 import { formatTranscriptText, timeStampToSeconds } from './helper';
 
@@ -34,7 +34,6 @@ export default function Waveform({
   const [barHeights, setBarHeights] = useState<number[]>([]);
   const [barPositions, setBarPositions] = useState<any[]>([]);
 
-  // const num () => Math.floor(Math.random() * (40 - 20) + 20);
   const numBars = Math.floor(pixelWidth / 6);
   const calculateBar = (ts: string) => {
     const seconds = timeStampToSeconds(ts);
