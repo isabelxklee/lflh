@@ -37,6 +37,17 @@ const ThemeColor = styled.div<{ $num: number }>`
   width: calc(100% / 3);
   height: 200px;
   z-index: 2;
+  display: flex;
+  justify-content: center;
+`;
+
+const Circle = styled.div`
+  height: 50px;
+  width: 50px;
+  background: white;
+  border-radius: 100%;
+  transform: translateY(118px);
+  z-index: 100;
 `;
 
 export const GradientHeader = ({ themes, setTheme }: GradientHeaderProps) => {
@@ -46,12 +57,14 @@ export const GradientHeader = ({ themes, setTheme }: GradientHeaderProps) => {
 
   return (
     <Gradient $clickable={true}>
-      {themes.map((theme: any) => (
+      {themes.map((theme: any, index: number) => (
         <ThemeColor
-          key={theme.sort}
+          key={index}
           $num={themes.length}
           onClick={() => handleClick(theme)}
-        />
+        >
+          <Circle />
+        </ThemeColor>
       ))}
     </Gradient>
   );
