@@ -1,13 +1,11 @@
 import { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { ExcerptType } from '../../sanity/types/types';
 import { COLORS } from '../styles';
 import { timeStampToSeconds, formatTranscriptText } from './AudioPlayer/helper';
 
-interface WaveformProps {
-  excerpts: ExcerptType[];
+interface SimpleWaveformProps {
+  excerpts: any[];
   duration: number;
-  progress: number;
 }
 
 const Wrapper = styled.div`
@@ -27,11 +25,14 @@ const Bar = styled.div<{ $height: number; $color: string }>`
   border-radius: 2px;
 `;
 
-export default function Waveform({ excerpts, duration }: WaveformProps) {
+export default function SimpleWaveform({
+  excerpts,
+  duration
+}: SimpleWaveformProps) {
   const [barHeights, setBarHeights] = useState<number[]>([]);
   const [barPositions, setBarPositions] = useState<any[]>([]);
 
-  const numBars = Math.floor(800 / 6);
+  const numBars = 108;
   const calculateBar = (ts: string) => {
     const seconds = timeStampToSeconds(ts);
     const percent = seconds / duration;
@@ -67,14 +68,12 @@ export default function Waveform({ excerpts, duration }: WaveformProps) {
 
     const generateBarHeights = () => {
       const arr: number[] = [
-        10, 20, 30, 20, 10, 30, 10, 20, 30, 20, 10, 30, 10, 20, 30, 20, 10, 30,
-        10, 20, 30, 20, 10, 30, 20, 10, 30, 10, 20, 30, 20, 10, 30, 10, 20, 30,
-        20, 10, 30, 10, 20, 30, 20, 10, 30, 10, 20, 30, 20, 10, 30, 10, 20, 30,
-        20, 10, 30, 10, 20, 30, 20, 10, 30, 10, 20, 30, 20, 10, 30, 20, 10, 30,
-        10, 20, 30, 20, 10, 30, 10, 20, 30, 20, 10, 30, 10, 20, 30, 20, 10, 30,
-        20, 30, 20, 10, 30, 10, 20, 30, 20, 10, 30, 10, 20, 30, 20, 10, 30, 10,
-        20, 30, 20, 10, 30, 20, 10, 30, 10, 20, 30, 20, 10, 30, 10, 20, 30, 20,
-        10, 30, 10, 20, 30, 20, 10
+        15, 20, 25, 20, 15, 25, 15, 20, 25, 20, 15, 25, 15, 20, 25, 20, 15, 25,
+        15, 20, 25, 20, 15, 25, 20, 15, 25, 15, 20, 25, 20, 15, 25, 15, 20, 25,
+        20, 15, 25, 15, 20, 25, 20, 15, 25, 15, 20, 25, 20, 15, 25, 15, 20, 25,
+        20, 15, 25, 15, 20, 25, 20, 15, 25, 15, 20, 25, 20, 15, 25, 20, 15, 25,
+        15, 20, 25, 20, 15, 25, 15, 20, 25, 20, 15, 25, 15, 20, 25, 20, 15, 25,
+        20, 25, 20, 15, 25, 15, 20, 25, 20, 15, 25, 15, 20, 25, 20, 15, 25, 15
       ];
 
       setBarHeights(arr);
@@ -98,7 +97,6 @@ export default function Waveform({ excerpts, duration }: WaveformProps) {
   return (
     <Wrapper>
       {barHeights.map((num, index) => (
-        // add Link element for navigation
         <Bar key={index} $height={num} $color={findColor(index)} />
       ))}
     </Wrapper>

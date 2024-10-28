@@ -36,7 +36,13 @@ export const INTERVIEWS_QUERY = defineQuery(`*[_type == "interview"]{
       audioFile,
       "audioFileURL": audioFile.asset->url,
       "transcriptText": transcriptText[].children[].text,
-      "slug": slug.current
+      "slug": slug.current,
+      "excerpts": *[_type == "excerpt" && references(^._id)] {
+        title,
+        transcriptText,
+        "colorTitle": subTheme->theme->color->title,
+        "colorHex": subTheme->theme->color->hexCode,
+      },
     }`);
 
 export const EXCERPTS_QUERY = defineQuery(`*[_type == "excerpt"]{
