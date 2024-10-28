@@ -10,6 +10,7 @@ interface MiniGradientHeaderProps {
 
 interface GradientHeaderProps extends MiniGradientHeaderProps {
   setTheme: (args0: any) => void;
+  theme: any;
 }
 
 const Gradient = styled.div<{ $clickable: boolean; $height?: string }>`
@@ -37,21 +38,39 @@ const ThemeColor = styled.div<{ $num: number }>`
   width: calc(100% / 3);
   height: 200px;
   z-index: 2;
+  display: flex;
+  justify-content: center;
 `;
 
-export const GradientHeader = ({ themes, setTheme }: GradientHeaderProps) => {
+const Circle = styled.div<{ $show: boolean }>`
+  height: 50px;
+  width: 50px;
+  background: white;
+  border-radius: 100%;
+  transform: translateY(118px);
+  z-index: 100;
+  visibility: ${({ $show }) => ($show ? 'visible' : 'hidden')};
+`;
+
+export const GradientHeader = ({
+  themes,
+  setTheme,
+  theme
+}: GradientHeaderProps) => {
   const handleClick = (theme: any) => {
     setTheme(theme);
   };
 
   return (
     <Gradient $clickable={true}>
-      {themes.map((theme: any) => (
+      {themes.map((thisTheme: any, index: number) => (
         <ThemeColor
-          key={theme.sort}
+          key={index}
           $num={themes.length}
-          onClick={() => handleClick(theme)}
-        />
+          onClick={() => handleClick(thisTheme)}
+        >
+          <Circle $show={theme === thisTheme} />
+        </ThemeColor>
       ))}
     </Gradient>
   );
