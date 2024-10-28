@@ -9,7 +9,6 @@ interface WaveformProps {
   excerpts: ExcerptType[];
   duration: number;
   progress: number;
-  playing: boolean;
 }
 
 const Wrapper = styled.div`
@@ -32,8 +31,7 @@ export default function Waveform({
   pixelWidth,
   excerpts,
   duration,
-  progress,
-  playing
+  progress
 }: WaveformProps) {
   const [barHeights, setBarHeights] = useState<number[]>([]);
   const [barPositions, setBarPositions] = useState<any[]>([]);
@@ -115,10 +113,19 @@ export default function Waveform({
     return color;
   };
 
+  const handleClick = (index: number) => {
+    console.log('hello world', index);
+  };
+
   return (
     <Wrapper>
       {barHeights.map((num, index) => (
-        <Bar key={index} $height={num} $color={findColor(index)} />
+        <Bar
+          key={index}
+          $height={num}
+          $color={findColor(index)}
+          onClick={() => handleClick(index)}
+        />
       ))}
     </Wrapper>
   );
