@@ -8,6 +8,7 @@ interface WaveformProps {
   pixelWidth: number;
   excerpts: ExcerptType[];
   duration: number;
+  progress: number;
 }
 
 const Wrapper = styled.div`
@@ -29,7 +30,8 @@ const Bar = styled.div<{ $height: number; $color: string }>`
 export default function Waveform({
   pixelWidth,
   excerpts,
-  duration
+  duration,
+  progress
 }: WaveformProps) {
   const [barHeights, setBarHeights] = useState<number[]>([]);
   const [barPositions, setBarPositions] = useState<any[]>([]);
@@ -85,6 +87,10 @@ export default function Waveform({
 
     generateBarHeights();
   }, []);
+
+  // color should depend on the following variables:
+  // the timestamp - is it past or future?
+  // is it an excerpt or not?
 
   const findColor = (num: number) => {
     let color = '';

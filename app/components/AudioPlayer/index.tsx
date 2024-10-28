@@ -139,6 +139,7 @@ export default function AudioPlayer({
               pixelWidth={waveformWidth}
               excerpts={excerpts}
               duration={duration}
+              progress={trackProgress}
             />
           )}
           <ProgressBar
