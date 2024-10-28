@@ -48,8 +48,8 @@ export default function OralHistories() {
             <div key={index}>
               <StyledLink href={`/oral-histories/${interview.slug}`}>
                 {interview.title}
+                <SimpleWaveform excerpts={interview.excerpts} duration={8111} />
               </StyledLink>
-              <SimpleWaveform excerpts={interview.excerpts} duration={8111} />
             </div>
           ))}
       </InterviewWrapper>

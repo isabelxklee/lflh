@@ -97,7 +97,6 @@ export default function SimpleWaveform({
   return (
     <Wrapper>
       {barHeights.map((num, index) => (
-        // add Link element for navigation
         <Bar key={index} $height={num} $color={findColor(index)} />
       ))}
     </Wrapper>
