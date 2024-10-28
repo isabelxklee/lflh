@@ -84,7 +84,7 @@ export default function AudioPlayer({
 
     intervalRef.current = setInterval(() => {
       if (audioPlayerRef.current.ended) {
-        // do something
+        // write some functionality for when the track is finished
       } else {
         setTrackProgress(audioPlayerRef.current.currentTime);
       }
@@ -95,6 +95,13 @@ export default function AudioPlayer({
     clearInterval(intervalRef.current);
     audioPlayerRef.current.currentTime = value;
     setTrackProgress(audioPlayerRef.current.currentTime);
+  };
+
+  const handleWaveformClick = (num: number, numBars: number) => {
+    const value = (num / numBars) * duration;
+    clearInterval(intervalRef.current);
+    audioPlayerRef.current.currentTime = value;
+    setTrackProgress(value);
   };
 
   const onScrubEnd = () => {
@@ -140,7 +147,7 @@ export default function AudioPlayer({
               excerpts={excerpts}
               duration={duration}
               progress={trackProgress}
-              setTrackProgress={setTrackProgress}
+              handleWaveformClick={handleWaveformClick}
             />
           )}
           <ProgressBar
