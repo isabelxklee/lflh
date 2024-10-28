@@ -23,6 +23,7 @@ export type InterviewType = {
   audioFileURL: string;
   transcriptText: string[];
   slug: string;
+  excerpts: any[];
 };
 
 export type ExcerptType = {

@@ -6,6 +6,7 @@ import Link from 'next/link.js';
 import { COLORS, FONT_WEIGHTS, FONTS, P, PageWrapper } from '../../styles.js';
 import { getInterviews } from '../../actions';
 import { InterviewType } from '../../../sanity/types/types.js';
+import SimpleWaveform from '../../components/SimpleWaveform';
 
 const InterviewWrapper = styled.div`
   display: flex;
@@ -44,9 +45,12 @@ export default function OralHistories() {
       <InterviewWrapper>
         {interviews &&
           interviews.map((interview: InterviewType, index: number) => (
-            <StyledLink key={index} href={`/oral-histories/${interview.slug}`}>
-              {interview.title}
-            </StyledLink>
+            <div key={index}>
+              <StyledLink href={`/oral-histories/${interview.slug}`}>
+                {interview.title}
+              </StyledLink>
+              <SimpleWaveform excerpts={interview.excerpts} duration={8111} />
+            </div>
           ))}
       </InterviewWrapper>
     </PageWrapper>

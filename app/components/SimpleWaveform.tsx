@@ -1,13 +1,11 @@
 import { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { ExcerptType } from '../../sanity/types/types';
 import { COLORS } from '../styles';
 import { timeStampToSeconds, formatTranscriptText } from './AudioPlayer/helper';
 
-interface WaveformProps {
-  excerpts: ExcerptType[];
+interface SimpleWaveformProps {
+  excerpts: any[];
   duration: number;
-  progress: number;
 }
 
 const Wrapper = styled.div`
@@ -27,7 +25,10 @@ const Bar = styled.div<{ $height: number; $color: string }>`
   border-radius: 2px;
 `;
 
-export default function Waveform({ excerpts, duration }: WaveformProps) {
+export default function SimpleWaveform({
+  excerpts,
+  duration
+}: SimpleWaveformProps) {
   const [barHeights, setBarHeights] = useState<number[]>([]);
   const [barPositions, setBarPositions] = useState<any[]>([]);
 
