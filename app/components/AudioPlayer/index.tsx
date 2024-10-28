@@ -70,15 +70,14 @@ export default function AudioPlayer({
     clearInterval(intervalRef.current);
     audioPlayerRef.current.currentTime = value;
     setTrackProgress(value);
+    setSelectedExcerpt(false);
 
     // check if bar is part of an excerpt
-    excerptPositions.forEach((e: any) => {
-      if (num >= e.start && num <= e.end) {
-        setSelectedExcerpt(e.fullExcerpt);
-      } else {
-        setSelectedExcerpt(false);
+    for (let i = 0; i < excerptPositions.length; i++) {
+      if (num >= excerptPositions[i].start && num <= excerptPositions[i].end) {
+        setSelectedExcerpt(excerptPositions[i].fullExcerpt);
       }
-    });
+    }
   };
 
   useEffect(() => {
